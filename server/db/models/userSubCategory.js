@@ -1,17 +1,20 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const ActivityDay = db.define('activityDay', {
-  activityId: {
+const UserSubCategory = db.define('userSubCategory', {
+  userId: {
     type: Sequelize.INTEGER,
     allowNull: false,
     isInt: true
   },
-  dayId: {
+  subCategoryId: {
     type: Sequelize.INTEGER,
     allowNull: false,
     isInt: true
+  },
+  userRating: {
+    type: Sequelize.INTEGER
   }
 })
 
-module.exports = ActivityDay
+module.exports = UserSubCategory

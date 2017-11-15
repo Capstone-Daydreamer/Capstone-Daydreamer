@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const SubCatagory = db.define('subCatagory', {
+const SubCategory = db.define('subCategory', {
     name: {
       type: Sequelize.STRING
     }
 })
 
-module.exports = SubCatagory
+module.exports = SubCategory
