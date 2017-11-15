@@ -11,11 +11,6 @@ const ActivitySubCategory = db.define('activitySubCategory', {
     type: Sequelize.INTEGER,
     allowNull: false,
     isInt: true
-  },
-  rating: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    isInt: true
   }
 })
 
