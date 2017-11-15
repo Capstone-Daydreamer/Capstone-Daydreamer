@@ -30,6 +30,20 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
+router.post('/fb', (req, res, next) => {
+  User.find({where: {fbId: req.body.fbId}})
+  .then(foundUser => (foundUser
+    ? res.json(foundUser)
+    : User.create({
+        name: req.body.name, 
+        email: req.body.email, 
+        fbId: req.body.fbId
+      })
+      .then(createdUser => res.json(createdUser))
+  ))
+  .catch(next)
+})
+
 router.post('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
@@ -39,4 +53,5 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
-router.use('/google', require('./google'))
+// router.use('/google', require('./google'))
+// router.user('/facebook', require('./facebook'))
