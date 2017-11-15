@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import { Footer } from './'
-
+import {
+  Container, Menu
+} from 'semantic-ui-react'
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -16,32 +18,46 @@ const Main = (props) => {
 
   return (
     <div>
-      <div className="ui inverted centered attached stackable menu">
-        <nav className="ui center aligned container">
-          <Link to="#" className="item"><h1 >BOILERMAKER</h1> </Link>
-          <Link to="#" className="item">Daydreamer</Link>
-          <Link to="#" className="item">Groups</Link>
-          <Link to="#" className="item">Events</Link>
-          <Link to="#" className="item">Profile</Link>
+      <Menu inverted>
+        <Container>
+          <Menu.Item>
+            <Link to="#"><h1 >BOILERMAKER</h1> </Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="#">Daydreamer</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="#">Groups</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="#">Events</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="#">Profile</Link>
+          </Menu.Item>
           {
             isLoggedIn
               ? <div>
                 {/* The navbar will show these links after you log in */}
-                <a href="/#" onClick={handleClick} className="item">Logout</a>
+                <Menu.Item>
+                  <a href="/#" onClick={handleClick}>Logout</a>
+                </Menu.Item>
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}
-                <Link to="/login" className="item">Login</Link>
-                <Link to="/signup" className="item">Sign Up</Link>
+                <Menu.Item>
+                  <Link to="/login">Login</Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link to="/signup">Sign Up</Link>
+                </Menu.Item>
               </div>
           }
-        </nav>
-        <hr />
-      </div>
-
+        </Container>
+      </Menu>
       {children}
       <Footer />
-    </div>
+    </div >
   )
 }
 /**
