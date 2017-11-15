@@ -16,26 +16,29 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>BOILERMAKER</h1>
-      <nav>
-        <Link to="/#">Daydreamer</Link>
-        <Link to="/#">Groups</Link>
-        <Link to="/#">Events</Link>
-        <Link to="/#">Profile</Link>
-        {
-          isLoggedIn
-            ? <div>
-              {/* The navbar will show these links after you log in */}
-              <a href="/#" onClick={handleClick}>Logout</a>
-            </div>
-            : <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-        }
-      </nav>
-      <hr />
+      <div className="ui inverted centered attached stackable menu">
+        <nav className="ui center aligned container">
+          <Link to="#" className="item"><h1 >BOILERMAKER</h1> </Link>
+          <Link to="#" className="item">Daydreamer</Link>
+          <Link to="#" className="item">Groups</Link>
+          <Link to="#" className="item">Events</Link>
+          <Link to="#" className="item">Profile</Link>
+          {
+            isLoggedIn
+              ? <div>
+                {/* The navbar will show these links after you log in */}
+                <a href="/#" onClick={handleClick} className="item">Logout</a>
+              </div>
+              : <div>
+                {/* The navbar will show these links before you log in */}
+                <Link to="/login" className="item">Login</Link>
+                <Link to="/signup" className="item">Sign Up</Link>
+              </div>
+          }
+        </nav>
+        <hr />
+      </div>
+
       {children}
       <Footer />
     </div>
