@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {
-  Segment, Container, Grid
-} from 'semantic-ui-react'
+
 /**
  * COMPONENT
  */
@@ -12,33 +10,27 @@ export const Footer = (props) => {
   const { email } = props
 
   return (
-    <Segment
-    inverted
-    vertical
-    style={{ margin: '1em 0em 0em', padding: '2em 0em' }}
-    >
-      <Container textAlign='center'>
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <h3 className="ui inverted header">FOOTER</h3>
-              <form className="ui form">
-                <label>Enter your email to be the first to hear about new features!</label>
-                <input type="email" />
-              </form>
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <ul className="ui inverted link list">
-                <li><b>Created By</b></li>
-                <li>Ellen Ormerod</li>
-                <li>Jamie Slaughter</li>
-                <li>Benjamin Odisho</li>
-              </ul>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </Segment>
+    <div className="ui inverted vertical footer segment">
+      <div className="ui center aligned container">
+        <div className="ui stackable inverted divided grid">
+          <div className="eight wide column">
+            <h3 className="ui inverted header">FOOTER</h3>
+            <form className="ui form">
+              <label>Enter your email to be the first to hear about new features!</label>
+              <input type="email" />
+            </form>
+          </div>
+          <div className="eight wide column">
+            <ul className="ui inverted link list">
+              <li><b>Created By</b></li>
+              <li>Ellen Ormerod</li>
+              <li>Jamie Slaughter</li>
+              <li>Benjamin Odisho</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
