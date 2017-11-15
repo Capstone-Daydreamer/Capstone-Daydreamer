@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import UserGroupsCard from './user-groups-card.js'
 import {
   Container, Card, Icon
 } from 'semantic-ui-react'
@@ -10,7 +11,10 @@ import {
  */
 export const UserGroups = (props) => {
   // const {email} = props
-
+  const UserGroups = [
+    { id: 1, title: "Benjamin Odishos Super Awesome Dance Crew", description: "Ever have the urge to dance like no ones watching while everyone is watching? Us too. We meet up on Wednesdays and every third Thursday of the month for a dance off" },
+    { id: 2, title: "Ellen Ormerods Competitive Karaoke Hide-and-go-Seek League", description: "Ever have the urge to dance like no ones watching while everyone is watching? Us too. We meet up on Wednesdays and every third Thursday of the month for a dance off"},
+    { id: 3, title: "Jamie Slaughters Slaughter of Badass Iguanas", description: "Ever have the urge to dance like no ones watching while everyone is watching? Us too. We meet up on Wednesdays and every third Thursday of the month for a dance off"} ]
   return (
     <Container>
       <h3>Welcome!</h3>
@@ -26,30 +30,9 @@ export const UserGroups = (props) => {
           Your Friends Could Go Here!
         </Card.Content>
       </Card>
-      <Card>
-        <Card.Content header = 'Benjamin Odishos Super Awesome Dance Crew'/>
-        <Card.Content description = 'Ever have the urge to dance like no ones watching while everyone is watching? Us too. We meet up on Wednesdays and every third Thursday of the month for a dance off'/>
-        <Card.Content extra>
-          <Icon name='user' />
-          4 Bodacious Bagles
-        </Card.Content>
-      </Card>
-      <Card>
-        <Card.Content header = 'Ellen Ormerods Competitive Karaoke Hide-and-go-Seek League'/>
-        <Card.Content description = 'Ever have the urge to dance like no ones watching while everyone is watching? Us too. We meet up on Wednesdays and every third Thursday of the month for a dance off'/>
-        <Card.Content extra>
-          <Icon name='user' />
-          4 Miss Elleneous Mangos
-        </Card.Content>
-      </Card>
-      <Card>
-        <Card.Content header = 'Jamie Slaughters Slaughter of Badass Iguanas'/>
-        <Card.Content description = 'Ever have the urge to dance like no ones watching while everyone is watching? Us too. We meet up on Wednesdays and every third Thursday of the month for a dance off'/>
-        <Card.Content extra>
-          <Icon name='user' />
-          4 P.B. n Jamies
-        </Card.Content>
-      </Card>
+      {UserGroups.map(group =>
+        (<UserGroupsCard key={group.id} group={group} />)
+      )}
       </Card.Group>
     </Container>
   )
