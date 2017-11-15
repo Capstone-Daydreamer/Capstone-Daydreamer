@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
-import { Footer } from './'
+import { Footer, UserProfile } from './'
 import {
   Container, Menu
 } from 'semantic-ui-react'
@@ -30,7 +30,7 @@ const Main = (props) => {
             <Link to="#">Events</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to="#">Profile</Link>
+            <Link to="/Profile">Profile</Link>
           </Menu.Item>
           {
             isLoggedIn
