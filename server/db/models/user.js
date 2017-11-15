@@ -56,5 +56,15 @@ const setSaltAndPassword = user => {
   }
 }
 
+const createSaltAndPassword = person => {
+  person.forEach(user => {
+    if (user.changed('password')) {
+      user.salt = User.generateSalt()
+      user.password = User.encryptPassword(user.password, user.salt)
+    }
+  })
+}
+
+User.beforeBulkCreate(createSaltAndPassword)
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
