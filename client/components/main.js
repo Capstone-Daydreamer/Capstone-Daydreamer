@@ -15,8 +15,11 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>BOILERMAKER</h1>
+      <Link to="/"> <h1>BOILERMAKER</h1> </Link>
       <nav>
+        <Link to="/#">Groups</Link>
+        <Link to="/#">Events</Link>
+        <Link to="/#">Profile</Link>
         {
           isLoggedIn
             ? <div>
@@ -36,7 +39,6 @@ const Main = (props) => {
     </div>
   )
 }
-
 /**
  * CONTAINER
  */
