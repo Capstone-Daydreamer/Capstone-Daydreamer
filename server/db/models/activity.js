@@ -10,6 +10,12 @@ const Activity = db.define('activity', {
     },
     location: {
         type: Sequelize.STRING
+    },
+    description: {
+       type: Sequelize.TEXT
+    },
+    time: {
+      type: Sequelize.STRING
     }
 })
 
