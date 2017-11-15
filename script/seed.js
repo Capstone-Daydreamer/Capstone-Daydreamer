@@ -97,35 +97,35 @@ const users = [
 
 const userEvent = [
   { userId: 1, activityId: 2}, //1
-  { userId: 1, activityId: 5}, //1
-  { userId: 1, activityId: 7}, //1
-  { userId: 1, activityId: 10}, //1
-  { userId: 2, activityId: 1}, //1
-  { userId: 2, activityId: 3}, //1
-  { userId: 2, activityId: 4}, //1
-  { userId: 2, activityId: 5}, //1
-  { userId: 2, activityId: 6}, //1
-  { userId: 2, activityId: 7}, //1
-  { userId: 2, activityId: 8}, //1
-  { userId: 2, activityId: 10}, //1
-  { userId: 3, activityId: 1}, //1
-  { userId: 3, activityId: 3}, //1
-  { userId: 3, activityId: 4}, //1
-  { userId: 3, activityId: 8}, //1
-  { userId: 4, activityId: 2}, //1
-  { userId: 4, activityId: 6}, //1
-  { userId: 4, activityId: 7}, //1
-  { userId: 4, activityId: 11}, //1
-  { userId: 5, activityId: 5}, //1
-  { userId: 5, activityId: 6}, //1
-  { userId: 5, activityId: 7}, //1
-  { userId: 5, activityId: 8}, //1
-  { userId: 5, activityId: 10}, //1
-  { userId: 6, activityId: 2}, //1
-  { userId: 6, activityId: 11}, //1
-  { userId: 7, activityId: 5}, //1
-  { userId: 7, activityId: 7}, //1
-  { userId: 7, activityId: 10}, //1
+  { userId: 1, activityId: 5}, //2
+  { userId: 1, activityId: 7}, //3
+  { userId: 1, activityId: 10}, //4
+  { userId: 2, activityId: 1}, //5
+  { userId: 2, activityId: 3}, //6
+  { userId: 2, activityId: 4}, //7
+  { userId: 2, activityId: 5}, //8
+  { userId: 2, activityId: 6}, //9
+  { userId: 2, activityId: 7}, //10
+  { userId: 2, activityId: 8}, //11
+  { userId: 2, activityId: 10}, //12
+  { userId: 3, activityId: 1}, //13
+  { userId: 3, activityId: 3}, //14
+  { userId: 3, activityId: 4}, //15
+  { userId: 3, activityId: 8}, //16
+  { userId: 4, activityId: 2}, //17
+  { userId: 4, activityId: 6}, //18
+  { userId: 4, activityId: 7}, //19
+  { userId: 4, activityId: 11}, //20
+  { userId: 5, activityId: 5}, //21
+  { userId: 5, activityId: 6}, //22
+  { userId: 5, activityId: 7}, //23
+  { userId: 5, activityId: 8}, //24
+  { userId: 5, activityId: 10}, //25
+  { userId: 6, activityId: 2}, //26
+  { userId: 6, activityId: 11}, //27
+  { userId: 7, activityId: 5}, //28
+  { userId: 7, activityId: 7}, //29
+  { userId: 7, activityId: 10}, //30
   { userId: 8, activityId: 2}, //1
   { userId: 9, activityId: 1}, //1
   { userId: 9, activityId: 3}, //1
@@ -346,6 +346,174 @@ const subcats = [
 
 const userSubcat = [
   {userId: 1, subcategoryId: 1}, //1
+  {userId: 1, subcategoryId: 5}, //2
+  {userId: 1, subcategoryId: 6}, //3
+  {userId: 1, subcategoryId: 8}, //4
+  {userId: 1, subcategoryId: 19}, //5
+  {userId: 1, subcategoryId: 22}, //6
+  {userId: 1, subcategoryId: 25}, //7
+  {userId: 1, subcategoryId: 29}, //8
+  {userId: 1, subcategoryId: 34}, //9
+  {userId: 1, subcategoryId: 44}, //10
+  {userId: 1, subcategoryId: 49}, //11
+  {userId: 1, subcategoryId: 58}, //12
+  {userId: 1, subcategoryId: 62}, //13
+  {userId: 1, subcategoryId: 63}, //14
+  {userId: 2, subcategoryId: 1},
+  {userId: 2, subcategoryId: 3},
+  {userId: 2, subcategoryId: 5},
+  {userId: 2, subcategoryId: 6},
+  {userId: 2, subcategoryId: 8},
+  {userId: 2, subcategoryId: 10},
+  {userId: 2, subcategoryId: 16},
+  {userId: 2, subcategoryId: 19},
+  {userId: 2, subcategoryId: 22},
+  {userId: 2, subcategoryId: 25},
+  {userId: 2, subcategoryId: 30},
+  {userId: 2, subcategoryId: 34},
+  {userId: 2, subcategoryId: 39},
+  {userId: 2, subcategoryId: 45},
+  {userId: 2, subcategoryId: 48},
+  {userId: 2, subcategoryId: 57},
+  {userId: 2, subcategoryId: 58},
+  {userId: 2, subcategoryId: 62},
+  {userId: 3, subcategoryId: 2},
+  {userId: 3, subcategoryId: 3},
+  {userId: 3, subcategoryId: 6},
+  {userId: 3, subcategoryId: 9},
+  {userId: 3, subcategoryId: 14},
+  {userId: 3, subcategoryId: 15},
+  {userId: 3, subcategoryId: 16},
+  {userId: 3, subcategoryId: 24},
+  {userId: 3, subcategoryId: 33},
+  {userId: 3, subcategoryId: 40},
+  {userId: 3, subcategoryId: 42},
+  {userId: 3, subcategoryId: 55},
+  {userId: 3, subcategoryId: 58},
+  {userId: 3, subcategoryId: 66},
+  {userId: 4, subcategoryId: 1},
+  {userId: 4, subcategoryId: 2},
+  {userId: 4, subcategoryId: 6},
+  {userId: 4, subcategoryId: 7},
+  {userId: 4, subcategoryId: 11},
+  {userId: 4, subcategoryId: 20},
+  {userId: 4, subcategoryId: 27},
+  {userId: 4, subcategoryId: 29},
+  {userId: 4, subcategoryId: 34},
+  {userId: 4, subcategoryId: 36},
+  {userId: 4, subcategoryId: 42},
+  {userId: 4, subcategoryId: 51},
+  {userId: 4, subcategoryId: 53},
+  {userId: 4, subcategoryId: 57},
+  {userId: 4, subcategoryId: 61},
+  {userId: 4, subcategoryId: 62},
+  {userId: 4, subcategoryId: 66},
+  {userId: 5, subcategoryId: 1},
+  {userId: 5, subcategoryId: 6},
+  {userId: 5, subcategoryId: 13},
+  {userId: 5, subcategoryId: 17},
+  {userId: 5, subcategoryId: 22},
+  {userId: 5, subcategoryId: 25},
+  {userId: 5, subcategoryId: 28},
+  {userId: 5, subcategoryId: 33},
+  {userId: 5, subcategoryId: 34},
+  {userId: 5, subcategoryId: 35},
+  {userId: 5, subcategoryId: 38},
+  {userId: 5, subcategoryId: 42},
+  {userId: 5, subcategoryId: 46},
+  {userId: 5, subcategoryId: 57},
+  {userId: 5, subcategoryId: 62},
+  {userId: 5, subcategoryId: 63},
+  {userId: 6, subcategoryId: 2},
+  {userId: 6, subcategoryId: 9},
+  {userId: 6, subcategoryId: 10},
+  {userId: 6, subcategoryId: 16},
+  {userId: 6, subcategoryId: 26},
+  {userId: 6, subcategoryId: 29},
+  {userId: 6, subcategoryId: 47},
+  {userId: 6, subcategoryId: 54},
+  {userId: 6, subcategoryId: 66},
+  {userId: 7, subcategoryId: 13},
+  {userId: 7, subcategoryId: 18},
+  {userId: 7, subcategoryId: 22},
+  {userId: 7, subcategoryId: 25},
+  {userId: 7, subcategoryId: 37},
+  {userId: 7, subcategoryId: 41},
+  {userId: 7, subcategoryId: 46},
+  {userId: 8, subcategoryId: 4},
+  {userId: 8, subcategoryId: 12},
+  {userId: 8, subcategoryId: 21},
+  {userId: 8, subcategoryId: 26},
+  {userId: 8, subcategoryId: 29},
+  {userId: 8, subcategoryId: 39},
+  {userId: 8, subcategoryId: 64},
+  {userId: 9, subcategoryId: 1},
+  {userId: 9, subcategoryId: 3},
+  {userId: 9, subcategoryId: 5},
+  {userId: 9, subcategoryId: 6},
+  {userId: 9, subcategoryId: 8},
+  {userId: 9, subcategoryId: 19},
+  {userId: 9, subcategoryId: 22},
+  {userId: 9, subcategoryId: 25},
+  {userId: 9, subcategoryId: 42},
+  {userId: 9, subcategoryId: 44},
+  {userId: 9, subcategoryId: 53},
+  {userId: 9, subcategoryId: 58},
+  {userId: 9, subcategoryId: 62},
+  {userId: 9, subcategoryId: 63},
+  {userId: 10, subcategoryId: 3},
+  {userId: 10, subcategoryId: 7},
+  {userId: 10, subcategoryId: 14},
+  {userId: 10, subcategoryId: 16},
+  {userId: 10, subcategoryId: 19},
+  {userId: 10, subcategoryId: 23},
+  {userId: 10, subcategoryId: 29},
+  {userId: 10, subcategoryId: 31},
+  {userId: 10, subcategoryId: 32},
+  {userId: 10, subcategoryId: 34},
+  {userId: 10, subcategoryId: 35},
+  {userId: 10, subcategoryId: 39},
+  {userId: 10, subcategoryId: 32},
+  {userId: 10, subcategoryId: 50},
+  {userId: 10, subcategoryId: 66},
+  {userId: 11, subcategoryId: 2},
+  {userId: 11, subcategoryId: 4},
+  {userId: 11, subcategoryId: 14},
+  {userId: 11, subcategoryId: 16},
+  {userId: 11, subcategoryId: 23},
+  {userId: 11, subcategoryId: 29},
+  {userId: 11, subcategoryId: 31},
+  {userId: 11, subcategoryId: 34},
+  {userId: 11, subcategoryId: 37},
+  {userId: 11, subcategoryId: 40},
+  {userId: 11, subcategoryId: 46},
+  {userId: 11, subcategoryId: 65},
+  {userId: 12, subcategoryId: 16},
+  {userId: 12, subcategoryId: 23},
+  {userId: 12, subcategoryId: 31},
+  {userId: 12, subcategoryId: 34},
+  {userId: 12, subcategoryId: 53},
+  {userId: 13, subcategoryId: 1},
+  {userId: 13, subcategoryId: 3},
+  {userId: 13, subcategoryId: 6},
+  {userId: 13, subcategoryId: 9},
+  {userId: 13, subcategoryId: 13},
+  {userId: 13, subcategoryId: 15},
+  {userId: 13, subcategoryId: 16},
+  {userId: 13, subcategoryId: 19},
+  {userId: 13, subcategoryId: 22},
+  {userId: 13, subcategoryId: 27},
+  {userId: 13, subcategoryId: 31},
+  {userId: 13, subcategoryId: 34},
+  {userId: 13, subcategoryId: 38},
+  {userId: 13, subcategoryId: 42},
+  {userId: 13, subcategoryId: 45},
+  {userId: 13, subcategoryId: 49},
+  {userId: 13, subcategoryId: 57},
+  {userId: 13, subcategoryId: 58},
+  {userId: 13, subcategoryId: 60},
+  {userId: 13, subcategoryId: 62},
+  {userId: 13, subcategoryId: 66},
 ]
 
 const seedData = () =>
