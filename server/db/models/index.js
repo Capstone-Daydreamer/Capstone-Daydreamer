@@ -1,11 +1,26 @@
 const User = require('./user')
+const Category = require('./category')
+const Day = require('./day')
+const Activity = require('./activity')
+const Group = require('./group')
+const SubCategory = require('./subCategory')
+const UserGroup = require('./userGroup')
+const UserDay = require('/userDay')
+const GroupDay = require('/groupDay')
+const ActivityDay = require('activityDay')
 
-/**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
- */
+//Associations
+User.belongsToMany(Group, {through: UserGroup})
+Group.belongsToMany(User, {through: UserGroup})
+Group.belongsToMany(Day, {through: GroupDay})
+Day.belongsToMany(Group, {through: GroupDay})
+Activity.belongsToMany(Day, {through: ActivityDay})
+Day.belongsToMany(Activity, {through: ActivityDay})
+Activity.belongsToMany(Category, {through: ActivityCategory})
+Category.belongsToMany(Activity, {through: ActivityCategory})
+Category.belongsToMany(Product, {through: ProductCategory})
+Product.belongsToMany(Order, {through: ProductOrders})
+Order.belongsToMany(Product, {through: ProductOrders})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -14,5 +29,11 @@ const User = require('./user')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Category,
+  Day,
+  Activity,
+  Group,
+  SubCategory,
+  UserGroup
 }
