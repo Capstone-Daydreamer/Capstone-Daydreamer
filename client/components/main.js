@@ -44,7 +44,6 @@ const Main = (props) => {
     </div>
   )
 }
-
 /**
  * CONTAINER
  */
