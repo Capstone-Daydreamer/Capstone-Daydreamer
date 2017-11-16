@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Segment, Header, Menu } from 'semantic-ui-react'
+import { Card, Grid } from 'semantic-ui-react'
 
 export class UserFriends extends Component {
     constructor(props){
@@ -11,10 +11,36 @@ export class UserFriends extends Component {
     }
 
     render(){ 
+        const user = this.props.user
         return (
-            <div>
-                We are in Friends
-        </div>
+            <Grid centered columns={1} padded>
+                <Card.Group>
+                    {
+                        user.id && user.groups.map((group) => {
+                        return group.days && group.days.map((day) => {
+                                return (
+                                    <Card key={day.id}>
+                                    <Card.Content>{group.name}</Card.Content>
+                                    <Card.Content>{day.name}</Card.Content>
+                                    {
+                                        day.activities && day.activities.map((activity)=>{
+                                            return (
+                                            <div key={activity.id}>
+                                            <Card.Content>{activity.name}</Card.Content>
+                                            <Card.Content>{activity.description}</Card.Content>
+                                            <Card.Content>{activity.location}</Card.Content>
+                                        </div>
+                                            )
+                                        })
+                                    }
+                                    
+                                </Card>
+                                )
+                            })
+                        })
+                    }
+                </Card.Group>
+            </Grid>
         )
     }
 }
