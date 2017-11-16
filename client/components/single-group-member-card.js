@@ -8,14 +8,15 @@ import {
 /**
  * COMPONENT
  */
-export const SingleGroupCard = () => {
-
+export const SingleGroupCard = (props) => {
+  const {user} = props
+  const leader = props.userId !== props.leader 
   return (
     <Card>
       <Card.Content>
         <Image floated='right' size='mini' src='https://fillmurray.com/100/100' />
         <Card.Header>
-          Member Name
+          {user.name}
       </Card.Header>
         <Card.Meta>
           Subheader?
@@ -27,7 +28,7 @@ export const SingleGroupCard = () => {
       <Card.Content extra>
         <div className='ui two buttons'>
           <Button basic color='green'>Send Message</Button>
-          <Button basic color='red'>Remove from Group</Button>
+          <Button disabled={leader} basic color='red'>Remove from Group</Button>
         </div>
       </Card.Content>
     </Card>
@@ -39,15 +40,9 @@ export const SingleGroupCard = () => {
  */
 const mapState = (state) => {
   return {
-    // email: state.user.email
+    userId: state.user.id
   }
 }
 
 export default connect(mapState)(SingleGroupCard)
 
-/**
- * PROP TYPES
- */
-// UserHome.propTypes = {
-//   email: PropTypes.string
-// }

@@ -7,47 +7,51 @@ import {
 } from 'semantic-ui-react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-
+import { fetchGroup } from '../store'
 /**
  * COMPONENT
  */
-export const SingleGroup = () => {
+export class SingleGroup extends React.Component {
+  componentDidMount() {
+    const id = this.props.match.params.id
+    this.props.loadGroup(id)
+  }
 
-  let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
-  BigCalendar.momentLocalizer(moment);
-  return (
-    <Container>
-      <h3>Group Name</h3>
-      <p>Group Description</p>
-      <Segment
-        vertical
-      >
-        <Container textAlign="center">
-          <Grid divided inverted stackable>
-            <Grid.Row>
-              <Grid.Column width={4}>
-                <Card.Group>
-
-                  <SingleGroupCard />
-                  <SingleGroupCard />
-                  <SingleGroupCard />
-
-                </Card.Group>
-              </Grid.Column>
-              <Grid.Column width={6}>
-                <BigCalendar
-                  events={[{}]}
-                  views={allViews}
-                  step={60}
-                  defaultDate={new Date(2015, 3, 1)}
-                />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
-      </Segment>
-    </Container>
-  )
+  render() {
+    const { usergroups, groups } = this.props
+    const users = groups.users
+    let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
+    BigCalendar.momentLocalizer(moment);
+    return (
+      <Container>
+        <h3>{groups.name}</h3>
+        <p>Group Description</p>
+        <Segment
+          vertical
+        >
+          <Container textAlign="center">
+            <Grid divided inverted stackable>
+              <Grid.Row>
+                <Grid.Column width={4}>
+                  <Card.Group>
+                  {users ? users.map(user => <SingleGroupCard key={user.id} user={user} leader={groups.leader}/>) : <div />}
+                  </Card.Group>
+                </Grid.Column>
+                <Grid.Column width={6}>
+                  <BigCalendar
+                    events={[{}]}
+                    views={allViews}
+                    step={60}
+                    defaultDate={new Date(2015, 3, 1)}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+        </Segment>
+      </Container>
+    )
+  }
 }
 
 /**
@@ -55,15 +59,18 @@ export const SingleGroup = () => {
  */
 const mapState = (state) => {
   return {
-    // email: state.user.email
+    usergroups: state.user.groups,
+    groups: state.groups
   }
 }
 
-export default connect(mapState)(SingleGroup)
+const mapDispatch = dispatch => {
+  return {
+    loadGroup(id) {
+      dispatch(fetchGroup(id))
+    }
+  }
+}
 
-/**
- * PROP TYPES
- */
-// UserHome.propTypes = {
-//   email: PropTypes.string
-// }
+export default connect(mapState, mapDispatch)(SingleGroup)
+
