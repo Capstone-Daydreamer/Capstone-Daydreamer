@@ -28,7 +28,7 @@ const AuthForm = (props) => {
       <a href="/auth/google">{displayName} with Google</a>
       <FacebookLogin
         appId={933986046768442}
-        autoLoad={true}
+        autoLoad={false}
         fields="name,email,picture"
         scope="public_profile,user_friends"
         callback={responseFacebook} />
