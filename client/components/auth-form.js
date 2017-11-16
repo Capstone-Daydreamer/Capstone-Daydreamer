@@ -1,13 +1,13 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
-
+import { auth, fb } from '../store'
+import FacebookLogin from 'react-facebook-login';
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error, responseFacebook } = props
 
   return (
     <div>
@@ -26,6 +26,12 @@ const AuthForm = (props) => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href="/auth/google">{displayName} with Google</a>
+      <FacebookLogin
+        appId={933986046768442}
+        autoLoad={true}
+        fields="name,email,picture"
+        scope="public_profile,user_friends"
+        callback={responseFacebook} />
     </div>
   )
 }
@@ -55,12 +61,18 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit (evt) {
+    handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
+    },
+    responseFacebook(response) {
+      const email = response.email
+      const name = response.name
+      const fbId = response.id
+      dispatch(fb(email, name, fbId))
     }
   }
 }
@@ -77,3 +89,5 @@ AuthForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }
+
+// <div className="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>

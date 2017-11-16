@@ -30,7 +30,7 @@ const Main = (props) => {
             <Link to="#">Events</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to="#">Profile</Link>
+            <Link to="/Profile">Profile</Link>
           </Menu.Item>
           {
             isLoggedIn
