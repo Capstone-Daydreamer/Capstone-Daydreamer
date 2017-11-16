@@ -21,10 +21,10 @@ const Main = (props) => {
       <Menu inverted>
         <Container>
           <Menu.Item>
-            <Link to="#"><h1 >Daydreamer</h1> </Link>
+            <Link to="/"><h1 >Daydreamer</h1> </Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to="#">Groups</Link>
+            <Link to="/user-groups">Groups</Link>
           </Menu.Item>
           <Menu.Item>
             <Link to="#">Events</Link>
