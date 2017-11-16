@@ -12,7 +12,7 @@ export const UserGroupsCard = ({ group }) => {
   // const {email} = props
 
   return (
-    <Card>
+    <Card href={`user-groups/${group.id}`}>
       <Card.Content header = {group.name} />
       <Card.Content description = "Discription or something filler-y goes here" />
       <Card.Content extra>

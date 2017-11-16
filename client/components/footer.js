@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
-  Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment
+  Container, Grid, Segment
 } from 'semantic-ui-react'
 
 /**
@@ -17,7 +17,7 @@ export const Footer = (props) => {
       inverted
       vertical
     >
-      <Container textAlign='center'>
+      <Container textAlign="center">
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={8}>
