@@ -1,16 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import SingleGroupCard from './single-group-member-card';
 import {
-  Container, Segment, Grid, Image, Card, Button
-} from 'semantic-ui-react'
+  Container, Segment, Grid, Card,
+} from 'semantic-ui-react';
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
 
 /**
  * COMPONENT
  */
 export const SingleGroup = () => {
 
-
+  let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
+  BigCalendar.momentLocalizer(moment);
   return (
     <Container>
       <h3>Group Name</h3>
@@ -21,106 +25,22 @@ export const SingleGroup = () => {
         <Container textAlign="center">
           <Grid divided inverted stackable>
             <Grid.Row>
-              <Grid.Column width={10}>
+              <Grid.Column width={4}>
                 <Card.Group>
-                  <Grid.Row>
-                  
-                  <Card>
-                    <Card.Content>
-                      <Image floated='right' size='mini' src='https://fillmurray.com/100/100' />
-                      <Card.Header>
-                        Steve Sanders
-        </Card.Header>
-                      <Card.Meta>
-                        Friends of Elliot
-        </Card.Meta>
-                      <Card.Description>
-                        Steve wants to add you to the group <strong>best friends</strong>
-                      </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                      <div className='ui two buttons'>
-                        <Button basic color='green'>Approve</Button>
-                        <Button basic color='red'>Decline</Button>
-                      </div>
-                    </Card.Content>
-                  </Card>
 
-                  <Card>
-                  <Card.Content>
-                    <Image floated='right' size='mini' src='https://fillmurray.com/100/100' />
-                    <Card.Header>
-                      Steve Sanders
-                </Card.Header>
-                    <Card.Meta>
-                      Friends of Elliot
-                </Card.Meta>
-                    <Card.Description>
-                      Steve wants to add you to the group <strong>best friends</strong>
-                    </Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-                    <div className='ui two buttons'>
-                      <Button basic color='green'>Approve</Button>
-                      <Button basic color='red'>Decline</Button>
-                    </div>
-                  </Card.Content>
-                </Card>
-                <Card>
-                  <Card.Content>
-                    <Image floated='right' size='mini' src='https://fillmurray.com/100/100' />
-                    <Card.Header>
-                      Steve Sanders
-      </Card.Header>
-                    <Card.Meta>
-                      Friends of Elliot
-      </Card.Meta>
-                    <Card.Description>
-                      Steve wants to add you to the group <strong>best friends</strong>
-                    </Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-                    <div className='ui two buttons'>
-                      <Button basic color='green'>Approve</Button>
-                      <Button basic color='red'>Decline</Button>
-                    </div>
-                  </Card.Content>
-                </Card>
-                </Grid.Row>
-
-                  <Card fluid color='yellow' header='event 1'>
-                    <Grid>
-                      <Grid.Column width={4}>
-                        <Image src="https://fillmurray.com/200/200" />
-                      </Grid.Column>
-                      <Grid.Column width={6}>
-                        <Card.Header>Event Name</Card.Header>
-                        <Card.Description>Event Description</Card.Description>
-                      </Grid.Column>
-                    </Grid>
-                  </Card>
-
-                  <Card fluid color='yellow' header='event 1'>
-                    <Grid>
-                      <Grid.Column width={4}>
-                        <Image src="https://fillmurray.com/200/200" />
-                      </Grid.Column>
-                      <Grid.Column width={6}>
-                        <Card.Header>Event Name</Card.Header>
-                        <Card.Description>Event Description</Card.Description>
-                      </Grid.Column>
-                    </Grid>
-                  </Card>
+                  <SingleGroupCard />
+                  <SingleGroupCard />
+                  <SingleGroupCard />
 
                 </Card.Group>
               </Grid.Column>
               <Grid.Column width={6}>
-                <ul className="ui inverted link list">
-                  <li><b>Created By</b></li>
-                  <li>Ellen Ormerod</li>
-                  <li>Jamie Slaughter</li>
-                  <li>Benjamin Odisho</li>
-                </ul>
+                <BigCalendar
+                  events={[{}]}
+                  views={allViews}
+                  step={60}
+                  defaultDate={new Date(2015, 3, 1)}
+                />
               </Grid.Column>
             </Grid.Row>
           </Grid>
