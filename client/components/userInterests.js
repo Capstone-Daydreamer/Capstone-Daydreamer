@@ -34,7 +34,6 @@ export class UserInterests extends Component {
             }
             return 'red'
         }
-        console.log(categories)
         return (
             <Grid>
                 <Grid.Column width={4}>
