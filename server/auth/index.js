@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../db/models/user')
+const {User, Group} = require('../db/models')
 module.exports = router
 
 router.post('/login', (req, res, next) => {

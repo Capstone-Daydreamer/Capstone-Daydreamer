@@ -6,5 +6,6 @@
 export {default as Main} from './main'
 export {default as UserHome} from './user-home'
 export {Footer} from './footer'
+export { default as UserGroups } from './user-groups'
 export {default as UserProfile} from './userProfile'
 export {Login, Signup} from './auth-form'
