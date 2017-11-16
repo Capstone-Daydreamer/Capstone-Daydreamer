@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome } from './components'
+import { Main, Login, Signup, UserHome, UserProfile } from './components'
 import { me } from './store'
 
 /**
@@ -26,7 +26,7 @@ class Routes extends Component {
             {/* Routes commented out until actual components are ready to be rendered in */}
             {/* <Route path="/Groups" component={Groups} /> */}
             {/* <Route path="/Events" component={Events} /> */}
-            {/* <Route path="/Profile" component={Profile} /> */}
+            <Route path="/Profile" component={UserProfile} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {
