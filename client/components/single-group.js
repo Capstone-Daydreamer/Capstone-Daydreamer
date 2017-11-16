@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SingleGroupCard from './single-group-member-card';
+import SingleGroupEvent from './single-group-event-card';
 import {
   Container, Segment, Grid, Card,
 } from 'semantic-ui-react';
