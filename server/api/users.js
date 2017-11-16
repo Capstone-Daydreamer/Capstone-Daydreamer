@@ -12,3 +12,12 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
+
+router.put('/:id', (req, res, next) => {
+  console.log('hit the back end')
+  User.findById(req.params.id)
+  .then((user)=> {
+    user.correctPassword(req.body.password)
+  })
+  .catch(next);
+});
