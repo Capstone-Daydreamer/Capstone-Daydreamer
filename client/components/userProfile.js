@@ -1,37 +1,64 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import {
-//   Header, Segment
-// } from 'semantic-ui-react'
+import UserInterests from './userInterests'
+import UserDays from './userDays'
+import UserSettings from './userSettings'
+import UserFriends from './userFriends'
+import { Segment, Header, Menu } from 'semantic-ui-react'
 
-/**
- * COMPONENT
- */
-export const UserProfile = (props) => {
-
-console.log(props)
-  return (
-    <Segment>
-     {
-       // <Header as='h1' textAlign='center'>Hi {user.email} </Header>
-     }
-    </Segment>
-  )
+export class UserProfile extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            activeItem: 'interests'
+        }
+        this.handleItemClick = this.handleItemClick.bind(this)
+    }
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    render(){  
+        const subComponent = () =>{
+            if (this.state.activeItem === 'interests'){
+                return <UserInterests />
+            }
+            if (this.state.activeItem === 'days'){
+                return <UserDays />
+            }
+            if (this.state.activeItem === 'settings'){
+                return <UserSettings />
+            }
+            if (this.state.activeItem === 'friends'){
+                return <UserFriends />
+            }
+        }
+        const user = this.props.user
+        const activeItem = this.state.activeItem
+        return (
+            <div>
+                <Segment>
+                {
+                user.email && <Header as='h3' textAlign='center'> Hi {user.name}</Header>
+                } 
+                </Segment>
+                <Menu tabular>
+                    <Menu.Item name='interests' active={activeItem === 'interests'} onClick={this.handleItemClick} />
+                    <Menu.Item name='days' active={activeItem === 'days'} onClick={this.handleItemClick} />
+                    <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
+                    <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
+              </Menu>
+              {subComponent()}
+        </div>
+        )
+    }
 }
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
-  return {
-    // Leftover from boilerplate for reference
-    user: state.user
-  };
+    return {
+        user: state.user
+    }
 }
 
+const mapDispatch = null
 
-const Container  = withRouter(connect(mapState)(UserProfile))
+const Container = connect(mapState, mapDispatch)(UserProfile)
 
 export default Container
