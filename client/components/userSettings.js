@@ -14,7 +14,6 @@ export class UserSettings extends Component {
 
     handleSubmit(evt){
         evt.preventDefault()
-        console.log( this.props.user.id)
         if (evt.target.password.value === evt.target.confirmPassword.value){
           axios.put(`/api/users/${this.props.user.id}`, { password: evt.target.password.value})
         }  
