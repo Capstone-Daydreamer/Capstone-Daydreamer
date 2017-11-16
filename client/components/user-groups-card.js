@@ -13,10 +13,10 @@ export const UserGroupsCard = ({ group }) => {
 
   return (
     <Card>
-      <Card.Content header = {group.title}/>
-      <Card.Content description = {group.description}/>
+      <Card.Content header = {group.name} />
+      <Card.Content description = "Discription or something filler-y goes here" />
       <Card.Content extra>
-        <Icon name='user' />
+        <Icon name= "user" />
         4 Bodacious Beagles
       </Card.Content>
     </Card>
