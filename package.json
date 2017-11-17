@@ -35,6 +35,7 @@
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.8",
     "react": "^16.0.0",
+    "react-big-calendar": "^0.17.0",
     "react-dom": "^16.0.0",
     "react-facebook-login": "^3.7.0",
     "react-redux": "^5.0.2",

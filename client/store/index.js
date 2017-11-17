@@ -6,8 +6,9 @@ import user from './user'
 import categories from './categories'
 import subCategories from './subCategories'
 import yelprecommend from './yelp'
+import groups from './group'
 
-const reducer = combineReducers({user, categories, subCategories, yelprecommend})
+const reducer = combineReducers({user, categories, subCategories, yelprecommend, groups})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -20,3 +21,4 @@ export * from './user'
 export * from './categories'
 export * from './subCategories'
 export * from './yelp'
+export * from './group'
