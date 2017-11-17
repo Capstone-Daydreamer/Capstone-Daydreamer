@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Menu, Grid, Card } from 'semantic-ui-react'
+import {removeInterest, addInterest, destroyInterest} from '../store'
 
 export class UserInterests extends Component {
     constructor(props){
@@ -51,7 +52,7 @@ export class UserInterests extends Component {
                         {
                             subCategories.length > 0 && subCategories.map((subCategory) => {
                                 return (
-                                    <Card key={subCategory.id} color={userInterest(subCategory)}>
+                                    <Card key={subCategory.id} color={userInterest(subCategory)} onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)}>
                                         <Card.Content>
                                             <Card.Header>{subCategory.name}</Card.Header>
                                         </Card.Content>
@@ -75,7 +76,21 @@ const mapState = (state) => {
     }
 }
 
-const mapDispatch = null
+const mapDispatch = (dispatch, ownProps) => {
+    return {
+        handlePromote(event, id) {
+            const thunk = adminUser(id, ownProps.history);
+            dispatch(thunk);
+        },
+        handleIntUpdate(e, cat, color, user) {
+            if (color === 'red'){
+                dispatch(addInterest(user.id, cat.id))
+            } else {
+                dispatch(destroyInterest(user.id, cat.id))
+            }
+        }
+    }
+}
 
 const Container = connect(mapState, mapDispatch)(UserInterests)
 

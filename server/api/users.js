@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, UserSubCategory} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -20,3 +20,32 @@ router.put('/:id', (req, res, next) => {
   })
   .catch(next);
 });
+
+router.post('/add', (req, res, next) => {
+  UserSubCategory.create(req.body)
+  .then((instance) => {
+    res.json(instance)
+  })
+  .catch()
+})
+
+router.delete('/remove/:userId/:subCategoryId', (req, res, next) => {
+  UserSubCategory.destroy({
+    where: {
+      userId: req.params.userId,
+      subCategoryId: req.params.subCategoryId
+    }
+  })
+  .then(() => {
+    res.sendStatus(201)
+  })
+  .catch()
+})
+
+router.get('/:id', (req, res, next) => {
+  User.findOne({where: {id: req.params.id}, include: [{ all: true, nested: true }]})
+  .then(user => {
+    res.json(user)
+  })
+  .catch(next)
+})
