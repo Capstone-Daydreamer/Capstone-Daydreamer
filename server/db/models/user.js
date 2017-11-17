@@ -19,6 +19,24 @@ const User = db.define('user', {
   },
   name: {
     type: Sequelize.STRING
+  },
+  cronofyId: {
+    type: Sequelize.STRING
+  },
+  googleCalToken: {
+    type: Sequelize.STRING
+  },
+  icloudCalToken: {
+    type: Sequelize.STRING
+  },
+  officeCalToken: {
+    type: Sequelize.STRING
+  },
+  exchangeCalToken: {
+    type: Sequelize.STRING
+  },
+  outlookCalToken: {
+    type: Sequelize.STRING
   }
 })
 

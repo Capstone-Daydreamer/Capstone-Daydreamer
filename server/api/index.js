@@ -1,8 +1,9 @@
 const router = require('express').Router()
 module.exports = router
 
-router.use('/users', require('./users'))
-router.use('/yelp', require('./yelp'))
+router.use('/users', require('./users'));
+router.use('/yelp', require('./yelp'));
+router.use('/cronofy', require('./cronofy'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')
