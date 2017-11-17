@@ -12,7 +12,6 @@ export class UserDaysCard extends Component {
 
   render() {
     const { day } = this.props
-    console.log('props', this.props)
     return (
       <Grid centered columns={1} padded>
         <Card.Group>
