@@ -13,6 +13,7 @@ export class UserProfile extends Component {
         }
         this.handleItemClick = this.handleItemClick.bind(this)
     }
+
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     render(){  
         const subComponent = () =>{

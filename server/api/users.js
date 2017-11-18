@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, UserSubCategory} = require('../db/models')
+const {User, UserSubCategory, Group, Day, SubCategory, Activity} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -42,8 +42,20 @@ router.delete('/remove/:userId/:subCategoryId', (req, res, next) => {
   .catch()
 })
 
+router.get('/subCategory/:id', (req, res, next) => {
+  UserSubCategory.findAll({
+    where: {
+      userId: req.params.id,
+    }
+  })
+  .then((items) => {
+    res.json(items)
+  })
+  .catch()
+})
+
 router.get('/:id', (req, res, next) => {
-  User.findOne({where: {id: req.params.id}, include: [{ all: true, nested: true }]})
+  User.findOne({where: {id: req.params.id}, include: [{ model: Group, nested: true, include: [{ model: Day, nested: true, include: [{ model: Activity, nested: true }] }] }, { model: SubCategory}]})
   .then(user => {
     res.json(user)
   })
