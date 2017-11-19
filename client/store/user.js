@@ -89,7 +89,6 @@ export const destroyInterest = (userId, subCategoryId) => dispatch => {
 }
 
 export const addDay = (userId, name, date, groupId) => dispatch => {
-  console.log('made it to step 2')
   return axios.post(`/api/days`, {name, date, groupId})
     .then(res => res.data)
     .then((day) => {
