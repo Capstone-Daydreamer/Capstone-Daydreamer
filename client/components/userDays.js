@@ -1,44 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card } from 'semantic-ui-react'
+import { Card, Grid } from 'semantic-ui-react'
+import GroupDay from './userDays-card';
 
 export class UserDays extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            
+
         }
     }
 
-    render(){ 
+    render() {
         const user = this.props.user
         return (
-            <div>
-                {
-                    user.id && user.groups.map((group) => {
-                       return group.days.map((day) => {
+            <Grid centered columns={1} padded>
+                <Card.Group>
+                    {
+                        user.id && user.groups.map(group => {
                             return (
-                                <Card>
-                                <Card.Content>{group.name}</Card.Content>
-                                <Card.Content>{day.name}</Card.Content>
-                                {
-                                    day.activities.map((activity)=>{
-                                        return (
-                                        <div>
-                                        <Card.Content>{activity.name}</Card.Content>
-                                        <Card.Content>{activity.description}</Card.Content>
-                                        <Card.Content>{activity.location}</Card.Content>
-                                      </div>
-                                        )
-                                    })
-                                }
-                                 
-                              </Card>
-                            )
-                        })
-                    })
-                }
-        </div>
+                                group.days && group.days.map(day => <GroupDay key={day.id} group={group} day={day} /> )
+                        )})
+                    }
+                </Card.Group>
+            </Grid>
         )
     }
 }

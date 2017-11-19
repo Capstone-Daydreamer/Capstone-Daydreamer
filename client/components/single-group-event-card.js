@@ -8,7 +8,9 @@ import {
 /**
  * COMPONENT
  */
-export const SingleGroupCard = (props) => {
+
+ //in progress
+export const SingleEventCard = (props) => {
   const {user} = props
   const leader = props.userId !== props.leader 
   return (
@@ -44,5 +46,5 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(SingleGroupCard)
+export default connect(mapState)(SingleEventCard)
 

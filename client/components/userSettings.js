@@ -1,20 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Segment, Header, Menu } from 'semantic-ui-react'
+import { Grid, Form, Button } from 'semantic-ui-react'
+import axios from 'axios'
 
 export class UserSettings extends Component {
     constructor(props){
         super(props);
         this.state = {
-            
+           formError: false
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleSubmit(evt){
+        evt.preventDefault()
+        if (evt.target.password.value === evt.target.confirmPassword.value){
+          axios.put(`/api/users/${this.props.user.id}`, { password: evt.target.password.value})
+        }  
     }
 
     render(){ 
         return (
-            <div>
-                We are in Settings
-        </div>
+            <Grid centered columns={1} padded>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Field>
+                        <label>New Password</label>
+                        <input name="password"type="password" placeholder='Password' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Confirm Password</label>
+                        <input name="confirmPassword" type="password" placeholder='Confirm Password' />
+                    </Form.Field>
+                    <Button type='submit'>Submit</Button>
+                </Form>
+            </Grid>
         )
     }
 }
@@ -25,8 +44,17 @@ const mapState = (state) => {
     }
 }
 
-const mapDispatch = null
+const mapDispatchToProps = null
 
-const Container = connect(mapState, mapDispatch)(UserSettings)
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//     return {
+//         handleSubmit(event, id) {
+//             const thunk = adminUser(id, ownProps.history);
+//             dispatch(thunk);
+//         }
+//     }
+// }
+
+const Container = connect(mapState, mapDispatchToProps)(UserSettings)
 
 export default Container

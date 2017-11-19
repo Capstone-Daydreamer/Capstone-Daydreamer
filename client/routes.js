@@ -4,8 +4,8 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, UserProfile, UserGroups, SingleGroup } from './components'
-import { me } from './store'
+import { Main, Login, Signup, UserHome, UserProfile, UserGroups, SingleGroup, NewDay } from './components'
+import { me, fetchCategories, fetchSubCategories } from './store'
 
 /**
  * COMPONENT
@@ -28,6 +28,7 @@ class Routes extends Component {
             <Route path="/user-groups/:id" component={SingleGroup} />
             {/* <Route path="/Events" component={Events} /> */}
             <Route path="/Profile" component={UserProfile} />
+            <Route path="/newDay" component={NewDay} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {
@@ -61,6 +62,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(fetchCategories())
+      dispatch(fetchSubCategories())
     }
   }
 }

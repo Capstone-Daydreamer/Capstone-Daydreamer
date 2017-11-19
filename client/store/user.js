@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
+const updateUser = (user) => ({type: UPDATE_USER, user})
 
 /**
  * THUNK CREATORS
@@ -56,6 +58,53 @@ export const fb = (email, name, fbId) => dispatch => {
     .catch(error =>
       dispatch(getUser({ error })))
 }
+
+export const addInterest = (userId, subCategoryId) => dispatch => {
+  return axios.post('/api/users/add', {userId, subCategoryId})
+    .then(res =>  res.data.userId )
+    .then((userId) => {
+      axios.get(`/api/users/${userId}`)
+      .then(res => res.data)
+      .then((user) => {
+          const action = updateUser(user);
+          dispatch(action);
+      })
+      .catch();
+    })
+    .catch()
+}
+
+export const destroyInterest = (userId, subCategoryId) => dispatch => {
+  return axios.delete(`/api/users/remove/${userId}/${subCategoryId}`)
+    .then(() => {
+      axios.get(`/api/users/${userId}`)
+      .then(res => res.data)
+      .then((user) => {
+          const action = updateUser(user);
+          dispatch(action);
+      })
+      .catch();
+    })
+    .catch()
+}
+
+export const addDay = (userId, name, date, groupId) => dispatch => {
+  return axios.post(`/api/days`, {name, date, groupId})
+    .then(res => res.data)
+    .then((day) => {
+      axios.post(`api/days/groups`, {dayId: day.id, groupId})
+    })
+    .then(() => {
+      axios.get(`/api/users/${userId}`)
+      .then(res => res.data)
+      .then((user) => {
+          const action = updateUser(user);
+          dispatch(action);
+      })
+      .catch();
+    })
+    .catch()
+}
 /**
  * REDUCER
  */
@@ -65,6 +114,8 @@ export default function (state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case UPDATE_USER:
+      return action.user
     default:
       return state
   }

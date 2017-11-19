@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import UserInterests from './userInterests'
 import UserDays from './userDays'
 import UserSettings from './userSettings'
-import UserFriends from './userFriends'
 import { Segment, Header, Menu } from 'semantic-ui-react'
 
 export class UserProfile extends Component {
@@ -14,6 +13,7 @@ export class UserProfile extends Component {
         }
         this.handleItemClick = this.handleItemClick.bind(this)
     }
+
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     render(){  
         const subComponent = () =>{
@@ -25,9 +25,6 @@ export class UserProfile extends Component {
             }
             if (this.state.activeItem === 'settings'){
                 return <UserSettings />
-            }
-            if (this.state.activeItem === 'friends'){
-                return <UserFriends />
             }
         }
         const user = this.props.user
@@ -43,7 +40,6 @@ export class UserProfile extends Component {
                     <Menu.Item name='interests' active={activeItem === 'interests'} onClick={this.handleItemClick} />
                     <Menu.Item name='days' active={activeItem === 'days'} onClick={this.handleItemClick} />
                     <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
-                    <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
               </Menu>
               {subComponent()}
         </div>
