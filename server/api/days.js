@@ -3,7 +3,6 @@ const { Day, GroupDay } = require('../db/models')
 module.exports = router
 
 router.post('/', (req, res, next) => {
-    console.log('made it to step 3')
   Day.create({
       name: req.body.name,
       date: req.body.date
@@ -15,7 +14,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.post('/groups', (req, res, next) => {
-    console.log('looking for', req.body)
   GroupDay.create(req.body)
     .then(() => {
         res.sendStatus(201)
