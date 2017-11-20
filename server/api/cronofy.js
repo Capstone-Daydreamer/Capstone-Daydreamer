@@ -57,7 +57,7 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 })
 
 // Route to GET availability accross a single group
-router.get('/availability/groupId', (req, res, next) => {
+router.get('/availability/:groupId', (req, res, next) => {
   var group = [
     // Needs to abstracted still
     // group = everyone in group with account id and relevant calendar ids
