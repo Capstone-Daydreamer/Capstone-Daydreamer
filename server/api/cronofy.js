@@ -3,46 +3,32 @@
 const passport = require('passport');
 const router = require('express').Router();
 const Cronofy = require('cronofy');
+const { User } = require('../db/models');
 
 module.exports = router
 
-// EO
-// var cronofyClient = new Cronofy({
-//   client_id: process.env.CRONOFY_CLIENT_ID,
-//   client_secret: process.env.CRONOFY_CLIENT_ID,
-//   account_id: 'acc_5a035cd4c631835e9e000a7f',
-//   access_token: '8YQblelE_J4LGTDMz6uVt1EIufiPzQf9',
-// });
-
 // BO
-// var cronofyClient = new Cronofy({
-//   client_id: process.env.CRONOFY_CLIENT_ID,
-//   client_secret: process.env.CRONOFY_CLIENT_ID,
-//   account_id: 'acc_5a0e0f4cc631834e720004d7',
-//   access_token: 'XxShWb2gjnkO6CGZtLAQwUVjnyEG3TVn',
-//   refresh_token: 'L9KGBv-OAugyTI_2mN8_dt-9NBx9EamT'
-// });
-
-// Semi
 var cronofyClient = new Cronofy({
   client_id: process.env.CRONOFY_CLIENT_ID,
   client_secret: process.env.CRONOFY_CLIENT_ID,
   account_id: 'acc_5a0e0f4cc631834e720004d7',
-  access_token: '0wCVi-szQ5ZcAr_CQzhWZbvjs0jTl3Ix',
+  access_token: 'XxShWb2gjnkO6CGZtLAQwUVjnyEG3TVn',
   refresh_token: 'L9KGBv-OAugyTI_2mN8_dt-9NBx9EamT'
 });
 
-// var cronofyClient = new Cronofy({
-//   client_id: process.env.CRONOFY_CLIENT_ID,
-//   client_secret: process.env.CRONOFY_CLIENT_ID,
-//   account_id: 'acc_5a0e0f4cc631834e720004d7',
-//   access_token: 'GXrW94nk5GyIiDqEmLgboPnbcXzhc4N7',
-//   refresh_token: 'L9KGBv-OAugyTI_2mN8_dt-9NBx9EamT'
-// });
-
-
 // Route to GET all Calendars
-router.get('/', (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
+  const user = await User.findById(req.params.userId)
+
+  // Code to abstract client privilages
+  // To be used for each route, with different parameters depending on bare minimum needed
+  // var cronofyClient = new Cronofy({
+  //   client_id: process.env.CRONOFY_CLIENT_ID,
+  //   client_secret: process.env.CRONOFY_CLIENT_ID,
+  //   account_id: user.cronofyAccId,
+  //   access_token: user.cronofyAccessToken,
+  //   refresh_token: user.cronofyRefreshToken,
+  // });
 
   var options = {
     tzid: 'Etc/UTC',
@@ -56,7 +42,7 @@ router.get('/', (req, res, next) => {
 })
 
 // Route to GET info for a specific account
-router.get('/accountinfo', (req, res, next) => {
+router.get('/accountinfo/:userId', (req, res, next) => {
 
   var options = {
     tzid: 'Etc/UTC',
@@ -71,15 +57,13 @@ router.get('/accountinfo', (req, res, next) => {
 })
 
 // Route to GET availability accross a single group
-router.get('/availability', (req, res, next) => {
+router.get('/availability/groupId', (req, res, next) => {
   var group = [
+    // Needs to abstracted still
+    // group = everyone in group with account id and relevant calendar ids
     { // Bens Information
       account_id: 'acc_5a0e0f4cc631834e720004d7',
       calendar_ids: ['cal_Wg4PW42@zx-aAAE1_vqr0kiOnXqIcyOH@pEbWFg']
-    },
-    { // Els Info
-      account_id: 'acc_5a035cd4c631835e9e000a7f',
-      calendar_ids: ['cal_WgNdvo2@z0A0AARz_IxvIQlgfunaFtiEWvAeOoQ']
     },
 
   ]

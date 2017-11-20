@@ -23,6 +23,9 @@ const User = db.define('user', {
   cronofyAccId: {
     type: Sequelize.STRING
   },
+  cronofyAccessToken: {
+    type: Sequelize.STRING
+  },
   cronofyRefreshToken: {
     type: Sequelize.STRING
   },

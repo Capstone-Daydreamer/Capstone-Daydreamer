@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { auth, fb } from '../store'
 import FacebookLogin from 'react-facebook-login';
-/**
+/*
  * COMPONENT
  */
 const AuthForm = (props) => {

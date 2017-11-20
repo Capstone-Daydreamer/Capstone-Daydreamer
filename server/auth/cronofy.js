@@ -17,7 +17,7 @@ passport.use('cronofy', new OAuth2Strategy({
   callbackURL: process.env.CRONOFY_CALLBACK,
   authorizationURL: 'https://app.cronofy.com/oauth/authorize',
   scope: ['create_calendar', 'read_events', 'create_event', 'delete_event', 'read_free_busy', 'change_participation_status'],
-  state: {},
+  state: {/* Can put anything you need here... client ID? */},
   tokenURL: 'https://api.cronofy.com/oauth/token',
   clientSecret: process.env.CRONOFY_CLIENT_SECRET,
 }, async (token, refreshToken, profile, done) => {
