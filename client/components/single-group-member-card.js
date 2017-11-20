@@ -12,7 +12,7 @@ export const SingleGroupCard = (props) => {
   const {user} = props
   const leader = props.userId !== props.leader 
   return (
-    <Card>
+    <Card >
       <Card.Content>
         <Image floated='right' size='mini' src='https://fillmurray.com/100/100' />
         <Card.Header>
