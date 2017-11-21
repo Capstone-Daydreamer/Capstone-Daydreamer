@@ -50,7 +50,6 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 
   cronofyClient.accountInformation(options)
     .then(function (response) {
-      console.log(response);
       var account = response.account;
       res.json(account);
     }).catch(next)
@@ -89,12 +88,10 @@ router.get('/availability/:groupId', (req, res, next) => {
       sub: user.account_id,
       calendar_ids: user.calendar_ids
     })
-    console.log("MEMBERS", options.participants[0].members)
   })
 
   cronofyClient.availability(options)
   .then(function (response) {
-    console.log(response);
     var available_periods = response.available_periods;
     res.json({
       "available_periods": [
