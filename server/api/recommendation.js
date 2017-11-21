@@ -73,8 +73,6 @@ function finalPick(obj) {
             }
         })
     })
-
-    console.log('Looking for results*********', lastresult)
     return lastresult
 }
 
