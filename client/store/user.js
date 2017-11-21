@@ -88,23 +88,7 @@ export const destroyInterest = (userId, subCategoryId) => dispatch => {
     .catch()
 }
 
-export const addDay = (userId, name, date, groupId) => dispatch => {
-  return axios.post(`/api/days`, {name, date, groupId})
-    .then(res => res.data)
-    .then((day) => {
-      axios.post(`api/days/groups`, {dayId: day.id, groupId})
-    })
-    .then(() => {
-      axios.get(`/api/users/${userId}`)
-      .then(res => res.data)
-      .then((user) => {
-          const action = updateUser(user);
-          dispatch(action);
-      })
-      .catch();
-    })
-    .catch()
-}
+
 /**
  * REDUCER
  */

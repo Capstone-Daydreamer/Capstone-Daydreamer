@@ -16,7 +16,7 @@ export class UserDaysCard extends Component {
       <Grid centered columns={1} padded>
         <Card.Group>
 
-          <Card key={day.id}>
+          <Card key={day.id} href={`group/${day.id}`}>
             <Card.Content>
               <h3>{day.name}</h3>
               <Card.Content className="meta">

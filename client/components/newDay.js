@@ -1,25 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Grid, Form, Button } from 'semantic-ui-react'
+import { Card, Grid, Form, Button, Checkbox, Segment, Header } from 'semantic-ui-react'
 import { addDay } from '../store'
+import { withRouter } from 'react-router-dom'
 
 export class NewDay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: []
         }
         this.handleChange = this.handleChange.bind(this)
     }
-    handleChange = (e, { value }) => this.setState({ value })
+    handleChange = (e, { value }) => {
+        let temp = this.state.value
+        if(this.state.value.indexOf(value) ===  -1){
+            temp.push(value)
+        } else {
+            let index = temp.indexOf(value)
+            temp.splice(index, 1)
+        }
+        this.setState({ value: temp })
+    }
 
     render() {
         const user = this.props.user
         const categories = this.props.categories
-        const groups = this.props.user.groups
+        const groups = this.props.groups
         const value = this.state.value
         return (
-            <Form onSubmit={(evt) => this.props.handleSubmit(evt, user.id)}>
+            <Segment>
+                <Segment>
+                <Header as='h3' textAlign='center'> Hi {groups.name}</Header>
+                
+                </Segment>
+            <Form onSubmit={(evt) => this.props.handleSubmit(evt, user.id, this.state.value)}>
             <Grid centered columns={16} padded>
                 <Grid.Row>
                     <Form.Field>
@@ -30,7 +45,7 @@ export class NewDay extends Component {
                     </Form.Field>
                 </Grid.Row>
                 <Grid.Row>
-                <Form.Group inline>
+                {/* <Form.Group inline>
                     <label>Groups</label>
                     {
                       groups !== undefined && groups.map((group) => {
@@ -43,50 +58,137 @@ export class NewDay extends Component {
                                 onChange={this.handleChange} />
                       })
                     }
+                </Form.Group> */}
+                <Form.Group inline>
+                    <label>Groups</label>
+                    {
+                      categories !== undefined && categories.map((category) => {
+                        return <Form.Checkbox
+                                name="category" 
+                                key={category.id} 
+                                label={category.name} 
+                                value={category.name} 
+                                checked={value.indexOf(category.name) !== -1} 
+                                onChange={this.handleChange} />
+                      })
+                    }
                 </Form.Group>
                 </Grid.Row>
-                <Grid.Row>
+              <Grid.Row>
                     <Form.Field>
-                        <label>Description</label>
+                        <label>Duration</label>
                         <input 
-                            name="description" 
-                            placeholder='Description' />
+                            name="duration" 
+                            placeholder='Duration' />
                     </Form.Field>
               </Grid.Row>
               <Grid.Row>
                     <Form.Field>
-                        <label>Date</label>
+                        <label>Start Date</label>
                         <input 
-                            name="date" 
-                            placeholder='Date' />
+                            name="startDate1" 
+                            placeholder='Start Date Option 1' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>End Date</label>
+                        <input 
+                            name="endDate1" 
+                            placeholder='End Date Option 1' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Start Time</label>
+                        <input 
+                            name="startTime1" 
+                            placeholder='Start Time Option 1' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>End Time</label>
+                        <input 
+                            name="endTime1" 
+                            placeholder='End Time Option 1' />
                     </Form.Field>
               </Grid.Row>
+              <Grid.Row>
+              <Form.Field>
+                  
+                  <input 
+                      name="startDate2" 
+                      placeholder='Start Date Option 2' />
+              </Form.Field>
+              <Form.Field>
+                  
+                  <input 
+                      name="endDate2" 
+                      placeholder='End Date Option 2' />
+              </Form.Field>
+              <Form.Field>
+                  
+                  <input 
+                      name="startTime2" 
+                      placeholder='Start Time Option 2' />
+              </Form.Field>
+              <Form.Field>
+    
+                  <input 
+                      name="endTime2" 
+                      placeholder='End Time Option 2' />
+              </Form.Field>
+        </Grid.Row>
+        <Grid.Row>
+        <Form.Field>
+            
+            <input 
+                name="startDate3" 
+                placeholder='Start Date Option 3' />
+        </Form.Field>
+        <Form.Field>
+            
+            <input 
+                name="endDate3" 
+                placeholder='End Date Option 3' />
+        </Form.Field>
+        <Form.Field>
+            
+            <input 
+                name="startTime3" 
+                placeholder='Start Time Option 3' />
+        </Form.Field>
+        <Form.Field>
+            <input 
+                name="endTime3" 
+                placeholder='End Time Option 3' />
+        </Form.Field>
+  </Grid.Row>
+              
               <Grid.Row>
                     <Button 
                         type='submit'>Submit</Button>
             </Grid.Row>
             </Grid>
               </Form>
+              </Segment>
         )
     }
 }
 
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
     return {
         user: state.user,
-        categories: state.categories
+        categories: state.categories,
+        groups: state.groups
     }
 }
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        handleSubmit(event, id) {
+        handleSubmit(event, id, value) {
             event.preventDefault()
-            dispatch(addDay(id, event.target.name.value, '2017-12-05', event.target.group.value));
+            dispatch(addDay(event.target.name.value, ownProps.match.params.id, value));
+            //must dispatch to cronofy
         }
     }
 }
 
-const Container = connect(mapState, mapDispatch)(NewDay)
+const Container = withRouter(connect(mapState, mapDispatch)(NewDay))
 
 export default Container

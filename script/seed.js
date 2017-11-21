@@ -178,7 +178,7 @@ const dayGroup = [
 ]
 
 const days = [
-  { name: 'Dinner & Drinks', date: '2017-12-05' }, //1 activities 5&7
+  { name: 'Dinner & Drinks', date: '2017-11-05' }, //1 activities 5&7
   { name: 'Bring Back the College Days', date: '2018-01-11' }, //2 activities 4&3
   { name: 'Star Wars day!', date: '2017-12-15' }, //3 activites 2
   { name: 'Dinner and Movie with Fam', date: '2017-12-15' }, //4 activites 5&2
