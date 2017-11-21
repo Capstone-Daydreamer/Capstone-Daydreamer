@@ -20,7 +20,6 @@ export class NewDay extends Component {
             let index = temp.indexOf(value)
             temp.splice(index, 1)
         }
-        console.log(temp)
         this.setState({ value: temp })
     }
 
@@ -29,7 +28,6 @@ export class NewDay extends Component {
         const categories = this.props.categories
         const groups = this.props.groups
         const value = this.state.value
-        console.log('looking for params', this.props.match.params)
         return (
             <Segment>
                 <Segment>
@@ -174,7 +172,6 @@ export class NewDay extends Component {
 }
 
 const mapState = (state, ownProps) => {
-    console.log(ownProps)
     return {
         user: state.user,
         categories: state.categories,
