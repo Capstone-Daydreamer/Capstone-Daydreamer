@@ -96,6 +96,25 @@ router.get('/availability/:groupId', (req, res, next) => {
   .then(function (response) {
     console.log(response);
     var available_periods = response.available_periods;
-    res.json(available_periods);
+    res.json({
+      "available_periods": [
+        {
+          "start": "2017-11-26T09:00:00Z",
+          "end": "2017-11-26T11:00:00Z",
+          "participants": [
+            { "sub": "acc_567236000909002" },
+            { "sub": "acc_678347111010113" }
+          ]
+        },
+        {
+          "start": "2017-11-27T11:00:00Z",
+          "end": "2017-11-27T17:00:00Z",
+          "participants": [
+            { "sub": "acc_567236000909002" },
+            { "sub": "acc_678347111010113" }
+          ]
+        },
+      ]
+    });
   }).catch(next)
 })
