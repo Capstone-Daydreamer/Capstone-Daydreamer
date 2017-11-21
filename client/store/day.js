@@ -23,7 +23,6 @@ export const fetchDay = id => dispatch => {
 }
 
 export const addDay = (name, groupId, cats) => dispatch => {
-  console.log(groupId)
   return axios.post(`/api/days`, {name, cats})
     .then(res => res.data)
     .then((day) => {
