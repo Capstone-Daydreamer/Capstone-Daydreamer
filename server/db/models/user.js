@@ -19,6 +19,18 @@ const User = db.define('user', {
   },
   name: {
     type: Sequelize.STRING
+  },
+  cronofyAccId: {
+    type: Sequelize.STRING
+  },
+  cronofyAccessToken: {
+    type: Sequelize.STRING
+  },
+  cronofyRefreshToken: {
+    type: Sequelize.STRING
+  },
+  calendarTokens: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
