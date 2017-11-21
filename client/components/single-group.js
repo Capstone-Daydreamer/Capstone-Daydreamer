@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import SingleGroupCard from './single-group-member-card';
 import GroupDay from './userDays-card';
 import {
-  Container, Segment, Grid, Card,
+  Container, Segment, Grid, Card, Button
 } from 'semantic-ui-react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import { fetchGroup } from '../store'
+import { fetchGroup, fetchGroupInt } from '../store'
+import { Link, withRouter } from 'react-router-dom'
 /**
  * COMPONENT
  */
@@ -31,6 +32,7 @@ export class SingleGroup extends React.Component {
         <Segment
           vertical
         >
+        <Link to={`/newDay/${groups.id}`}><Button primary>NEW DAY!</Button></Link>
           <Container textAlign="center">
             <Grid divided inverted stackable>
               <Grid.Row>
@@ -67,11 +69,12 @@ const mapDispatch = dispatch => {
   return {
     loadGroup(id) {
       dispatch(fetchGroup(id))
+      dispatch(fetchGroupInt(id))
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(SingleGroup)
+export default withRouter(connect(mapState, mapDispatch)(SingleGroup))
 
 // <Grid.Column width={6}>
 // <BigCalendar
