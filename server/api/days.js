@@ -5,7 +5,7 @@ module.exports = router
 router.post('/', (req, res, next) => {
   Day.create({
       name: req.body.name,
-      date: req.body.date
+      categories: req.body.cats
   })
     .then((day) => {
         res.json(day)
