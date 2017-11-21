@@ -69,8 +69,8 @@ export class NewDay extends Component {
                                 name="category" 
                                 key={category.id} 
                                 label={category.name} 
-                                value={category.id} 
-                                checked={value.indexOf(category.id) !== -1} 
+                                value={category.name} 
+                                checked={value.indexOf(category.name) !== -1} 
                                 onChange={this.handleChange} />
                       })
                     }

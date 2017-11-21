@@ -28,10 +28,10 @@ router.get('/recommendations/:id', async (req, res, next) => {
     }})
     .catch(next)
     day.groups[0].users.forEach((user) => {
-      console.log('***************', user.subCategories)
         user.subCategories.forEach((subcat) => {
           groupInt.push(subcat)
         })
     })
-    checkAgainst(groupInt)
+    const leaderPicks = day.categories
+    checkAgainst(groupInt, leaderPicks)
 })

@@ -1,6 +1,6 @@
-const leaderPicks = ['Bars', 'Concerts', 'Museums', 'Music']
+const littlecats = ['Bars', 'Concerts', 'Museums', 'Music']
 
-const userSubs = [{
+const bigcats = [{
     name: 'Pop',
     category: {
         name: 'Music'
@@ -34,6 +34,7 @@ const userSubs = [{
 }]
 
 const checkAgainst = (userSubs, leaderPicks) => {
+    console.log('***************', userSubs.categories)
     let results = {}
 
     userSubs.forEach((userSub) => {
@@ -50,7 +51,7 @@ const checkAgainst = (userSubs, leaderPicks) => {
             }
         }
     })
-    console.log(results)
+    console.log('Looking for results*********',results)
     return results
 }
 
