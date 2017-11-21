@@ -33,26 +33,26 @@ const bigcats = [{
     }
 }]
 
-const checkAgainst = (userSubs, leaderPicks) => {
-    console.log('***************', userSubs.categories)
+const checkAgainst = (userSubs) => {
     let results = {}
-
+    
     userSubs.forEach((userSub) => {
-        if (leaderPicks.indexOf(userSub.category.name) !== -1) {
-            if (results[userSub.category.name]) {
-                if (results[userSub.category.name][userSub.name]) {
-                    results[userSub.category.name][userSub.name]++
-                } else {
-                    results[userSub.category.name][userSub.name] = 1
-                }
+        //console.log('***************', userSub.name)
+        let catsName = userSub.categories[0].dataValues.name
+        if (results[catsName]) {
+            if (results[catsName][userSub.name]) {
+                results[catsName][userSub.name]++
             } else {
-                let obj = { [userSub.name]: 1 }
-                results[userSub.category.name] = obj
+                results[catsName][userSub.name] = 1
             }
+        } else {
+            let obj = { [userSub.name]: 1 }
+            results[catsName] = obj
         }
+        
     })
-    console.log('Looking for results*********',results)
-    return results
+    
+    return finalPick(results)
 }
 
 const objectHelper = (key) => {
@@ -74,6 +74,8 @@ function finalPick(obj) {
             }
         })
     })
+
+    console.log('Looking for results*********', lastresult)
     return lastresult
 }
 

@@ -18,20 +18,25 @@ router.get('/:id', (req, res, next) => {
 router.get('/recommendations/:id', async (req, res, next) => {
   const id = req.params.id
   const groupInt = []
+
+let currentDay = await Day.findById(id)
+let leaderPicks = currentDay.categories
   let day = await Day.findById(id, {
     include: {model: Group, 
       include: {model: User, 
-        include:{model: SubCategory, 
+        include:{model: SubCategory,
           include: {model: Category , 
+            where: {
+              name: {$or: leaderPicks}
+            },
             attributes: ['name']}, 
             attributes: ['name']}}
     }})
     .catch(next)
     day.groups[0].users.forEach((user) => {
         user.subCategories.forEach((subcat) => {
-          groupInt.push(subcat)
+          groupInt.push(subcat.dataValues)
         })
-    })
-    const leaderPicks = day.categories
-    checkAgainst(groupInt, leaderPicks)
+      })
+    checkAgainst(groupInt)
 })
