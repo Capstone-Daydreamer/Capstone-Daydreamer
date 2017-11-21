@@ -28,13 +28,10 @@ componentDidMount(){
 }
   render(){
       const { days } = this.props
-      days.date && console.log(typeof days.createdAt)
     const today = new Date()
     const event = new Date(days.date)
     const stateOfDay = () =>{ 
       const sec = days.createdAt && event.getTime() - Date.now()
-      console.log('LOOKING FOR DATE', days.date)
-      console.log(sec)
 
       if(sec < 0){
         return true
