@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 const {Group, Day, Activity, SubCategory} = require('./db/models')
+const yelp = require("./our-yelp-module")
 module.exports = app
 
 /**
@@ -31,7 +32,7 @@ passport.deserializeUser((id, done) =>
     .then(user => done(null, user))
     .catch(done))
 
-const createApp = () => {
+const createApp = async () => {
   // logging middleware
   app.use(morgan('dev'))
 

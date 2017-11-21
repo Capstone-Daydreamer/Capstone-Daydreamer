@@ -1,11 +1,13 @@
 const router = require('express').Router()
-const yelp = require('yelp-fusion');
+// const yelp = require('yelp-fusion');
+const yelp = require('../services/yelp')
 
 module.exports = router
 
 router.post('/', (req, res, next) => {
-  const clientId = process.env.clientId
-  const clientSecret = process.env.clientSecret
+
+  yelpClient = await yelp.getClient()
+
   const searchRequest = {
     term: req.body.term,
     location: req.body.location,
@@ -13,12 +15,9 @@ router.post('/', (req, res, next) => {
     limit: 3
   };
 
-  yelp.accessToken(clientId, clientSecret).then(response => {
-    const client = yelp.client(response.jsonBody.access_token);
-
-    client.search(searchRequest).then(response => {
+  // COMMENT - Move the yelp client to its own module. It may need an init() method since it's async
+    yelpClient.search(searchRequest).then(response => {
       const firstResult = response.jsonBody.businesses[0];
       res.json(firstResult)
-    });
-  }).catch(next);
+    }).catch(next);;
 })

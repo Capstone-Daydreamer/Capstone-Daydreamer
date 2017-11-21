@@ -15,22 +15,23 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
+// COMMENT - Walk me through this logic
 router.get('/recommendations/:id', async (req, res, next) => {
   const id = req.params.id
   const groupInt = []
   let day = await Day.findById(id, {
-    include: {model: Group, 
-      include: {model: User, 
-        include:{model: SubCategory, 
-          include: {model: Category , 
-            attributes: ['name']}, 
-            attributes: ['name']}}
+    include: {model: Group,
+      include: {model: User,
+        include:{model: SubCategory,
+          include: {model: Category ,
+            attributes: ['name']},  // COMMENT: Why duplicated?
+            attributes: ['name']}}  // COMMENT: Why duplicated?
     }})
     .catch(next)
     day.groups[0].users.forEach((user) => {
       console.log('***************', user.subCategories)
         user.subCategories.forEach((subcat) => {
-          groupInt.push(subcat)
+          groupInt.push(subcat.dataValues)
         })
     })
     checkAgainst(groupInt)

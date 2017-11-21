@@ -23,10 +23,10 @@ Group.belongsToMany(Day, {through: GroupDay})
 Day.belongsToMany(Group, {through: GroupDay})
 Activity.belongsToMany(Day, {through: ActivityDay})
 Day.belongsToMany(Activity, {through: ActivityDay})
-Activity.belongsToMany(SubCategory, {through: ActivitySubCategory})
-SubCategory.belongsToMany(Activity, {through: ActivitySubCategory})
-Category.belongsToMany(SubCategory, {through: CategorySubCategory})
-SubCategory.belongsToMany(Category, {through: CategorySubCategory})
+Activity.belongsToMany(SubCategory, {through: ActivitySubCategory)
+SubCategory.belongsToMany(Activity, {through: ActivitySubCategory)
+Category.belongsToMany(SubCategory, {through: CategorySubCategory)
+SubCategory.belongsToMany(Category, {through: CategorySubCategory)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,

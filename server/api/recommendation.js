@@ -36,6 +36,7 @@ const userSubs = [{
 const checkAgainst = (userSubs, leaderPicks) => {
     let results = {}
 
+    // COMMENT: Walk through this - there is probably a more efficient way to do this
     userSubs.forEach((userSub) => {
         if (leaderPicks.indexOf(userSub.category.name) !== -1) {
             if (results[userSub.category.name]) {
@@ -77,4 +78,3 @@ function finalPick(obj) {
 }
 
 module.exports = checkAgainst
-
