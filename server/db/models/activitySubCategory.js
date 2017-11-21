@@ -1,17 +1,7 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+// const Sequelize = require('sequelize')
+// const db = require('../db')
 
-const ActivitySubCategory = db.define('activitySubCategory', {
-  activityId: {
-    type: Sequelize.INTEGER,
-    // allowNull: false,
-    // isInt: true
-  },
-  subCategoryId: {
-    type: Sequelize.INTEGER,
-    // allowNull: false,
-    // isInt: true
-  }
-})
+// const ActivitySubCategory = db.define('activitySubCategory', {
+// })
 
-module.exports = ActivitySubCategory
+// module.exports = ActivitySubCategory
