@@ -7,6 +7,15 @@ const Day = db.define('day', {
     },
     date: {
         type: Sequelize.DATE
+    },
+    time: {
+        type: Sequelize.STRING
+    },
+    duration: {
+        type: Sequelize.INTEGER
+    },
+    categories: {
+        type: Sequelize.ARRAY(Sequelize.TEXT)
     }
 })
 

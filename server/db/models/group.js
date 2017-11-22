@@ -7,6 +7,9 @@ const Group = db.define('group', {
     },
     name: {
         type: Sequelize.STRING
+    },
+    memberAccountIds: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
     }
 })
 

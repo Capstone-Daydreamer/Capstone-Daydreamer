@@ -16,3 +16,8 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/:id', (req, res, next) => {
+  SubCategory.findById(req.params.id, {include: [Category]})
+    .then(subCategories => res.json(subCategories))
+    .catch(next)
+})
