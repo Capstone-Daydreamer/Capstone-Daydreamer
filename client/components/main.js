@@ -18,40 +18,38 @@ const Main = (props) => {
 
   return (
     <div>
-      <Menu inverted>
-        <Container>
-          <Menu.Item>
-            <Link to="/"><h1 >Daydreamer</h1> </Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link to="/user-groups">Groups</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link to="#">Events</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link to="/Profile">Profile</Link>
-          </Menu.Item>
+      <header>
+    <div class="container">
+      <h1 class="logo"></h1>
+
+      <nav>
+        <ul>
+          <li><a href="/">Daydreamer</a></li>
+          <li><a href="user-groups">Groups</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="/Profile">Profile</a></li>
           {
             isLoggedIn
-              ? <div>
+            ? <div>
                 {/* The navbar will show these links after you log in */}
-                <Menu.Item>
+                <li>
                   <a href="/#" onClick={handleClick}>Logout</a>
-                </Menu.Item>
+                </li>
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}
-                <Menu.Item>
-                  <Link to="/login">Login</Link>
-                </Menu.Item>
-                <Menu.Item>
-                  <Link to="/signup">Sign Up</Link>
-                </Menu.Item>
+                <li>
+                  <a href="/hrefgin">hrefgin</a>
+                </li>
+                <li>
+                  <a href="/signup">Sign Up</a>
+                </li>
               </div>
           }
-        </Container>
-      </Menu>
+          </ul>
+        </nav>
+          </div>
+        </header>
       {children}
       <Footer />
     </div >
