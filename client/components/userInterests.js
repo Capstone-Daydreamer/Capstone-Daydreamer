@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Menu, Grid, Card } from 'semantic-ui-react'
-import {removeInterest, addInterest, destroyInterest} from '../store'
+import {fetchCategories, fetchSubCategories, addInterest, destroyInterest} from '../store'
 
 export class UserInterests extends Component {
     constructor(props){
@@ -13,9 +13,14 @@ export class UserInterests extends Component {
         this.handleItemClick = this.handleItemClick.bind(this)
     }
 
+    componentDidMount() {
+        this.props.loadInitialData()
+      }
+
     handleItemClick = (e, cat) => {
         this.setState({ activeItem: cat.name, activeItemId: cat.id })
     }
+
 
     render(){ 
         const user = this.props.user
@@ -88,7 +93,11 @@ const mapDispatch = (dispatch, ownProps) => {
             } else {
                 dispatch(destroyInterest(user.id, cat.id))
             }
-        }
+        },
+        loadInitialData() {
+            dispatch(fetchCategories())
+            dispatch(fetchSubCategories())
+          }
     }
 }
 
