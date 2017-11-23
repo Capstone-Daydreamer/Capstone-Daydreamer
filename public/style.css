@@ -23,7 +23,6 @@ body {
 
 header {
   background: #55d6aa;
-  color: #026670
 }
 
 header::after {
@@ -51,14 +50,13 @@ nav li {
   display: inline-block;
   margin-left: 70px;
   padding-top: 23px;
-
+  color: white;
   position: relative;
 }
 
 nav a {
   color: #444;
   text-decoration: none;
-  text-transform: uppercase;
   font-size: 14px;
 }
 
