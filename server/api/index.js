@@ -8,6 +8,7 @@ router.use('/yelp', require('./yelp'));
 router.use('/groups', require('./groups'));
 router.use('/days', require('./days'));
 router.use('/cronofy', require('./cronofy'));
+router.use('/activities', require('./activities'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');

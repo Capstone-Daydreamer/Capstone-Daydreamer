@@ -83,10 +83,6 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        handlePromote(event, id) {
-            const thunk = adminUser(id, ownProps.history);
-            dispatch(thunk);
-        },
         handleIntUpdate(e, cat, color, user) {
             if (color === 'red'){
                 dispatch(addInterest(user.id, cat.id))

@@ -23,26 +23,6 @@ export const fetchGroup = id => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const postNewGroup = (name, leader, users) => dispatch => {
-  axios.post('api/groups/', {name, leader})
-  .then(res => res.data)
-  .then(group => {
-    let userArr = users.map(user => {
-      return {userId: user, groupId: group.id}
-    })
-    userArr.push({userId: leader, groupId: group.id})
-    axios.post('api/groups/new', {userArr})
-    .then(() => {
-      axios.get(`/api/groups/${id}`)
-      .then(res => res.data)
-      .then(group => {
-        dispatch(newGroup(group))
-      })
-    })
-    .catch()
-  })
-}
-
 export const fetchGroupInt = id => dispatch => {
   axios.get(`/api/groups/recommendations/${id}`)
     .catch(err => console.log(err))

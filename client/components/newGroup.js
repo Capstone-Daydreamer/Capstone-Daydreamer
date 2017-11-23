@@ -113,7 +113,7 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         handleSubmit(event, user, value) {
             event.preventDefault()
-            dispatch(postNewGroup(event.target.name.value, user.id, value));
+            dispatch(postNewGroup(event.target.name.value, user, value));
             //must dispatch to cronofy
         },
         loadInitialData() {

@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, UserProfile, UserGroups, SingleGroup, NewDay, SingleDay, NewGroup } from './components'
+import { Main, Login, Signup, UserHome, Events, UserProfile, UserGroups, SingleGroup, NewDay, SingleDay, NewGroup } from './components'
 import { me } from './store'
 
 /**
@@ -32,6 +32,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/newGroup" component={NewGroup} />
+            <Route path="/events" component={Events} />
             <Route exact path="/user-groups/group/:id" component={SingleDay} />
             {
               isLoggedIn &&
