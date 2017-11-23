@@ -4,7 +4,7 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, UserProfile, UserGroups, SingleGroup, NewDay, SingleDay } from './components'
+import { Main, Landing, Login, Signup, UserHome, UserProfile, UserGroups, SingleGroup, NewDay, SingleDay } from './components'
 import { me, fetchCategories, fetchSubCategories } from './store'
 
 /**
@@ -24,6 +24,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are available to all visitors */}
             {/* Routes commented out until actual components are ready to be rendered in */}
+            <Route exact path="/" component={Landing} />
             <Route exact path="/user-groups" component={UserGroups} />
             <Route exact path="/user-groups/:id" component={SingleGroup} />
             {/* <Route path="/Events" component={Events} /> */}
