@@ -21,10 +21,6 @@ export const fetchGroup = id => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const fetchGroupInt = id => dispatch => {
-  axios.get(`/api/groups/recommendations/${id}`)
-    .catch(err => console.log(err))
-}
 /**
  * REDUCER
  */
