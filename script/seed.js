@@ -286,15 +286,15 @@ const catSubcat = [
 ]
 
 const subcats = [
-  { name: 'Beer' }, //1
-  { name: 'Champagne' }, //2
-  { name: 'Cocktail' }, //3
-  { name: 'Dive' }, //4
-  { name: 'Pub' }, //5
-  { name: 'Sports' }, //6
-  { name: 'Tiki' }, //7
-  { name: 'Whiskey' }, //8
-  { name: 'Wine' }, //9
+  { name: 'Beer', alias: 'beerbar' }, //1
+  { name: 'Champagne', alias: 'champagne_bars' }, //2
+  { name: 'Cocktail', alias: 'cocktailbars' }, //3
+  { name: 'Dive', alias: 'divebars' }, //4
+  { name: 'Pub', alias: 'pubs' }, //5
+  { name: 'Sports', alias: 'sportsbars' }, //6
+  { name: 'Tiki', alias: 'tikibars' }, //7
+  { name: 'Whiskey', alias: 'whiskeybars' }, //8
+  { name: 'Wine', alias: 'wine_bars' }, //9
   { name: 'Country' }, //10
   { name: 'Electric Dance Music' }, //11
   { name: 'Folk' }, //12
@@ -319,28 +319,28 @@ const subcats = [
   { name: 'Art' }, //31
   { name: 'Children Museum' }, //32
   { name: 'History' }, //33
-  { name: 'American' }, //34
-  { name: 'Asian Fusion' }, //35
-  { name: 'Barbeque' }, //36
-  { name: 'Cajun' }, //37
-  { name: 'Chinese' },//38
-  { name: 'Dessert' },//39
-  { name: 'French' },//40
-  { name: 'German' },//41
-  { name: 'Gluten-Free' },//42
-  { name: 'Greek' },//43
-  { name: 'Indian' },//44
-  { name: 'Italian' },//45
-  { name: 'Japanese' },//46
-  { name: 'Mediterranean' },//47
-  { name: 'Polish' },//48
-  { name: 'Seafood' },//49
-  { name: 'Southern' },//50
-  { name: 'Steak House' },//51
-  { name: 'Tapas' },//52
-  { name: 'Thai' },  //53
-  { name: 'Vegan' },//54
-  { name: 'Vegetarian' }, //55
+  { name: 'American', alias: 'newamerican' }, //34
+  { name: 'Asian Fusion', alias: 'asianfusion' }, //35
+  { name: 'Barbeque', alias: 'bbq' }, //36
+  { name: 'Cajun', alias: 'cajun' }, //37
+  { name: 'Chinese', alias: 'chinese' },//38
+  { name: 'Dessert', alias: 'dessert' },//39
+  { name: 'French', alias: 'french' },//40
+  { name: 'German', alias: 'german' },//41
+  { name: 'Gluten-Free', alias: 'gluten_free' },//42
+  { name: 'Greek', alias: 'greek' },//43
+  { name: 'Indian', alias: 'indpak' },//44
+  { name: 'Italian', alias: 'italian' },//45
+  { name: 'Japanese' , alias: 'japanese'},//46
+  { name: 'Mediterranean', alias: 'mediterranean' },//47
+  { name: 'Polish', alias: 'polish' },//48
+  { name: 'Seafood', alias: 'seafood' },//49
+  { name: 'Southern', alias: 'southern' },//50
+  { name: 'Steak House', alias: 'steak' },//51
+  { name: 'Tapas', alias: 'tapas' },//52
+  { name: 'Thai', alias: 'thai' },  //53
+  { name: 'Vegan', alias: 'vegan' },//54
+  { name: 'Vegetarian', alias: 'vegetarian' }, //55
   { name: 'Baseball' },//56
   { name: 'Basketball' },//57
   { name: 'Football' },//58

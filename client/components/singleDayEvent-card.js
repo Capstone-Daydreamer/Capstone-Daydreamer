@@ -9,7 +9,6 @@ import {
  * COMPONENT
  */
 export const SingleDayEventCard = (props) => {
-  console.log('PROPS', props)
   const { yelprec } = props
   return (
     <Card >

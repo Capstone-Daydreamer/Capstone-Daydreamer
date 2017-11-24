@@ -30,7 +30,7 @@ let leaderPicks = currentDay.categories
               name: {$or: leaderPicks}
             },
             attributes: ['name']}, 
-            attributes: ['name']}}
+            attributes: ['name', 'alias']}}
     }})
     .catch(next)
     day.groups[0].users.forEach((user) => {
@@ -38,5 +38,5 @@ let leaderPicks = currentDay.categories
           groupInt.push(subcat.dataValues)
         })
       })
-    checkAgainst(groupInt)
+    res.json(checkAgainst(groupInt))
 })

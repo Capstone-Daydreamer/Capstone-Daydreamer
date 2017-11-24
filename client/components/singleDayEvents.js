@@ -12,11 +12,23 @@ export class SingleDayEvents extends Component {
         }
     }
     componentDidMount() {
-        const id = this.props.match.params.id
-        this.props.loadGroup(id)
-      }
+        const {recommendations} = this.props
+        const location = '60067'
+        const keys = Object.keys(recommendations)
+        const arr = []
+        keys.forEach(key => {
+            if(key === 'Bars' || key === 'Restaurants'){
+                arr.push(key, recommendations[key])
+            }
+        })
+        if (arr.length === 2) this.props.loadGroup(arr[0], location, arr[1])
+        if (arr.length === 4) {
+            this.props.loadGroup(arr[0], location, arr[1])
+            this.props.loadGroup(arr[2], location, arr[3])
+        }
+    }
     render() {
-        const {days, yelprecommend} = this.props
+        const { days, yelprecommend } = this.props
         const event = new Date(days.date)
         const stateOfDay = () => {
             const sec = days.createdAt && event.getTime() - Date.now()
@@ -28,29 +40,32 @@ export class SingleDayEvents extends Component {
             }
         }
         return (
-            stateOfDay() ?
-                <Grid columns={8} padded>
-                    <Item.Group>
-                        <Item>
-                            {
-                                days.activities && days.activities.map((activity) => {
-                                    return (
-                                        <div key={activity.id}>
-                                            <Item.Content >
-                                                <Item.Header as='a'>{activity.name}</Item.Header>
-                                                <Item.Meta>{activity.description}</Item.Meta>
-                                                <Item.Description>{activity.location}</Item.Description>
-                                            </Item.Content>
-                                            <Divider fitted />
-                                        </div>
-                                    )
-                                })
-                            }
-                        </Item>
-                    </Item.Group>
-                </Grid > :
-                <SingleDayEventCard yelprec={yelprecommend} />
-
+            <div>
+                {stateOfDay() ?
+                    <Grid columns={8} padded>
+                        <Item.Group>
+                            <Item>
+                                {
+                                    days.activities && days.activities.map((activity) => {
+                                        return (
+                                            <div key={activity.id}>
+                                                <Item.Content >
+                                                    <Item.Header as='a'>{activity.name}</Item.Header>
+                                                    <Item.Meta>{activity.description}</Item.Meta>
+                                                    <Item.Description>{activity.location}</Item.Description>
+                                                </Item.Content>
+                                                <Divider fitted />
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </Item>
+                        </Item.Group>
+                    </Grid> :
+                    yelprecommend && yelprecommend.map(rec => rec.map(yelprec => <SingleDayEventCard key={yelprec.id} yelprec={yelprec} />))
+                    
+                }
+            </div>
         )
     }
 }
@@ -58,13 +73,14 @@ export class SingleDayEvents extends Component {
 const mapState = (state) => {
     return {
         days: state.days,
-        yelprecommend: state.yelprecommend
+        yelprecommend: state.yelprecommend,
+        recommendations: state.recommendations
     }
 }
 
 const mapDispatch = dispatch => {
     return {
-        loadGroup(term, location, categories){
+        loadGroup(term, location, categories) {
             dispatch(yelpSearch(term, location, categories))
         }
     }
