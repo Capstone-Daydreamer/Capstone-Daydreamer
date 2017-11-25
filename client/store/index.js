@@ -9,8 +9,10 @@ import yelprecommend from './yelp'
 import groups from './group'
 import days from './day'
 import recommendations from './recommendation'
+import users from './users'
+import activity from './activity'
 
-const reducer = combineReducers({user, categories, subCategories, yelprecommend, groups, days, recommendations})
+const reducer = combineReducers({user, categories, subCategories, yelprecommend, groups, days, users, activity, recommendations})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -26,3 +28,6 @@ export * from './yelp'
 export * from './group'
 export * from './day'
 export * from './recommendation'
+export * from './users'
+export * from './activity'
+
