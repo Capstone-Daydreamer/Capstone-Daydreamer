@@ -88,6 +88,27 @@ export const destroyInterest = (userId, subCategoryId) => dispatch => {
     .catch()
 }
 
+export const postNewGroup = (name, leader, users) => dispatch => {
+  axios.post('api/groups/', {name, leader: leader.id})
+  .then(res => res.data)
+  .then(group => {
+    let userArr = users.map(user => {
+      return {userId: user, groupId: group.id}
+    })
+    userArr.push({userId: leader.id, groupId: group.id})
+    axios.post('api/groups/new', {userArr})
+    .then(() => {
+      axios.get(`/api/users/${leader.id}`)
+      .then(res => res.data)
+      .then(user => {
+        dispatch(updateUser(user))
+        history.push(`/user-groups/${group.id}`)
+      })
+    })
+    .catch()
+  })
+}
+
 
 /**
  * REDUCER
