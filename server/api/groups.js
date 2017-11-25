@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Group, User, Day, Activity, SubCategory, Category} = require('../db/models')
+const {Group, User, Day, Activity, SubCategory, Category, UserGroup} = require('../db/models')
 const checkAgainst = require('./recommendation')
 module.exports = router
 
@@ -15,10 +15,25 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
+router.post('/', (req, res, next) => {
+  Group.create(req.body)
+    .then(group => {
+      res.json(group)
+    })
+    .catch(next)
+})
+
+router.post('/new', (req, res, next) => {
+  UserGroup.bulkCreate(req.body.userArr)
+    .then(group => {
+      res.json(group)
+    })
+    .catch(next)
+})
+
 router.get('/recommendations/:id', async (req, res, next) => {
   const id = req.params.id
   const groupInt = []
-
 let currentDay = await Day.findById(id)
 let leaderPicks = currentDay.categories
   let day = await Day.findById(id, {
@@ -30,7 +45,7 @@ let leaderPicks = currentDay.categories
               name: {$or: leaderPicks}
             },
             attributes: ['name']}, 
-            attributes: ['name']}}
+            attributes: ['name', 'alias']}}
     }})
     .catch(next)
     day.groups[0].users.forEach((user) => {
@@ -38,5 +53,6 @@ let leaderPicks = currentDay.categories
           groupInt.push(subcat.dataValues)
         })
       })
-    checkAgainst(groupInt)
+    res.json(checkAgainst(groupInt))
 })
+

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Grid } from 'semantic-ui-react'
-import GroupDay from './userDays-card';
+import GroupDay from './user-days-card';
 
 export class UserDays extends Component {
     constructor(props) {

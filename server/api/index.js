@@ -3,6 +3,7 @@ module.exports = router;
 
 router.use('/subCategories', require('./subCategories'));
 router.use('/categories', require('./categories'));
+router.use('/activities', require('./activities'));
 router.use('/eventful', require('./eventful'));
 router.use('/cronofy', require('./cronofy'));
 router.use('/meetup', require('./meetup'));

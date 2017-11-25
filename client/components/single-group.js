@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SingleGroupCard from './single-group-member-card';
-import GroupDay from './userDays-card';
+import GroupDay from './user-days-card';
 import {
   Container, Segment, Grid, Card, Button
 } from 'semantic-ui-react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import { fetchGroup, fetchGroupInt } from '../store'
+import { fetchGroup } from '../store'
 import { Link, withRouter } from 'react-router-dom'
 /**
  * COMPONENT
@@ -69,7 +69,6 @@ const mapDispatch = dispatch => {
   return {
     loadGroup(id) {
       dispatch(fetchGroup(id))
-      dispatch(fetchGroupInt(id))
     }
   }
 }
