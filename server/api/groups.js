@@ -24,7 +24,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.post('/new', (req, res, next) => {
-  console.log('LOOKING FOR IT',req.body.userArr)
   UserGroup.bulkCreate(req.body.userArr)
     .then(group => {
       res.json(group)
