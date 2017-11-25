@@ -17,21 +17,21 @@ const Main = (props) => {
   const { children, handleClick, isLoggedIn } = props
 
   return (
-    <div>
+    <div id="site">
       <header>
     <div className="container">
       <nav>
         <ul>
-          <li><a href="/">Daydreamer</a></li>
-          <li><a href="user-groups">Groups</a></li>
-          <li><a href="#">Events</a></li>
-          <li><a href="/Profile">Profile</a></li>
+          <li><a href="/">Daydreamer |</a></li>
+          <li><a href="user-groups">Groups |</a></li>
+          <li><a href="#">Events |</a></li>
+          <li><a href="/Profile">Profile |</a></li>
           {
             isLoggedIn
             ? <span>
                 {/* The navbar will show these links after you log in */}
                 <li>
-                  <a href="/#" onClick={handleClick}>Logout</a>
+                  <a href="/#" onClick={handleClick}>Logout |</a>
                 </li>
               </span>
               : <span>
@@ -44,7 +44,9 @@ const Main = (props) => {
         </nav>
           </div>
         </header>
+        <div id="site-content">
       {children}
+      </div>
       <Footer />
     </div >
   )

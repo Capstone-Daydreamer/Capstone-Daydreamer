@@ -1,6 +1,5 @@
 body {
 	margin: 0;
-	background: #EDEAE5;
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 }
@@ -17,8 +16,56 @@ body {
   padding-top: 30px;
 }
 
+#site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#site-content {
+  display: flex;
+  flex: 1;
+}
+
 #landing {
   max-width: 100%
+}
+
+#card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#group-card{
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  border-style:solid;
+  border-color: #c0c0c0;
+  border-width:1px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  flex-basis: 50%;
+  width: 400px;
+  height: 400px;
+  transition: all ease-in-out 250ms;
+}
+
+#group-card:hover{
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#group-img {
+  max-height: 50%;
+  object-fit: none;
+}
+
+#group-content {
+  padding: 20px;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -50,25 +97,25 @@ nav li {
   display: inline-block;
   margin-left: 70px;
   padding-top: 23px;
-  color: white;
   position: relative;
 }
 
 nav a {
-  color: #444;
+  font-family: 'Raleway', sans-serif;
+  color: white;
   text-decoration: none;
   font-size: 14px;
 }
 
 nav a:hover {
-  color: #000;
+  color: white;
 }
 
 nav a::before {
   content: '';
   display: block;
   height: 5px;
-  background-color: #444;
+  background-color: #fef9c7;
 
   position: absolute;
   top: 0;
