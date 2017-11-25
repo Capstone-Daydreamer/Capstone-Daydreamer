@@ -102,6 +102,7 @@ export const postNewGroup = (name, leader, users) => dispatch => {
       .then(res => res.data)
       .then(user => {
         dispatch(updateUser(user))
+        history.push(`/user-groups/${group.id}`)
       })
     })
     .catch()

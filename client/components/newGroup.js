@@ -33,7 +33,9 @@ export class NewGroup extends Component {
 
     render() {
         const user = this.props.user
-        const users = this.props.users
+        const users = this.props.users !== undefined && this.props.users.filter(userList =>
+            userList.id !== user.id
+        )
         const value = this.state.value
         return (
             <Segment>
