@@ -26,6 +26,7 @@
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
     "cronofy": "^2.5.0",
+    "emailjs": "^1.0.12",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
