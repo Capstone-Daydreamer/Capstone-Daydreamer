@@ -26,7 +26,7 @@ export const yelpSearch = (term, location, categories) => dispatch => {
 export default function (yelprecommend = [], action){
   switch (action.type){
     case GET_YELP:
-      return action.option
+      return [...yelprecommend, action.option]
     default:
       return yelprecommend
   }
