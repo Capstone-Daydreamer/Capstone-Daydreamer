@@ -4,18 +4,18 @@ const axios = require('axios');
 
 module.exports = router
 
-router.get('/', (req, res, next) => {
-  axios.get('http://api.meetup.com/find/upcoming_events?' +
-    'app_key=' + process.env.MEETUP_API_KEY +
-    '&lat=' + 41.8781 +
-    '&lon=' + 87.6298)
-    .then(response => {
-      res.json(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    })
-})
+// Abandoned in favor of Eventful API
+// Ask Ben if you need this up and running at some point
+// router.get('/', (req, res, next) => {
+//   axios.get('http://api.meetup.com/find/upcoming_events?' +
+//     'app_key=' + process.env.MEETUP_API_KEY)
+//     .then(response => {
+//       res.json(response.data);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     })
+// })
 
 router.get('/categories', (req, res, next) => {
   axios.get('http://api.meetup.com/find/topic_categories')
