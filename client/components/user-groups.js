@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 import UserGroupsCard from './user-groups-card.js'
 import {
   Grid, Card, Icon
@@ -19,7 +19,7 @@ export const UserGroups = (props) => {
       <p>Below is a list of the groups you're currently a part of. This is some unessicary filler text that the developer left behind because he was too lazy to be creative. It's sooooo much easier to know what text is gonna look like when theres actually text, so he's probably gonna put as much here as he feels like typing.... Guess what! He's back at it again since we need to make this text way longer on a full screen. Why you ask? Becuase having reactive components is hip and in right now, and the longer I keep this stream of consciousness going the more proud my inner James Joyce will be.</p>
       </div>
       <div id="card-group">
-        <a>
+        <a href="/new-group">
         <div id="group-card">
           <img id="group-img" src="./edit1.gif" />
           <div id="group-content">

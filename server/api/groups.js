@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Group, User, Day, Activity, SubCategory, Category} = require('../db/models')
+const {Group, User, Day, Activity, SubCategory, Category, UserGroup} = require('../db/models')
 const checkAgainst = require('./recommendation')
 module.exports = router
 
@@ -9,6 +9,22 @@ router.get('/:id', (req, res, next) => {
   Group.findById(id, {
     include: [User, {model: Day, include:[Activity]}]
   })
+    .then(group => {
+      res.json(group)
+    })
+    .catch(next)
+})
+
+router.post('/', (req, res, next) => {
+  Group.create(req.body)
+    .then(group => {
+      res.json(group)
+    })
+    .catch(next)
+})
+
+router.post('/new', (req, res, next) => {
+  UserGroup.bulkCreate(req.body.userArr)
     .then(group => {
       res.json(group)
     })

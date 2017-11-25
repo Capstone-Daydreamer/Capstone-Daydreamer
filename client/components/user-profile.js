@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import UserInterests from './userInterests'
-import UserDays from './userDays'
-import UserSettings from './userSettings'
+import UserInterests from './user-interests'
+import UserDays from './user-days'
+import UserSettings from './user-settings'
 import { Segment, Header, Menu } from 'semantic-ui-react'
 
 export class UserProfile extends Component {
