@@ -15,8 +15,8 @@ export const UserGroups = (props) => {
   return (
     <Grid centered columns={2}>
       <Grid.Column >
-      <div id="header"><h3>Welcome, {email}</h3>
-      <p>Below is a list of the groups you're currently a part of. This is some unessicary filler text that the developer left behind because he was too lazy to be creative. It's sooooo much easier to know what text is gonna look like when theres actually text, so he's probably gonna put as much here as he feels like typing.... Guess what! He's back at it again since we need to make this text way longer on a full screen. Why you ask? Becuase having reactive components is hip and in right now, and the longer I keep this stream of consciousness going the more proud my inner James Joyce will be.</p>
+      <div id="groups-header"><h1>Welcome, {email}</h1>
+      <p>Your awesome groups are here. Feel free to create new groups!</p>
       </div>
       <div id="card-group">
         <a href="/new-group">
