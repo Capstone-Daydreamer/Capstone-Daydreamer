@@ -38,26 +38,22 @@ const checkAgainst = (userSubs) => {
     
     userSubs.forEach((userSub) => {
         let catsName = userSub.categories[0].dataValues.name
+        let subName = userSub.alias ? userSub.alias : userSub.name
         if (results[catsName]) {
-            if (results[catsName][userSub.name]) {
-                results[catsName][userSub.name]++
+            if (results[catsName][subName]) {
+                results[catsName][subName]++
             } else {
-                results[catsName][userSub.name] = 1
+                results[catsName][subName] = 1
             }
         } else {
-            let obj = { [userSub.name]: 1 }
+            let obj = { [subName]: 1 }
             results[catsName] = obj
         }
         
     })
-    
     return finalPick(results)
 }
 
-const objectHelper = (key) => {
-    let obj = {}
-    return obj[key] = 1
-}
 
 function finalPick(obj) {
     let lastresult = {}

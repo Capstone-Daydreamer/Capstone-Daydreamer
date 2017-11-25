@@ -6,7 +6,7 @@ import SingleDayEvents from './singleDayEvents'
 import {
   Card, Icon, Button, Menu
 } from 'semantic-ui-react'
-import { fetchDay } from '../store'
+import { fetchDay, fetchGroupInt } from '../store'
 
 /**
  * COMPONENT
@@ -76,6 +76,7 @@ const mapDispatch = dispatch => {
     return {
         loadDay(id){
             dispatch(fetchDay(id))
+            dispatch(fetchGroupInt(id))
         }
     }
 }

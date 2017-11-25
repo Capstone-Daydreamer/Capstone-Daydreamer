@@ -34,7 +34,6 @@ router.post('/new', (req, res, next) => {
 router.get('/recommendations/:id', async (req, res, next) => {
   const id = req.params.id
   const groupInt = []
-
 let currentDay = await Day.findById(id)
 let leaderPicks = currentDay.categories
   let day = await Day.findById(id, {
@@ -46,7 +45,7 @@ let leaderPicks = currentDay.categories
               name: {$or: leaderPicks}
             },
             attributes: ['name']}, 
-            attributes: ['name']}}
+            attributes: ['name', 'alias']}}
     }})
     .catch(next)
     day.groups[0].users.forEach((user) => {
@@ -54,5 +53,6 @@ let leaderPicks = currentDay.categories
           groupInt.push(subcat.dataValues)
         })
       })
-    checkAgainst(groupInt)
+    res.json(checkAgainst(groupInt))
 })
+
