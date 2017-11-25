@@ -27,7 +27,7 @@ class Routes extends Component {
             <Route exact path="/user-groups" component={UserGroups} />
             <Route exact path="/user-groups/:id" component={SingleGroup} />
             {/* <Route path="/Events" component={Events} /> */}
-            <Route path="/Profile" component={UserProfile} />
+            <Route path="/profile" component={UserProfile} />
             <Route path="/newDay" component={NewDay} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
