@@ -12,12 +12,12 @@ export class SingleDayEvents extends Component {
         }
     }
     componentDidMount() {
-        const {recommendations} = this.props
+        const { recommendations } = this.props
         const location = '60067'
         const keys = Object.keys(recommendations)
         const arr = []
         keys.forEach(key => {
-            if(key === 'Bars' || key === 'Restaurants'){
+            if (key === 'Bars' || key === 'Restaurants') {
                 arr.push(key, recommendations[key])
             }
         })
@@ -62,8 +62,7 @@ export class SingleDayEvents extends Component {
                             </Item>
                         </Item.Group>
                     </Grid> :
-                    yelprecommend && yelprecommend.map(rec => rec.map(yelprec => <SingleDayEventCard key={yelprec.id} yelprec={yelprec} />))
-                    
+                    yelprecommend && yelprecommend.map(yelprec => <SingleDayEventCard key={yelprec[0].id} yelprec={yelprec} />)
                 }
             </div>
         )

@@ -51,7 +51,6 @@ const checkAgainst = (userSubs) => {
         }
         
     })
-    
     return finalPick(results)
 }
 

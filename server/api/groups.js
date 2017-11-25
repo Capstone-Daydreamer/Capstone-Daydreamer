@@ -34,7 +34,6 @@ router.post('/new', (req, res, next) => {
 router.get('/recommendations/:id', async (req, res, next) => {
   const id = req.params.id
   const groupInt = []
-
 let currentDay = await Day.findById(id)
 let leaderPicks = currentDay.categories
   let day = await Day.findById(id, {
