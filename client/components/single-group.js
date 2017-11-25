@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SingleGroupCard from './single-group-member-card';
-import GroupDay from './userDays-card';
+import GroupDay from './user-days-card';
 import {
   Container, Segment, Grid, Card, Button
 } from 'semantic-ui-react';
