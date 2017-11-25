@@ -27,10 +27,10 @@ const Main = (props) => {
             <Link to="/user-groups">Groups</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to="#">Events</Link>
+            <Link to="/events">Events</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to="/Profile">Profile</Link>
+            <Link to="/profile">Profile</Link>
           </Menu.Item>
           {
             isLoggedIn
