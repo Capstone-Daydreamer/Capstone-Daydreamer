@@ -41,8 +41,7 @@ export class SingleGroup extends React.Component {
       <Container>
         <h3>{groups.name}</h3>
         <p>Group Description</p>
-        <p>{this.state.item}</p>
-        <img src="https://loremflickr.com/200/200/cat" />
+        {/* <p>{this.state.item}</p> */}
         <Segment
           vertical
         >
