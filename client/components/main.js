@@ -23,7 +23,7 @@ const Main = (props) => {
       <nav>
         <ul>
           <li><a href="/">Daydreamer |</a></li>
-          <li><a href="user-groups">Groups |</a></li>
+          <li><a href="/user-groups">Groups |</a></li>
           <li><a href="/events">Events |</a></li>
           <li><a href="/profile">Profile |</a></li>
           {

@@ -47,14 +47,14 @@ componentDidMount(){
   }
   const activeItem = this.state.activeItem
     return (
-      <div>
+      <div id="page">
         <Menu tabular>
                   <Menu.Item name='schedule' active={activeItem === 'schedule'} onClick={this.handleItemClick} />
                   <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick} />
         </Menu>
-        <Grid>
+      <div id="row">
         {subComponent()}
-        </Grid>
+      </div>
       </div>
     )
   }

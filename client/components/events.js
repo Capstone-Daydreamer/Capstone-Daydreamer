@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Grid, Card, Item, Divider } from 'semantic-ui-react'
-import { fetchActivities } from '../store'
+import { Divider } from 'semantic-ui-react'
 
 export class Events extends Component {
     constructor(props){
@@ -23,6 +22,7 @@ export class Events extends Component {
                         <img id="event-group-img" src="./edit2.jpg" />
                         <div id="event-group-content">
                           <div><p><b>{activity.name}</b></p></div>
+                          <Divider />
                           <div><p>{activity.description}</p></div>
                           <div><p>{activity.location}</p></div>
                         </div>

@@ -3,6 +3,10 @@ body {
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 }
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
 
 .container {
 	width: 80%;
@@ -96,10 +100,11 @@ body {
   flex-direction: column;
 }
 
-#card-group {
+#event-card-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  flex-direction: column
 }
 
 #event-group-card{
@@ -127,6 +132,44 @@ body {
 }
 
 #event-group-content {
+  padding: 20px;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#day-card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column
+}
+
+#day-group-card{
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  border-style:solid;
+  border-color: #c0c0c0;
+  border-width:1px;
+  border-radius: 5px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  flex-basis: 80%;
+  width: 600px;
+  height: 350px;
+  transition: all ease-in-out 250ms;
+}
+
+#day-group-card:hover{
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#day-group-img {
+  max-width: 35%;
+  object-fit: none;
+}
+
+#day-group-content {
   padding: 20px;
   align-content: center;
   display: flex;
