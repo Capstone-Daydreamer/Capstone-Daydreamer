@@ -15,7 +15,7 @@ export const UserGroups = (props) => {
   return (
     <div id="page">
     <div id="row">
-      <div id="groups-header"><h1>Welcome, {email}</h1>
+      <div id="groups-header"><h1>Current Groups</h1>
         <p>Your awesome groups are here. Feel free to create new groups!</p>
       </div>
     </div>

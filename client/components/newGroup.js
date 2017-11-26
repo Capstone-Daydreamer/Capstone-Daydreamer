@@ -39,10 +39,9 @@ export class NewGroup extends Component {
         const value = this.state.value
         return (
             <Segment>
-                <Segment>
-                <Header as='h3' textAlign='center'>Here you can make a new group</Header>
-                
-                </Segment>
+                <div id="groups-header"><h1>New Group</h1>
+                <p>Feeling like getting a new group together?</p>
+                </div>
             <Form onSubmit={(evt) => this.props.handleSubmit(evt, user, this.state.value)}>
             <Grid centered columns={16} padded>
                 <Grid.Row>
@@ -78,17 +77,18 @@ export class NewGroup extends Component {
                     {
                         users !== undefined && users.map((user) => {
                             return (
-                                <Item key={user.id} >
-                                <Form.Checkbox
-                                name="user" 
-                                value={user.id} 
-                                checked={value.indexOf(user.id) !== -1} 
-                                onChange={this.handleChange} />
-                                <Item.Content>
-                                <Item.Header as='a'>{user.name}</Item.Header>
-                                <Item.Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</Item.Description>
-                                </Item.Content>
-                        </Item>
+                                <div id="event-group-card" key={user.id}>
+                                <img id="event-group-img" src="./edit4.jpg" />
+                                <div id="event-group-content">
+                                  <div><p><b>{user.name}</b></p></div>
+                                  <div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</p></div>
+                                  <Form.Checkbox
+                                    name="user" 
+                                    value={user.id} 
+                                    checked={value.indexOf(user.id) !== -1} 
+                                    onChange={this.handleChange} />
+                                </div>
+                              </div>
                         )
                     })
                 }

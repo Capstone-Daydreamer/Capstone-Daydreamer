@@ -16,7 +16,7 @@ export const Footer = (props) => {
     <div id="footer">
         <div id="footer-left">
           <div>
-           <h3><Icon name='copyright' /> Daydreamer 2017</h3>
+           <h3><Icon name='copyright' />2017 Daydreamer</h3>
           </div>
         </div>
         <div id="footer-right">
