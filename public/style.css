@@ -37,7 +37,28 @@ a {
   text-align: center;
 }
 
+#interests-header p{
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  color: #525c65;
+  font-style: italic;
+  text-align: center;
+}
+
+
 #groups-header h1{
+  font-size: 1rem;
+  margin-top: 40px;
+  line-height: 1.5rem;
+  color: #525c65;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+#interests-header h1{
   font-size: 1rem;
   margin-top: 40px;
   line-height: 1.5rem;
