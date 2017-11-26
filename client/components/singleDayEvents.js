@@ -13,26 +13,27 @@ export class SingleDayEvents extends Component {
     render() {
         const days = this.props.days
         return (
-            <Grid columns={8} padded>
-            <Item.Group>
-            <Item>
+            <div>
+            <div id="groups-header"><h1>Scheduled Events</h1>
+            <p>Here's whats on the docket.</p>
+            </div>
+            <div id="card-group">
                {
-                days.activities && days.activities.map((activity) => {
-                return (
-                    <div key={activity.id}>
-                    <Item.Content >
-                    <Item.Header as='a'>{activity.name}</Item.Header>
-                    <Item.Meta>{activity.description}</Item.Meta>
-                    <Item.Description>{activity.location}</Item.Description>
-                    </Item.Content>
-                    <Divider fitted />
-                    </div>
+                   days.activities && days.activities.map((activity) => {
+                       return (
+                        <div id="event-group-card" key={activity.id}>
+                        <img id="event-group-img" src="/edit3.jpg" />
+                        <div id="event-group-content">
+                          <div><p>{activity.name}</p></div>
+                          <div><p>{activity.description}</p></div>
+                          <div><p>{activity.location}</p></div>
+                        </div>
+                      </div>
                 )
                 })
                }
-              </Item>
-              </Item.Group>
-        </Grid>
+              </div>
+              </div>
         )
     }
 }

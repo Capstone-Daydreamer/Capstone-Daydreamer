@@ -13,11 +13,13 @@ import {
 export const UserGroups = (props) => {
   const { email, groups } = props
   return (
-    <Grid centered columns={2}>
-      <Grid.Column >
+    <div id="page">
+    <div id="row">
       <div id="groups-header"><h1>Welcome, {email}</h1>
-      <p>Your awesome groups are here. Feel free to create new groups!</p>
+        <p>Your awesome groups are here. Feel free to create new groups!</p>
       </div>
+    </div>
+    <div id="row">  
       <div id="card-group">
         <a href="/new-group">
         <div id="group-card">
@@ -33,8 +35,8 @@ export const UserGroups = (props) => {
           (<UserGroupsCard key={group.id} group={group} />)
         ) : <div />}
       </div>
-    </Grid.Column>
-    </Grid>
+    </div>
+    </div>
   )
 }
 

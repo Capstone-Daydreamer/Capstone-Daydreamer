@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import {
-  Card, Icon, Button, Menu
-} from 'semantic-ui-react'
+import { Menu, Grid } from 'semantic-ui-react'
 import { fetchDay } from '../store'
 
 /**
@@ -48,19 +46,18 @@ componentDidMount(){
       }
   }
   const activeItem = this.state.activeItem
-      return (
-        <div>
-          <Menu tabular>
-                    <Menu.Item name='schedule' active={activeItem === 'schedule'} onClick={this.handleItemClick} />
-                    <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick} />
-          </Menu>
-          {subComponent()}
-        </div>
-  
-      )
-
+    return (
+      <div>
+        <Menu tabular>
+                  <Menu.Item name='schedule' active={activeItem === 'schedule'} onClick={this.handleItemClick} />
+                  <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick} />
+        </Menu>
+        <Grid>
+        {subComponent()}
+        </Grid>
+      </div>
+    )
   }
-
 }
 
 /**

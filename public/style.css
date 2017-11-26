@@ -16,6 +16,12 @@ body {
   padding-top: 30px;
 }
 
+#row {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+}
+
 #groups-header p{
   margin-top: 20px;
   font-family: "Open Sans", sans-serif;
@@ -47,13 +53,16 @@ body {
 }
 
 #landing {
-  max-width: 100%
+  max-width: 100%;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 #card-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  flex-direction: row;
 }
 
 #group-card{
@@ -87,6 +96,44 @@ body {
   flex-direction: column;
 }
 
+#card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#event-group-card{
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  border-style:solid;
+  border-color: #c0c0c0;
+  border-width:1px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  flex-basis: 80%;
+  width: 600px;
+  height: 200px;
+  transition: all ease-in-out 250ms;
+}
+
+#event-group-card:hover{
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#event-group-img {
+  max-height: 100%;
+  object-fit: none;
+}
+
+#event-group-content {
+  padding: 20px;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
 header {
   background: #55d6aa;
 }
@@ -114,7 +161,7 @@ nav ul {
 
 nav li {
   display: inline-block;
-  margin-left: 70px;
+  margin-left: 50px;
   padding-top: 23px;
   position: relative;
 }
@@ -145,4 +192,18 @@ nav a::before {
 
 nav a:hover::before {
   width: 100%;
+}
+
+#footer {
+  display: flex;
+  background-color: #edeae5;
+  justify-content: space-evenly;
+  font-family: 'Raleway', sans-serif;
+}
+
+#footer-left {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }

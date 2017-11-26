@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
-  Container, Grid, Segment
+  Container, Grid, Icon
 } from 'semantic-ui-react'
 
 /**
@@ -13,32 +13,21 @@ export const Footer = (props) => {
   const { email } = props
 
   return (
-    <Segment
-      inverted
-      vertical
-    >
-      <Container textAlign="center">
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <h3 className="ui inverted header">FOOTER</h3>
-              <form className="ui form">
-                <label>Enter your email to be the first to hear about new features!</label>
-                <input type="email" />
-              </form>
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <ul className="ui inverted link list">
-                <li><b>Created By</b></li>
-                <li>Ellen Ormerod</li>
-                <li>Jamie Slaughter</li>
-                <li>Benjamin Odisho</li>
-              </ul>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </Segment>
+    <div id="footer">
+        <div id="footer-left">
+          <div>
+           <h3><Icon name='copyright' /> Daydreamer 2017</h3>
+          </div>
+        </div>
+        <div id="footer-right">
+        <ul>
+        <b>Created By</b>
+          <li>Ellen Ormerod</li>
+          <li>Jamie Slaughter</li>
+          <li>Benjamin Odisho</li>
+        </ul>
+        </div>
+        </div>
   )
 }
 

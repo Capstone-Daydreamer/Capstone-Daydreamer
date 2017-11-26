@@ -11,22 +11,28 @@ export class Events extends Component {
     render() {
         const activities = this.props.activities
         return (
-            <Item.Group>
+            <div>
+            <div id="groups-header"><h1>Past Events</h1>
+            <p>Looking for where you've been and what you've done? Look no further.</p>
+            </div>
+            <div id="card-group">
                {
                    activities && activities.map((activity) => {
                        return (
-                    <Item key={activity.id}>
-                    <Item.Content >
-                    <Item.Header as='a'>{activity.name}</Item.Header>
-                    <Item.Meta>{activity.description}</Item.Meta>
-                    <Item.Description>{activity.location}</Item.Description>
-                    </Item.Content>
-                    <Divider fitted />
-              </Item>
+                        <div id="event-group-card" key={activity.id}>
+                        <img id="event-group-img" src="./edit2.jpg" />
+                        <div id="event-group-content">
+                          <div><p>{activity.name}</p></div>
+                          <div><p>{activity.description}</p></div>
+                          <div><p>{activity.location}</p></div>
+                        </div>
+                      </div>
                 )
                 })
                }
-              </Item.Group>
+              
+              </div>
+              </div>
         )
     }
 }
