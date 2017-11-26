@@ -15,7 +15,7 @@ export class UserDaysCard extends Component {
     return (
         <a href={`group/${day.id}`}>
         <div id="day-group-card" key={day.id}>
-        <img id="day-group-img" src="/edit2.jpg" />
+        <img id="day-group-img" src="/edit5.jpg" />
         <div id="day-group-content">
         <div><p><b>{day.name}</b></p></div>
         <div><p><b>{day.date.slice(0, 10)}</b></p></div>

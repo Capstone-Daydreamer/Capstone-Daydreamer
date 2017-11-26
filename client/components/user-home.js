@@ -8,9 +8,11 @@ import {connect} from 'react-redux'
 export const UserHome = (props) => {
   const {email, name} = props
   return (
-    <div>
-      <h3>Welcome, {name || email}</h3>
-    </div>
+      <div id="row">
+        <div id="groups-header"><h1>Welcome, {name || email}</h1>
+            <p>Ready to get the some friends together?</p>
+        </div>
+      </div>
   )
 }
 

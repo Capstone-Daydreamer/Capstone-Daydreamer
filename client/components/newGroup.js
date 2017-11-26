@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Item, Card, Grid, 
+import { Item, Divider, Grid, 
         Form, Button, Checkbox, 
         Segment, Header } from 'semantic-ui-react'
 import { fetchUsers, postNewGroup } from '../store'
@@ -54,7 +54,7 @@ export class NewGroup extends Component {
                 </Grid.Row>
                 <Grid.Row>
                 <Header as='h3' textAlign='center'>Select some cool group members and click <Button 
-                        type='submit'>Submit</Button></Header>
+                        type='submit' color='teal'>Submit!</Button></Header>
                 </Grid.Row>
                 <Grid.Row>
                 {/* <Form.Group inline>
@@ -77,16 +77,17 @@ export class NewGroup extends Component {
                     {
                         users !== undefined && users.map((user) => {
                             return (
-                                <div id="event-group-card" key={user.id}>
-                                <img id="event-group-img" src="./edit4.jpg" />
-                                <div id="event-group-content">
-                                  <div><p><b>{user.name}</b></p></div>
-                                  <div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</p></div>
-                                  <Form.Checkbox
+                                <div id="user-group-card" key={user.id}>
+                                <img id="user-group-img" src="./edit4.jpg" />
+                                <div id="user-group-content">
+                                <span><Checkbox
                                     name="user" 
                                     value={user.id} 
                                     checked={value.indexOf(user.id) !== -1} 
-                                    onChange={this.handleChange} />
+                                    onChange={this.handleChange} /></span>
+                                  <div><p><b>{user.name}</b></p></div>
+                                  <Divider />
+                                  <div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</p></div> 
                                 </div>
                               </div>
                         )

@@ -36,8 +36,8 @@ const Main = (props) => {
               </span>
               : <span>
                 {/* The navbar will show these links before you log in */}
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/login">Login |</a></li>
+                <li><a href="/signup">Sign Up |</a></li>
               </span>
           }
           </ul>

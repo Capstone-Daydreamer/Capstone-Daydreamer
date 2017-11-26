@@ -27,8 +27,9 @@ export class SingleGroup extends React.Component {
     // BigCalendar.momentLocalizer(moment);
     return (
       <Container>
-        <h3>{groups.name}</h3>
-        <p>Group Description</p>
+        <div id="groups-header"><h1>{groups.name}</h1>
+            <p>We are the coolest!!</p>
+        </div>
         <Segment
           vertical
         >
