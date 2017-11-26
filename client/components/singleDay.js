@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import { Menu, Grid } from 'semantic-ui-react'
-import { fetchDay } from '../store'
+import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
+import { fetchDay, fetchGroupInt } from '../store'
 
 /**
  * COMPONENT
@@ -73,6 +73,7 @@ const mapDispatch = dispatch => {
     return {
         loadDay(id){
             dispatch(fetchDay(id))
+            dispatch(fetchGroupInt(id))
         }
     }
 }

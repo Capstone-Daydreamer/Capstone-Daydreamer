@@ -8,7 +8,7 @@ import {
 } from 'semantic-ui-react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import { fetchGroup, fetchGroupInt } from '../store'
+import { fetchGroup } from '../store'
 import { Link, withRouter } from 'react-router-dom'
 /**
  * COMPONENT
@@ -70,7 +70,6 @@ const mapDispatch = dispatch => {
   return {
     loadGroup(id) {
       dispatch(fetchGroup(id))
-      dispatch(fetchGroupInt(id))
     }
   }
 }

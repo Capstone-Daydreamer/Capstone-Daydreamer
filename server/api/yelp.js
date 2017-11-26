@@ -17,7 +17,7 @@ router.post('/', (req, res, next) => {
     const client = yelp.client(response.jsonBody.access_token);
 
     client.search(searchRequest).then(response => {
-      const firstResult = response.jsonBody.businesses[0];
+      const firstResult = response.jsonBody.businesses;
       res.json(firstResult)
     });
   }).catch(next);
