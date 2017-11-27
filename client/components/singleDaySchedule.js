@@ -30,7 +30,7 @@ export class SingleDaySchedule extends Component {
                                     <Item.Content >
                                         <Item.Header as='a'>{period.start}</Item.Header>
                                         <Item.Header as='b'>{period.end}</Item.Header>
-                                        <Item.Meta>Attendies: {period.participants.length}</Item.Meta>
+                                        <Item.Meta>Attendees: {period.participants.length}</Item.Meta>
                                     </Item.Content>
                                     <Divider fitted />
                                 </div>
