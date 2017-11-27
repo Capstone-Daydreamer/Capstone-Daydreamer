@@ -52,7 +52,7 @@ export class SingleGroup extends React.Component {
               <Grid.Row>
                 <Grid.Column width={4}>
                   <Card.Group>
-                    {users ? users.map(user => <SingleGroupCard key={user.id} user={user} leader={groups.leader} />) : <div />}
+                  {users ? users.map(user => <SingleGroupCard key={user.id} group={groups} user={user} leader={groups.leader}/>) : <div />}
                   </Card.Group>
                 </Grid.Column>
                 <Grid.Column >
