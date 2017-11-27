@@ -8,30 +8,53 @@ import {
 /**
  * COMPONENT
  */
-export const SingleDayYelpCard = (props) => {
-  const { yelprec } = props
-  return (
-    <div>
-      <Grid centered>
-        <Grid.Row>
-          {yelprec.map(rec => {
-            return (
-              <Card key={rec.id}>
-                <Image src={rec.image_url} />
-                <Card.Content>
-                  <Card.Header>{rec.name}</Card.Header>
-                  <Card.Meta>{rec.rating} stars</Card.Meta>
-                  <Card.Description>{rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state}</Card.Description>
-                </Card.Content>
-                <Card.Content extra>{rec.price}</Card.Content>
-              </Card>
-            )
-          })}
-        </Grid.Row>
-      </Grid>
-      <Divider />
-    </div>
-  )
+export class SingleDayYelpCard extends React.Component {
+  handleClick(rec) {
+    this.chosenRender(rec)
+  }
+
+  render() {
+    const { yelprec } = this.props
+    return (
+      <div>
+        <Grid centered>
+          <Grid.Row>
+            {yelprec.map(rec => {
+              return (
+                <Card key={rec.id} onClick={() => this.handleClick(rec)}>
+                  <Image src={rec.image_url} />
+                  <Card.Content>
+                    <Card.Header>{rec.name}</Card.Header>
+                    <Card.Meta>{rec.rating} stars</Card.Meta>
+                    <Card.Description>{rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state}</Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>{rec.price}</Card.Content>
+                </Card>
+              )
+            })}
+          </Grid.Row>
+        </Grid>
+        <Divider />
+      </div>
+    )
+  }
+
+  chosenRender(rec) {
+    return (
+      <div>
+        <Card key={rec.id} >
+          <Image src={rec.image_url} />
+          <Card.Content>
+            <Card.Header>{rec.name}</Card.Header>
+            <Card.Meta>{rec.rating} stars!!</Card.Meta>
+            <Card.Description>{rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state}</Card.Description>
+          </Card.Content>
+          <Card.Content extra>{rec.price}</Card.Content>
+        </Card>
+        <Divider />
+      </div>
+    )
+  }
 }
 
 /**
@@ -42,5 +65,6 @@ const mapState = (state) => {
 
   }
 }
+
 
 export default connect(mapState)(SingleDayYelpCard)
