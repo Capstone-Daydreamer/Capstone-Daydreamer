@@ -41,7 +41,35 @@ export class SingleDayEvents extends Component {
         }
         return (
             <div>
-                {stateOfDay() ?
+                {stateOfDay() ? <div>
+                <div id="row">
+                    <div id="groups-header"><h1>Scheduled Events</h1>
+                        <p>Here's whats on the docket.</p>
+                    </div>
+                </div>
+                
+                <div id="card-group">
+                {
+                    days.activities && days.activities.map((activity) => {
+                        return (
+                            <div id="event-group-card" key={activity.id}>
+                            <img id="event-group-img" src="/edit3.jpg" />
+                            <div id="event-group-content">
+                            <div><p><b>{activity.name}</b></p></div>
+                            <Divider />
+                            <div><p>{activity.description}</p></div>
+                            <div><p>{activity.location}</p></div>
+                            </div>
+                        </div>
+                    )
+                    })
+                }
+                
+                </div>
+                </div> :
+                    yelprecommend && yelprecommend.map(yelprec => <SingleDayEventCard key={yelprec[0].id} yelprec={yelprec} />)
+                }
+                {/* {stateOfDay() ?
                     <Grid columns={8} padded>
                         <Item.Group>
                             <Item>
@@ -63,7 +91,7 @@ export class SingleDayEvents extends Component {
                         </Item.Group>
                     </Grid> :
                     yelprecommend && yelprecommend.map(yelprec => <SingleDayEventCard key={yelprec[0].id} yelprec={yelprec} />)
-                }
+                } */}
             </div>
         )
     }

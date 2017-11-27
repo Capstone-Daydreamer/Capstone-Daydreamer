@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import {
-  Card, Icon, Button, Menu
-} from 'semantic-ui-react'
+import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
 import { fetchDay, fetchGroupInt } from '../store'
 
 /**
@@ -47,21 +45,20 @@ export class SingleDay extends React.Component {
       if (this.state.activeItem === 'events') {
         return <SingleDayEvents days={days} />
       }
-    }
-    const activeItem = this.state.activeItem
+  }
+  const activeItem = this.state.activeItem
     return (
       <div>
         <Menu tabular>
           <Menu.Item name='schedule' active={activeItem === 'schedule'} onClick={this.handleItemClick} />
           <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick} />
         </Menu>
-        {subComponent()}
+        <Grid columns={1} padded>
+          {subComponent()}
+        </Grid>
       </div>
-
     )
-
   }
-
 }
 
 /**

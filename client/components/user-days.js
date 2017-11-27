@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import GroupDay from './user-days-card';
 
 export class UserDays extends Component {
@@ -15,14 +15,14 @@ export class UserDays extends Component {
         const user = this.props.user
         return (
             <Grid centered columns={1} padded>
-                <Card.Group>
+                <div id="card-group">
                     {
                         user.id && user.groups.map(group => {
                             return (
                                 group.days && group.days.map(day => <GroupDay key={day.id} group={group} day={day} /> )
                         )})
                     }
-                </Card.Group>
+                </div>
             </Grid>
         )
     }

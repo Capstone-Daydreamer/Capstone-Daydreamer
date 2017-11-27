@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Grid } from 'semantic-ui-react'
+import { Card, Grid, Divider } from 'semantic-ui-react'
 
 export class UserDaysCard extends Component {
   constructor(props) {
@@ -13,33 +13,27 @@ export class UserDaysCard extends Component {
   render() {
     const { day, group } = this.props
     return (
-      <Grid centered columns={1} padded>
-        <Card.Group>
-
-          <Card key={day.id} href={`${group.id}/${day.id}`}>
-            <Card.Content>
-              <h3>{day.name}</h3>
-              <Card.Content className="meta">
-              {day.date.slice(0, 10)}
-            </Card.Content>
-            </Card.Content>
-            <div className="ui divider" />
+        <a href={`/user-groups/group/${day.id}`}>
+        <div id="day-group-card" key={day.id}>
+        <img id="day-group-img" src="/edit5.jpg" />
+        <div id="day-group-content">
+        <div><p><b>{day.name}</b></p></div>
+        <div><p><b>{day.date.slice(0, 10)}</b></p></div>
+          <Divider />
             {
               day.activities && day.activities.map((activity) => {
                 return (
                   <div key={activity.id}>
                     <h3>{activity.name}</h3>
-                    <Card.Content>{activity.description}</Card.Content>
-                    <Card.Content className="meta">{activity.location}</Card.Content>
+                    <div><p>{activity.description}</p></div>
+                    <div><p>{activity.location}</p></div>
                   </div>
                 )
               })
             }
-
-          </Card>
-
-        </Card.Group>
-      </Grid>
+            </div>
+          </div>
+        </a>
     )
   }
 }

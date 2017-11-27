@@ -31,16 +31,11 @@ export class UserProfile extends Component {
         const activeItem = this.state.activeItem
         return (
             <div>
-                <Segment>
-                {
-                user.email && <Header as='h3' textAlign='center'> Hi {user.name}</Header>
-                } 
-                </Segment>
-                <Menu tabular>
-                    <Menu.Item name='interests' active={activeItem === 'interests'} onClick={this.handleItemClick} />
-                    <Menu.Item name='days' active={activeItem === 'days'} onClick={this.handleItemClick} />
-                    <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
-              </Menu>
+            <Menu tabular>
+                <Menu.Item name='interests' active={activeItem === 'interests'} onClick={this.handleItemClick} />
+                <Menu.Item name='days' active={activeItem === 'days'} onClick={this.handleItemClick} />
+                <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
+            </Menu>
               {subComponent()}
         </div>
         )
