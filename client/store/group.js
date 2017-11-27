@@ -39,7 +39,6 @@ export const removeUser = (group, userId) => dispatch => {
  * REDUCER
  */
 export default function (group = {}, action) {
-  console.log('looking for groups', group)
   switch (action.type) {
     case GET_GROUP:
       return action.group
