@@ -26,6 +26,7 @@ class Routes extends Component {
             {/* Routes commented out until actual components are ready to be rendered in */}
             <Route exact path="/user-groups" component={UserGroups} />
             <Route exact path="/user-groups/:id" component={SingleGroup} />
+            <Route exact path="/user-groups/:groupId/:id" component={SingleDay} />
             {/* <Route path="/Events" component={Events} /> */}
             <Route path="/profile" component={UserProfile} />
             <Route path="/newDay" component={NewDay} />
@@ -33,7 +34,6 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/newGroup" component={NewGroup} />
             <Route path="/events" component={Events} />
-            <Route exact path="/user-groups/group/:id" component={SingleDay} />
             {
               isLoggedIn &&
               <Switch>
