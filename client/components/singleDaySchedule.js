@@ -1,29 +1,62 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Grid, Card } from 'semantic-ui-react'
-import {removeInterest, addInterest, destroyInterest} from '../store'
+import { Menu, Grid, Card, Item, Divider } from 'semantic-ui-react'
+import { fetchAvailability } from '../store'
 
 export class SingleDaySchedule extends Component {
-    constructor(props){
-        super(props);
+    constructor() {
+        super();
         this.state = {
 
         }
     }
-    render() { 
+
+    componentDidMount() {
+        console.log("IN AVAILABILITY")
+        this.props.findGroupAvailability(this.props.groupId)
+        console.log("AVAILABILITY PASSED")
+    }
+    render() {
+        const { cronofy } = this.props;
+
         return (
-            <div>in scheduling </div>
+            <div>
+                <h1>Available Times</h1>
+                <Item>
+                    {
+                        cronofy.available_periods && cronofy.available_periods.map((period) => {
+                            return (
+                                <div key={cronofy.available_periods.indexOf(period)}>
+                                    <Item.Content >
+                                        <Item.Header as='a'>{period.start}</Item.Header>
+                                        <Item.Header as='b'>{period.end}</Item.Header>
+                                        <Item.Meta>Attendies: {period.participants.length}</Item.Meta>
+                                    </Item.Content>
+                                    <Divider fitted />
+                                </div>
+                            )
+                        })
+                    }
+                </Item>
+            </div>
         )
     }
 }
 
 const mapState = (state) => {
     return {
-        days: state.days
+        days: state.days,
+        cronofy: state.cronofy
     }
 }
 
-const mapDispatch = null
+const mapDispatch = dispatch => {
+    return {
+        findGroupAvailability(groupId) {
+            dispatch(fetchAvailability(groupId))
+        }
+    }
+}
 
 const Container = connect(mapState, mapDispatch)(SingleDaySchedule)
 
