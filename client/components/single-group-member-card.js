@@ -49,7 +49,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     handleRemoveClick(group, id){
-      console.log('made it to stage 1', group, id)
       dispatch(removeUser(group, id))
     }
   }

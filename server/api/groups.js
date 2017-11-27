@@ -32,7 +32,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.delete('/:groupId/:userId', (req, res, next) => {
-  console.log('made it to group back end')
   UserGroup.destroy({
     where: {
       userId: req.params.userId,

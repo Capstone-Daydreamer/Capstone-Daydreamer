@@ -26,7 +26,6 @@ export const fetchGroup = id => dispatch => {
 }
 
 export const removeUser = (group, userId) => dispatch => {
-  console.log('made it to thunk');
   axios.delete(`/api/groups/${group.id}/${userId}`)
     .then(() =>
       axios.get(`/api/groups/${group.id}`))
