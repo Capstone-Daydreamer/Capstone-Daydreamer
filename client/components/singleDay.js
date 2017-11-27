@@ -53,7 +53,7 @@ export class SingleDay extends React.Component {
           <Menu.Item name='schedule' active={activeItem === 'schedule'} onClick={this.handleItemClick} />
           <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick} />
         </Menu>
-        <Grid centered columns={1} padded>
+        <Grid columns={1} padded>
           {subComponent()}
         </Grid>
       </div>

@@ -47,7 +47,7 @@ export class SingleDayEvents extends Component {
                         <p>Here's whats on the docket.</p>
                     </div>
                 </div>
-                <div id="row">
+                
                 <div id="card-group">
                 {
                     days.activities && days.activities.map((activity) => {
@@ -64,7 +64,7 @@ export class SingleDayEvents extends Component {
                     )
                     })
                 }
-                </div>
+                
                 </div>
                 </div> :
                     yelprecommend && yelprecommend.map(yelprec => <SingleDayEventCard key={yelprec[0].id} yelprec={yelprec} />)

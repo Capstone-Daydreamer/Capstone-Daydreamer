@@ -10,7 +10,7 @@ const Landing = (props) => {
 
 
   return (
-        <img id="landing" src="./sunset-hands-love-woman.jpg"  />
+        <div><h1>Cool landing will go here!</h1></div>
   )
 }
 
