@@ -23,6 +23,26 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
+router.post('/', (req, res, next) => {
+  Group.create(req.body)
+    .then(group => {
+      res.json(group)
+    })
+    .catch(next)
+})
+
+router.delete('/:groupId/:userId', (req, res, next) => {
+  console.log('made it to group back end')
+  UserGroup.destroy({
+    where: {
+      userId: req.params.userId,
+      groupId: req.params.groupId
+    }
+  })
+  .then(() => res.sendStatus(201))
+  .catch(next)
+})
+
 router.post('/new', (req, res, next) => {
   UserGroup.bulkCreate(req.body.userArr)
     .then(group => {
