@@ -8,29 +8,15 @@ import {
 } from 'semantic-ui-react';
 import { fetchGroup } from '../store'
 import { Link, withRouter } from 'react-router-dom'
-import * as firebase from 'firebase';
 
 /**
  * COMPONENT
  */
 export class SingleGroup extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      item: 'default'
-    };
-  }
 
   componentDidMount() {
     const id = this.props.match.params.id
     this.props.loadGroup(id)
-    const rootRef = firebase.database().ref().child('test');
-    const itemRef = rootRef.child('item');
-    itemRef.on('value', snap => {
-      this.setState({
-        item: snap.val()
-      })
-    })
   }
 
   render() {
@@ -41,7 +27,6 @@ export class SingleGroup extends React.Component {
       <Container>
         <h3>{groups.name}</h3>
         <p>Group Description</p>
-        {/* <p>{this.state.item}</p> */}
         <Segment
           vertical
         >
