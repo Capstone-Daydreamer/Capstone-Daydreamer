@@ -11,7 +11,7 @@ export class UserDaysCard extends Component {
   }
 
   render() {
-    const { day } = this.props
+    const { day, group } = this.props
     return (
         <a href={`/user-groups/group/${day.id}`}>
         <div id="day-group-card" key={day.id}>
