@@ -6,7 +6,7 @@ import SingleDayEvents from './singleDayEvents'
 import {
   Card, Icon, Button, Menu
 } from 'semantic-ui-react'
-import { fetchDay, fetchGroupInt } from '../store'
+import { fetchDay, fetchGroupInt, eventfulSearch } from '../store'
 
 /**
  * COMPONENT

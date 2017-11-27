@@ -119,10 +119,12 @@ const mapDispatch = (dispatch, ownProps) => {
             event.preventDefault()
             dispatch(postNewGroup(event.target.name.value, user, value));
             //must dispatch to cronofy
-            const email = event.target.email.value
-            
+            const email = user.email
             emailjs.send('gmail', 'new_group_confirmation', {
-                email: email
+                email: email,
+                to_name: user.name,
+                from_name: 'Daydreamer',
+                message_html: 'You have been added to a new group'
             })
         },
         loadInitialData() {

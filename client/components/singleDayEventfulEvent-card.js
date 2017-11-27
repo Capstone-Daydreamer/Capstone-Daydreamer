@@ -8,22 +8,21 @@ import {
 /**
  * COMPONENT
  */
-export const SingleDayEventCard = (props) => {
-  const { yelprec } = props
+export const SingleDayEventfulCard = (props) => {
+  const { eventfulrec } = props
   return (
     <div>
       <Grid centered>
         <Grid.Row>
-          {yelprec.map(rec => {
+          {eventfulrec.map(rec => {
             return (
               <Card key={rec.id}>
-                <Image src={rec.image_url} />
                 <Card.Content>
-                  <Card.Header>{rec.name}</Card.Header>
-                  <Card.Meta>{rec.rating} stars</Card.Meta>
-                  <Card.Description>{rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state}</Card.Description>
+                  <Card.Header>{rec.title}</Card.Header>
+                  <Card.Meta>{rec.start_time}</Card.Meta>
+                  <Card.Description>{rec.venue_address + ', ' + rec.city_name}</Card.Description>
                 </Card.Content>
-                <Card.Content extra><a>{rec.price}</a> </Card.Content>
+                <Card.Content extra>{rec.venue_name} </Card.Content>
               </Card>
             )
           })}
@@ -43,4 +42,5 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(SingleDayEventCard)
+export default connect(mapState)(SingleDayEventfulCard)
+
