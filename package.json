@@ -29,6 +29,7 @@
     "emailjs": "^1.0.12",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
+    "firebase": "^4.6.2",
     "history": "^4.6.3",
     "meetup-api": "^1.4.29",
     "morgan": "^1.8.1",
