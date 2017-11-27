@@ -4,43 +4,81 @@ import { connect } from 'react-redux'
 import {
   Card, Image, Divider, Grid
 } from 'semantic-ui-react'
+import { postSelectedActivities } from '../store'
 
 /**
  * COMPONENT
  */
-export const SingleDayEventfulCard = (props) => {
-  const { eventfulrec } = props
-  return (
-    <div>
-      <Grid centered>
-        <Grid.Row>
-          {eventfulrec.map(rec => {
-            return (
-              <Card key={rec.id}>
-                <Card.Content>
-                  <Card.Header>{rec.title}</Card.Header>
-                  <Card.Meta>{rec.start_time}</Card.Meta>
-                  <Card.Description>{rec.venue_address + ', ' + rec.city_name}</Card.Description>
-                </Card.Content>
-                <Card.Content extra>{rec.venue_name} </Card.Content>
-              </Card>
-            )
-          })}
-        </Grid.Row>
-      </Grid>
-      <Divider />
-    </div>
-  )
+export class SingleDayEventfulCard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      bool: true,
+      rec: undefined
+    }
+  }
+
+  handleClick(rec) {
+    this.setState({ bool: false, rec: rec })
+  }
+
+  render() {
+    const { eventfulrec } = this.props
+    const rec = this.state.rec
+    const id = this.props.daysId
+    return (
+      <div>
+        {this.state.bool ?
+          <div>
+            <Grid centered>
+              <Grid.Row>
+                {eventfulrec.map(currentRec => {
+                  return (
+                    <Card
+                    key={currentRec.id} onClick={() => {
+                      this.handleClick(currentRec)
+                      this.props.selectedEvent(currentRec, id)
+                    }}>
+                      <Card.Content>
+                        <Card.Header>{currentRec.title}</Card.Header>
+                        <Card.Meta>{currentRec.start_time}</Card.Meta>
+                        <Card.Description>{currentRec.venue_address + ', ' + currentRec.city_name}</Card.Description>
+                      </Card.Content>
+                      <Card.Content extra>{currentRec.venue_name} </Card.Content>
+                    </Card>
+                  )
+                })}
+              </Grid.Row>
+            </Grid>
+            <Divider />
+          </div> :
+          <div>
+            <Card key={rec.id}>
+              <Card.Content>
+                <Card.Header>{rec.title}</Card.Header>
+                <Card.Meta>{rec.start_time}</Card.Meta>
+                <Card.Description>{rec.venue_address + ', ' + rec.city_name}</Card.Description>
+              </Card.Content>
+              <Card.Content extra>{rec.venue_name} </Card.Content>
+            </Card>
+          </div>}
+      </div>
+    )
+  }
 }
 
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapDispatch = dispatch => {
   return {
-
+    selectedEvent(rec, id) {
+      const name = rec.title
+      const location = rec.venue_address + ', ' + rec.city_name
+      dispatch(postSelectedActivities(name, location, id))
+    }
   }
 }
 
-export default connect(mapState)(SingleDayEventfulCard)
+export default connect(null, mapDispatch)(SingleDayEventfulCard)
 
