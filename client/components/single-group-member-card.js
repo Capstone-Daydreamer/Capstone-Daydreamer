@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { removeUser } from '../store'
 import {
   Image, Card, Button
 } from 'semantic-ui-react'
@@ -10,7 +11,8 @@ import {
  */
 export const SingleGroupCard = (props) => {
   const {user} = props
-  const leader = props.userId !== props.leader 
+  const {group} = props
+  const leader = props.userId !== props.leader
   return (
     <Card >
       <Card.Content>
@@ -28,7 +30,7 @@ export const SingleGroupCard = (props) => {
       <Card.Content extra>
         <div className='ui two buttons'>
           <Button basic color='green'>Send Message</Button>
-          <Button disabled={leader} basic color='red'>Remove from Group</Button>
+          <Button disabled={leader} basic color='red' onClick={() => props.handleRemoveClick(group, user.id)}>Remove from Group</Button>
         </div>
       </Card.Content>
     </Card>
@@ -44,5 +46,13 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(SingleGroupCard)
+const mapDispatch = (dispatch) => {
+  return {
+    handleRemoveClick(group, id){
+      dispatch(removeUser(group, id))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(SingleGroupCard)
 
