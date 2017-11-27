@@ -35,7 +35,7 @@ export class UserInterests extends Component {
             } return subCategory.categories[0].id === this.state.activeItemId
         })
         const userInterest = (subCategory) => {
-            if (userCategories.indexOf(subCategory.id) !== -1){
+            if (userCategories.length && userCategories.indexOf(subCategory.id) !== -1){
                 return 'green'
             }
             return 'red'

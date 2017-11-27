@@ -11,12 +11,12 @@ export class UserDaysCard extends Component {
   }
 
   render() {
-    const { day } = this.props
+    const { day, group } = this.props
     return (
       <Grid centered columns={1} padded>
         <Card.Group>
 
-          <Card key={day.id} href={`group/${day.id}`}>
+          <Card key={day.id} href={`${group.id}/${day.id}`}>
             <Card.Content>
               <h3>{day.name}</h3>
               <Card.Content className="meta">
