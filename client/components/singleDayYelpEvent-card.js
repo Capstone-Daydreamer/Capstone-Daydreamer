@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
   Card, Image, Divider, Grid
 } from 'semantic-ui-react'
-import { postSelectedActivities } from '../store'
+import { postSelectedYelpActivities, checkEvents } from '../store'
 
 /**
  * COMPONENT
@@ -16,6 +16,11 @@ export class SingleDayYelpCard extends React.Component {
       bool: true,
       rec: undefined
     }
+  }
+
+  componentDidMount(){
+    const id = this.props.daysId
+    this.props.checkSelectedEvents(id)
   }
 
   handleClick(rec) {
@@ -80,7 +85,13 @@ const mapDispatch = dispatch => {
     selectedEvent(rec, id) {
       const name = rec.name
       const location = rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state
-      dispatch(postSelectedActivities(name, location, id))
+      const rating = rec.rating
+      const price = rec.price
+      const image = rec.image_url
+      dispatch(postSelectedYelpActivities(name, location, id, rating, price, image))
+    },
+    checkSelectedEvents(id){
+      // dispatch(checkEvents(id))
     }
   }
 }

@@ -24,6 +24,12 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
+router.post('/days', (req, res, next) => {
+  ActivityDay.create(req.body)
+    .then(() => res.sendStatus(201))
+    .catch(next)
+})
+
 router.post('/', (req, res, next) => {
   Activity.create(req.body)
     .then(event => res.json(event))

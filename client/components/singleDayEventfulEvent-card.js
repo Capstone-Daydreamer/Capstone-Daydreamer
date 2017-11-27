@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
   Card, Image, Divider, Grid
 } from 'semantic-ui-react'
-import { postSelectedActivities } from '../store'
+import { postSelectedEventfulActivities } from '../store'
 
 /**
  * COMPONENT
@@ -75,7 +75,9 @@ const mapDispatch = dispatch => {
     selectedEvent(rec, id) {
       const name = rec.title
       const location = rec.venue_address + ', ' + rec.city_name
-      dispatch(postSelectedActivities(name, location, id))
+      const venueName = rec.venue_name
+      const time = rec.start_time
+      dispatch(postSelectedEventfulActivities(name, location, id, venueName, time))
     }
   }
 }
