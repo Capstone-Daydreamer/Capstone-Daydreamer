@@ -59,9 +59,9 @@ export class SingleDayEvents extends Component {
                             </Item>
                         </Item.Group>
                     </Grid> :
-                    yelprecommend && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} /> )
+                    yelprecommend && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} daysId={days.id}/> )
                 }
-                {!stateOfDay() && eventfulrecommend && eventfulrecommend.map(rec => <SingleDayEventfulCard key={rec.search.events.event[0].id} eventfulrec={rec.search.events.event} />)}
+                {!stateOfDay() && eventfulrecommend && eventfulrecommend.map(rec => <SingleDayEventfulCard key={rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id}/>)}
             </div>
         )
     }
