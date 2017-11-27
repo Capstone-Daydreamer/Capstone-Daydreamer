@@ -16,6 +16,11 @@ const AuthForm = (props) => {
           <label htmlFor="email"><small>Email</small></label>
           <input name="email" type="text" />
         </div>
+        {displayName === 'Sign Up' &&
+          <div>
+            <label htmlFor="name"><small>Name</small></label>
+            <input name="personname" type="name" />
+          </div>}
         <div>
           <label htmlFor="password"><small>Password</small></label>
           <input name="password" type="password" />
@@ -66,7 +71,9 @@ const mapDispatch = (dispatch) => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      let name
+      if (evt.target.personname) name = evt.target.personname.value
+      dispatch(auth(email, password, formName, name))
     },
     responseFacebook(response) {
       const email = response.email
