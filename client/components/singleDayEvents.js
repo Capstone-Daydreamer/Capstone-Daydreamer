@@ -38,7 +38,36 @@ export class SingleDayEvents extends Component {
         }
         return (
             <div>
-                {stateOfDay() ?
+                {stateOfDay() ? <div>
+                    <div id="row">
+                        <div id="groups-header"><h1>Scheduled Events</h1>
+                            <p>Here's whats on the docket.</p>
+                        </div>
+                    </div>
+
+                    <div id="card-group">
+                        {
+                            days.activities && days.activities.map((activity) => {
+                                return (
+                                    <div id="event-group-card" key={activity.id}>
+                                        <img id="event-group-img" src="/edit3.jpg" />
+                                        <div id="event-group-content">
+                                            <div><p><b>{activity.name}</b></p></div>
+                                            <Divider />
+                                            <div><p>{activity.description}</p></div>
+                                            <div><p>{activity.location}</p></div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </div>
+                </div> :
+                    yelprecommend && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} daysId={days.id}/>)
+                }
+                {!stateOfDay() && eventfulrecommend && eventfulrecommend.map(rec => <SingleDayEventfulCard key={rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id} />)}
+                {/* {stateOfDay() ?
                     <Grid columns={8} padded>
                         <Item.Group>
                             <Item>
@@ -62,6 +91,8 @@ export class SingleDayEvents extends Component {
                     yelprecommend && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} daysId={days.id}/> )
                 }
                 {!stateOfDay() && eventfulrecommend && eventfulrecommend.map(rec => <SingleDayEventfulCard key={rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id}/>)}
+                    yelprecommend && yelprecommend.map(yelprec => <SingleDayEventCard key={yelprec[0].id} yelprec={yelprec} />)
+                } */}
             </div>
         )
     }
@@ -81,7 +112,7 @@ const mapDispatch = dispatch => {
         loadYelp(term, location, categories) {
             dispatch(yelpSearch(term, location, categories))
         },
-        loadEventful(category, location, keywords){
+        loadEventful(category, location, keywords) {
             dispatch(eventfulPost(category, location, keywords))
         }
     }

@@ -39,9 +39,10 @@ export class SingleGroup extends React.Component {
     const days = groups.days
     return (
       <Container>
-        <h3>{groups.name}</h3>
-        <p>Group Description</p>
-        {/* <p>{this.state.item}</p> */}
+        <div id="groups-header"><h1>{groups.name}</h1>
+            <p>We are the coolest!!</p>
+            {/* <p>{this.state.item}</p> */}
+        </div>
         <Segment
           vertical
         >
