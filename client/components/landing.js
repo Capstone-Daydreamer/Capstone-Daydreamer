@@ -27,7 +27,7 @@ class Landing extends Component {
       <div>
         {this.stuff}
         <div
-          className = 'background-image'
+          className='background-image'
           style={{ textAlign: 'center', minHeight: 550, minWidth: '100vw', padding: '1em 0em' }}
           vertical
         >
@@ -53,25 +53,29 @@ class Landing extends Component {
                 <Icon name='right arrow' />
             </Button>
           </Container>
-          
+
         </div>
 
-         <Segment style={{ padding: '8em 0em' }} vertical>
+        <Segment style={{ padding: '8em 0em' }} vertical>
           <Grid container stackable verticalAlign='middle'>
             <Grid.Row>
               <Grid.Column width={8}>
-                <Header as='h3' style={{ fontSize: '2em' }}>We Help Companies and Companions</Header>
+                <Header as='h3' style={{ fontSize: '2em' }}>Plan your perfect day</Header>
                 <p style={{ fontSize: '1.33em' }}>
-                  We can give your company superpowers to do things that they never thought possible. Let us delight
-                  your customers and empower your needs... through pure data analytics.
+                  With our application, you can find open times in the schedules of you and your friends to find the perfect time to see each other.
                 </p>
-                <Header as='h3' style={{ fontSize: '2em' }}>We Make Bananas That Can Dance</Header>
+                <Header as='h3' style={{ fontSize: '2em' }}>Chat with your group in real time</Header>
                 <p style={{ fontSize: '1.33em' }}>
-                  Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.
+                  Chat with your group in real time to optimize organization
                 </p>
               </Grid.Column>
               <Grid.Column floated='right' width={6}>
-              <img src="./tourists.png" />
+                <Image
+                  bordered
+                  rounded
+                  size='large'
+                  src='url(../../public/tourists.png)'
+                />
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
@@ -82,7 +86,7 @@ class Landing extends Component {
             </Grid.Row>
           </Grid>
         </Segment>
-    
+
       </div>
     )
   }
