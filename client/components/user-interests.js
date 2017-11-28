@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Grid, Card, Button, Icon } from 'semantic-ui-react'
-import { fetchCategories, fetchSubCategories, addInterest, addDisinterest, fetchUserSubCategories, updateDisinterest, updateInterest } from '../store'
+import { Menu, Grid, Card } from 'semantic-ui-react'
+import { fetchCategories, fetchSubCategories, fetchUserSubCategories } from '../store'
+import UserInterestCard from './user-interest-card'
+import { withRouter } from 'react-router-dom'
 
 export class UserInterests extends Component {
     constructor(props) {
@@ -25,27 +27,13 @@ export class UserInterests extends Component {
 
     render() {
         const { user, userSubCategories, categories } = this.props
-        const { rating } = this.state
-        const userLikes = userSubCategories.like && userSubCategories.like.map((like) => {
-            return like.subCategoryId
-        })
-        const userDislikes = userSubCategories.dislike && userSubCategories.dislike.map((dislike) => {
-            return dislike.subCategoryId
-        })
         const activeItem = this.state.activeItem
         const subCategories = this.props.subCategories.length > 0 && this.props.subCategories.filter((subCategory) => {
             if (this.state.activeItemId === -1) {
                 return subCategory
             } return subCategory.categories[0].id === this.state.activeItemId
         })
-        const userInterest = (subCategory) => {
-            if (userLikes.length && userLikes.indexOf(subCategory.id) !== -1) {
-                return 'green'
-            } else if (userDislikes.length && userDislikes.indexOf(subCategory.id) !== -1) {
-                return 'red'
-            }
-            return 'black'
-        }
+        
         return (
             <Grid>
                 <Grid.Column width={4}>
@@ -63,22 +51,7 @@ export class UserInterests extends Component {
                         <p>Keep your interests up to date so we can keep giving awesome recommendations.</p>
                     </div>
                     <Card.Group>
-                        {
-                            subCategories.length > 0 && subCategories.map((subCategory) => {
-                                return (
-                                    <Card key={subCategory.id} color={userInterest(subCategory)} >
-                                        <Card.Content>
-                                            <Card.Header>{subCategory.name}</Card.Header>
-                                            <Button positive compact value="like" onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)} >
-                                                <Icon name="thumbs up" />
-                                            </Button>
-                                            <Button negative compact value="dislike" onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)} ><Icon name="thumbs down" /></Button>
-                                        </Card.Content>
-                                    </Card>
-                                )
-                            })
-
-                        }
+                        {subCategories.length > 0 && subCategories.map(subCategory => <UserInterestCard key={subCategory.id} subCategory={subCategory} userSubCategories={userSubCategories} user={user} />)}
                     </Card.Group>
                 </Grid.Column>
             </Grid>
@@ -97,17 +70,6 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
     return {
-        handleIntUpdate(e, cat, color, user) {
-            if (e.target.value === 'like' && color === 'red') {
-                dispatch(updateInterest(user.id, cat.id))
-            } else if (e.target.value === 'like' && color === 'black') {
-                dispatch(addInterest(user.id, cat.id))
-            } else if (e.target.value === 'dislike' && color === 'black') {
-                dispatch(addDisinterest(user.id, cat.id))
-            } else if (e.target.value === 'dislike' && color === 'green') {
-                dispatch(updateDisinterest(user.id, cat.id))
-            }
-        },
         loadInitialData(id) {
             dispatch(fetchCategories())
             dispatch(fetchSubCategories())
@@ -117,6 +79,4 @@ const mapDispatch = (dispatch) => {
 }
 
 
-const Container = connect(mapState, mapDispatch)(UserInterests)
-
-export default Container
+export default withRouter(connect(mapState, mapDispatch)(UserInterests))

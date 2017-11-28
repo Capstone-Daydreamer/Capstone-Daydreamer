@@ -37,7 +37,7 @@ const checkAgainst = (userSubs) => {
     let results = {}
     
     userSubs.forEach((userSub) => {
-        let catsName = userSub.categories[0].dataValues.name
+        let catsName = userSub.categories[0].name
         let subName = userSub.alias ? userSub.alias : userSub.name
         if (results[catsName]) {
             if (results[catsName][subName]) {
