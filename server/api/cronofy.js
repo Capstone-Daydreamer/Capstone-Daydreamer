@@ -56,7 +56,11 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 })
 
 // Route to GET availability accross a single group
-router.get('/availability/:groupId', (req, res, next) => {
+router.post('/availability/:groupId', (req, res, next) => {
+  console.log('***************made it to chronofy post', req.body)
+  const currentDay = req.body
+  console.log('looking for current day',currentDay)
+
   var group = [
     // Needs to abstracted still
     // group = everyone in group with account id and relevant calendar ids
@@ -74,11 +78,11 @@ router.get('/availability/:groupId', (req, res, next) => {
         required: 'all'
       }
     ],
-    required_duration: { minutes: 60 },
+    required_duration: { minutes: currentDay.duration },
     available_periods: [
       {
-        start: '2017-12-21T09:00:00Z',
-        end: '2017-12-21T18:00:00Z'
+        start: currentDay.start + ':00Z',
+        end: currentDay.end + ':00Z'
       }
     ]
   }
@@ -93,25 +97,27 @@ router.get('/availability/:groupId', (req, res, next) => {
   cronofyClient.availability(options)
   .then(function (response) {
     var available_periods = response.available_periods;
-    res.json({
-      available_periods: [
-        {
-          start: '2017-12-26T09:00:00Z',
-          end: '2017-12-26T11:00:00Z',
-          participants: [
-            { sub: 'acc_567236000909002' },
-            { sub: 'acc_678347111010113' }
-          ]
-        },
-        {
-          start: '2017-12-27T11:00:00Z',
-          end: '2017-12-27T17:00:00Z',
-          participants: [
-            { sub: 'acc_567236000909002' },
-            { sub: 'acc_678347111010113' }
-          ]
-        },
-      ]
-    });
+    console.log('looking for available periods', available_periods)
+    res.json(available_periods)
+    // res.json({
+    //   available_periods: [
+    //     {
+    //       start: '2017-12-26T09:00:00Z',
+    //       end: '2017-12-26T11:00:00Z',
+    //       participants: [
+    //         { sub: 'acc_567236000909002' },
+    //         { sub: 'acc_678347111010113' }
+    //       ]
+    //     },
+    //     {
+    //       start: '2017-12-27T11:00:00Z',
+    //       end: '2017-12-27T17:00:00Z',
+    //       participants: [
+    //         { sub: 'acc_567236000909002' },
+    //         { sub: 'acc_678347111010113' }
+    //       ]
+    //     },
+    //   ]
+    // });
   }).catch(next)
 })

@@ -22,13 +22,19 @@ export const fetchDay = id => dispatch => {
    .catch(err => console.log(err))
 }
 
-export const addDay = (name, groupId, cats) => dispatch => {
-  return axios.post(`/api/days`, {name, cats})
+export const addDay = (event, groupId, cats) => dispatch => {
+  console.log('looking for event', event)
+  const currentDay = { name: event.name.value, 
+                start: event.startDate.value, 
+                end: event.endDate.value,
+                duration: event.Duration.value
+              }
+  return axios.post(`/api/days`, {currentDay, cats})
     .then(res => res.data)
     .then((day) => {
       axios.post(`/api/days/groups`, {dayId: day.id, groupId})
       dispatch(newDay(day))
-      history.push(`/user-groups/group/${groupId}`)
+      history.push(`/user-groups/${groupId}/${day.id}`)
     })
     .catch()
 }

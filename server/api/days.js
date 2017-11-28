@@ -3,9 +3,12 @@ const { Day, GroupDay, Activity } = require('../db/models')
 module.exports = router
 
 router.post('/', (req, res, next) => {
-  Day.create({
-      name: req.body.name,
-      categories: req.body.cats
+    Day.create({
+      name: req.body.currentDay.name,
+      categories: req.body.currentDay.cats,
+      start: req.body.currentDay.start,
+      end: req.body.currentDay.end,
+      duration: req.body.currentDay.duration
   })
     .then((day) => {
         res.json(day)

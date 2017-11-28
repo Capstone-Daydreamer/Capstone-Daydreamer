@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { Menu, Grid, Card, Item, Divider } from 'semantic-ui-react'
 import { fetchAvailability } from '../store'
 
@@ -12,7 +13,11 @@ export class SingleDaySchedule extends Component {
     }
 
     componentDidMount() {
-        this.props.findGroupAvailability(this.props.groupId)
+        // const {cronofy} = this.props
+        // if(cronofy === undefined){
+            console.log('mounted????', this.props)
+        this.props.findGroupAvailability(this.props.days[0], this.props.match.params.groupId)
+        // }
     }
     render() {
         const { cronofy } = this.props;
@@ -50,12 +55,14 @@ const mapState = (state) => {
 
 const mapDispatch = dispatch => {
     return {
-        findGroupAvailability(groupId) {
-            dispatch(fetchAvailability(groupId))
+        findGroupAvailability(day, groupId) {
+            // console.log(this.props.days)
+            console.log('looking for day', day)
+            dispatch(fetchAvailability(day, groupId))
         }
     }
 }
 
-const Container = connect(mapState, mapDispatch)(SingleDaySchedule)
+const Container = withRouter(connect(mapState, mapDispatch)(SingleDaySchedule))
 
 export default Container
