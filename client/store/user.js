@@ -18,7 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
-const updateUser = (user) => ({type: UPDATE_USER, user})
+const updateUser = (user) => ({ type: UPDATE_USER, user })
 
 /**
  * THUNK CREATORS
@@ -30,9 +30,9 @@ export const me = () =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
-export const auth = (email, password, method) =>
+export const auth = (email, password, method, name) =>
   dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
+    axios.post(`/auth/${method}`, { email, password, name })
       .then(res => {
         dispatch(getUser(res.data))
         history.push('/home')
@@ -61,24 +61,25 @@ export const fb = (email, name, fbId) => dispatch => {
 
 
 export const postNewGroup = (name, leader, users) => dispatch => {
-  axios.post('api/groups/', {name, leader: leader.id})
-  .then(res => res.data)
-  .then(group => {
-    let userArr = users.map(user => {
-      return {userId: user, groupId: group.id}
-    })
-    userArr.push({userId: leader.id, groupId: group.id})
-    axios.post('api/groups/new', {userArr})
-    .then(() => {
-      axios.get(`/api/users/${leader.id}`)
-      .then(res => res.data)
-      .then(user => {
-        dispatch(updateUser(user))
-        history.push(`/user-groups/${group.id}`)
+  axios.post('api/groups/', { name, leader: leader.id })
+    .then(res => res.data)
+    .then(group => {
+      let userArr = users.map(user => {
+        return { userId: user, groupId: group.id }
       })
+      userArr.push({ userId: leader.id, groupId: group.id })
+      axios.post('api/groups/new', { userArr })
+        .then(() => {
+          axios.get(`/api/users/${leader.id}`)
+            .then(res => res.data)
+            .then(user => {
+              dispatch(updateUser(user))
+              history.push(`/user-groups/${group.id}`)
+            })
+        })
+        .catch()
     })
     .catch(e => console.log(e))
-  })
 }
 
 

@@ -31,7 +31,6 @@ const activities = [
 
 const activitySubcat = [
   {activityId: 1, subCategoryId: 58}, //1
-  {activityId: 1, subCategoryId: 62}, //2
   {activityId: 2, subCategoryId: 29}, //3
   {activityId: 3, subCategoryId: 16}, //4
   {activityId: 3, subCategoryId: 19}, //5
@@ -39,7 +38,6 @@ const activitySubcat = [
   {activityId: 4, subCategoryId: 3}, //7
   {activityId: 5, subCategoryId: 34}, //8
   {activityId: 6, subCategoryId: 57}, //9
-  {activityId: 6, subCategoryId: 62}, //10
   {activityId: 7, subCategoryId: 6}, //11
   {activityId: 7, subCategoryId: 34}, //12
   {activityId: 8, subCategoryId: 1}, //13
@@ -50,7 +48,7 @@ const activitySubcat = [
   {activityId: 9, subCategoryId: 31}, //18
   {activityId: 10, subCategoryId: 22}, //19
   {activityId: 10, subCategoryId: 25}, //20
-  {activityId: 11, subCategoryId: 66}, //21
+  {activityId: 11, subCategoryId: 64}, //21
 ]
 
 const groups = [
@@ -207,13 +205,13 @@ const activitiesDays = [
 ]
 
 const cats = [
-  { name: 'Bars'}, //1
-  { name: 'Concerts'}, //2
-  { name: 'Movies'}, //3
-  { name: 'Museums'}, //4
-  { name: 'Restaurants'}, //5
-  { name: 'Sports Games'}, //6
-  { name: 'Theater'} //7
+  { name: 'Bars', alias: 'bars'}, //1
+  { name: 'Music', alias: 'music'}, //2
+  { name: 'Movies', alias: 'movies_film'}, //3
+  { name: 'Museums', alias: 'attractions'}, //4
+  { name: 'Restaurants', alias:'restaurants'}, //5
+  { name: 'Sports Games',alias: 'sports'}, //6
+  { name: 'Theater', alias:'performing_arts'} //7
 ]
 
 const catSubcat = [
@@ -278,11 +276,9 @@ const catSubcat = [
   {categoryId: 6, subCategoryId: 59},
   {categoryId: 6, subCategoryId: 60},
   {categoryId: 6, subCategoryId: 61},
-  {categoryId: 6, subCategoryId: 62},
-  {categoryId: 6, subCategoryId: 63},
-  {categoryId: 7, subCategoryId: 64}, //22
-  {categoryId: 7, subCategoryId: 65}, //25
-  {categoryId: 7, subCategoryId: 66}, //28
+  {categoryId: 7, subCategoryId: 62}, //22
+  {categoryId: 7, subCategoryId: 63}, //25
+  {categoryId: 7, subCategoryId: 64}, //28
 ]
 
 const subcats = [
@@ -295,30 +291,30 @@ const subcats = [
   { name: 'Tiki', alias: 'tikibars' }, //7
   { name: 'Whiskey', alias: 'whiskeybars' }, //8
   { name: 'Wine', alias: 'wine_bars' }, //9
-  { name: 'Country' }, //10
-  { name: 'Electric Dance Music' }, //11
-  { name: 'Folk' }, //12
-  { name: 'Hip Hop' }, //13
-  { name: 'Jazz' }, //14
-  { name: 'Opera' }, //15
-  { name: 'Pop' }, //16
-  { name: 'Punk' }, //17
-  { name: 'Rap' }, //18
-  { name: 'Rock' }, //19
-  { name: 'Action' }, //20
-  { name: 'Animation' }, //21
-  { name: 'Comedy Movie' }, //22
-  { name: 'Children Movie' }, //23
-  { name: 'Documentary' }, //24
-  { name: 'Drama Movie' }, //25
-  { name: 'Fantasy' }, //26
-  { name: 'Horror' }, //27
-  { name: 'Musical Movie' }, //28
-  { name: 'SciFi' }, //29
-  { name: 'Western' }, //30
-  { name: 'Art' }, //31
-  { name: 'Children Museum' }, //32
-  { name: 'History' }, //33
+  { name: 'Country', alias: 'country' }, //10
+  { name: 'Electric Dance Music', alias: 'edm' }, //11
+  { name: 'Folk', alias: 'folk' }, //12
+  { name: 'Hip Hop', alias: 'hip hop' }, //13
+  { name: 'Jazz', alias: 'jazz' }, //14
+  { name: 'Opera', alias: 'opera' }, //15
+  { name: 'Pop', alias: 'pop' }, //16
+  { name: 'Punk', alias: 'punk' }, //17
+  { name: 'Rap', alias: 'rap' }, //18
+  { name: 'Rock', alias: 'rock' }, //19
+  { name: 'Action', alias: 'action' }, //20
+  { name: 'Animation', alias: 'animation' }, //21
+  { name: 'Comedy Movie', alias: 'comedy movie' }, //22
+  { name: 'Children Movie', alias: 'children movie' }, //23
+  { name: 'Documentary', alias: 'documentary' }, //24
+  { name: 'Drama Movie', alias: 'drama' }, //25
+  { name: 'Fantasy', alias: 'fantasy' }, //26
+  { name: 'Horror', alias: 'horror' }, //27
+  { name: 'Musical Movie', alias: 'musical' }, //28
+  { name: 'SciFi', alias: 'scifi' }, //29
+  { name: 'Western', alias: 'western' }, //30
+  { name: 'Art', alias: 'art museum' }, //31
+  { name: 'Children Museum', alias: 'children museum' }, //32
+  { name: 'History', alias: 'history museum' }, //33
   { name: 'American', alias: 'newamerican' }, //34
   { name: 'Asian Fusion', alias: 'asianfusion' }, //35
   { name: 'Barbeque', alias: 'bbq' }, //36
@@ -331,7 +327,7 @@ const subcats = [
   { name: 'Greek', alias: 'greek' },//43
   { name: 'Indian', alias: 'indpak' },//44
   { name: 'Italian', alias: 'italian' },//45
-  { name: 'Japanese' , alias: 'japanese'},//46
+  { name: 'Japanese', alias: 'japanese'},//46
   { name: 'Mediterranean', alias: 'mediterranean' },//47
   { name: 'Polish', alias: 'polish' },//48
   { name: 'Seafood', alias: 'seafood' },//49
@@ -341,17 +337,15 @@ const subcats = [
   { name: 'Thai', alias: 'thai' },  //53
   { name: 'Vegan', alias: 'vegan' },//54
   { name: 'Vegetarian', alias: 'vegetarian' }, //55
-  { name: 'Baseball' },//56
-  { name: 'Basketball' },//57
-  { name: 'Football' },//58
-  { name: 'Soccer' },//59
-  { name: 'Golf' },//60
-  { name: 'Tennis' },//61
-  { name: 'Pro' },//62
-  { name: 'College' },//63
-  { name: 'Comedy Theatre' }, //64
-  { name: 'Drama Theatre' }, //65
-  { name: 'Musical Theatre' }, //66
+  { name: 'Baseball', alias: 'baseball' },//56
+  { name: 'Basketball', alias: 'basketball' },//57
+  { name: 'Football' , alias: 'football'},//58
+  { name: 'Soccer', alias: 'soccer' },//59
+  { name: 'Golf', alias: 'golf' },//60
+  { name: 'Tennis', alias: 'tennis' },//61
+  { name: 'Comedy Theatre', alias: 'comedy' }, //62
+  { name: 'Drama Theatre', alias: 'drama' }, //63
+  { name: 'Musical Theatre', alias: 'musical'}, //64
 ]
 
 const userSubcat = [

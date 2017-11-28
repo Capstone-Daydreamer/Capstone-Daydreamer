@@ -16,6 +16,18 @@ const Activity = db.define('activity', {
     },
     time: {
       type: Sequelize.STRING
+    },
+    image: {
+        type: Sequelize.STRING
+    },
+    rating: {
+        type: Sequelize.FLOAT
+    },
+    price: {
+        type: Sequelize.STRING
+    },
+    venueName: {
+        type: Sequelize.STRING
     }
 })
 

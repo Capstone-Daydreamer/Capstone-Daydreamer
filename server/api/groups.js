@@ -68,13 +68,14 @@ router.get('/recommendations/:id', async (req, res, next) => {
             where: {
               name: { $or: leaderPicks }
             },
-            attributes: ['name']
+            attributes: ['name', 'alias']
           },
           attributes: ['name', 'alias']
         }
       }
     }
   })
+
     .catch(next)
 
   day.groups[0].users.forEach((user) => {
