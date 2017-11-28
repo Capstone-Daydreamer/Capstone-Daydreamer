@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Grid, Card } from 'semantic-ui-react'
-import {fetchCategories, fetchSubCategories, addInterest, destroyInterest} from '../store'
+import { Menu, Grid, Card, Button, Icon } from 'semantic-ui-react'
+import { fetchCategories, fetchSubCategories, addInterest, addDisinterest, fetchUserSubCategories, updateDisinterest, updateInterest } from '../store'
 
 export class UserInterests extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             activeItem: '',
@@ -14,37 +14,43 @@ export class UserInterests extends Component {
     }
 
     componentDidMount() {
-        this.props.loadInitialData()
-      }
+        const id = this.props.user.id
+        this.props.loadInitialData(id)
+    }
 
     handleItemClick = (e, cat) => {
         this.setState({ activeItem: cat.name, activeItemId: cat.id })
     }
 
 
-    render(){ 
-        const user = this.props.user
-        const userCategories = user.id && user.subCategories.map((subCategory) => {
-            return subCategory.id
+    render() {
+        const { user, userSubCategories, categories } = this.props
+        const { rating } = this.state
+        const userLikes = userSubCategories.like && userSubCategories.like.map((like) => {
+            return like.subCategoryId
+        })
+        const userDislikes = userSubCategories.dislike && userSubCategories.dislike.map((dislike) => {
+            return dislike.subCategoryId
         })
         const activeItem = this.state.activeItem
-        const categories = this.props.categories
-        const subCategories = this.props.subCategories.length > 0 && this.props.subCategories.filter((subCategory)=> {
+        const subCategories = this.props.subCategories.length > 0 && this.props.subCategories.filter((subCategory) => {
             if (this.state.activeItemId === -1) {
                 return subCategory
             } return subCategory.categories[0].id === this.state.activeItemId
         })
         const userInterest = (subCategory) => {
-            if (userCategories.length && userCategories.indexOf(subCategory.id) !== -1){
+            if (userLikes.length && userLikes.indexOf(subCategory.id) !== -1) {
                 return 'green'
+            } else if (userDislikes.length && userDislikes.indexOf(subCategory.id) !== -1) {
+                return 'red'
             }
-            return 'red'
+            return 'black'
         }
         return (
             <Grid>
                 <Grid.Column width={4}>
                     <Menu pointing secondary vertical>
-                    <Menu.Item name="All" active={activeItem === "All"} onClick={(evt) => this.handleItemClick(evt, {name: name, id: -1})} />
+                        <Menu.Item name="All" active={activeItem === "All"} onClick={(evt) => this.handleItemClick(evt, { name: name, id: -1 })} />
                         {
                             categories && categories.map((category) => {
                                 return <Menu.Item key={category.id} name={category.name} active={activeItem === category.name} onClick={(evt) => this.handleItemClick(evt, category)} />
@@ -60,14 +66,18 @@ export class UserInterests extends Component {
                         {
                             subCategories.length > 0 && subCategories.map((subCategory) => {
                                 return (
-                                    <Card key={subCategory.id} color={userInterest(subCategory)} onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)}>
+                                    <Card key={subCategory.id} color={userInterest(subCategory)} >
                                         <Card.Content>
                                             <Card.Header>{subCategory.name}</Card.Header>
+                                            <Button positive compact value="like" onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)} >
+                                                <Icon name="thumbs up" />
+                                            </Button>
+                                            <Button negative compact value="dislike" onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)} ><Icon name="thumbs down" /></Button>
                                         </Card.Content>
                                     </Card>
                                 )
                             })
-                            
+
                         }
                     </Card.Group>
                 </Grid.Column>
@@ -80,25 +90,32 @@ const mapState = (state) => {
     return {
         user: state.user,
         categories: state.categories,
-        subCategories: state.subCategories
+        subCategories: state.subCategories,
+        userSubCategories: state.userSubCategories
     }
 }
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = (dispatch) => {
     return {
         handleIntUpdate(e, cat, color, user) {
-            if (color === 'red'){
+            if (e.target.value === 'like' && color === 'red') {
+                dispatch(updateInterest(user.id, cat.id))
+            } else if (e.target.value === 'like' && color === 'black') {
                 dispatch(addInterest(user.id, cat.id))
-            } else {
-                dispatch(destroyInterest(user.id, cat.id))
+            } else if (e.target.value === 'dislike' && color === 'black') {
+                dispatch(addDisinterest(user.id, cat.id))
+            } else if (e.target.value === 'dislike' && color === 'green') {
+                dispatch(updateDisinterest(user.id, cat.id))
             }
         },
-        loadInitialData() {
+        loadInitialData(id) {
             dispatch(fetchCategories())
             dispatch(fetchSubCategories())
-          }
+            dispatch(fetchUserSubCategories(id))
+        }
     }
 }
+
 
 const Container = connect(mapState, mapDispatch)(UserInterests)
 

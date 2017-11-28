@@ -59,34 +59,6 @@ export const fb = (email, name, fbId) => dispatch => {
       dispatch(getUser({ error })))
 }
 
-export const addInterest = (userId, subCategoryId) => dispatch => {
-  return axios.post('/api/users/add', {userId, subCategoryId})
-    .then(res =>  res.data.userId )
-    .then((userId) => {
-      axios.get(`/api/users/${userId}`)
-      .then(res => res.data)
-      .then((user) => {
-          const action = updateUser(user);
-          dispatch(action);
-      })
-      .catch();
-    })
-    .catch()
-}
-
-export const destroyInterest = (userId, subCategoryId) => dispatch => {
-  return axios.delete(`/api/users/remove/${userId}/${subCategoryId}`)
-    .then(() => {
-      axios.get(`/api/users/${userId}`)
-      .then(res => res.data)
-      .then((user) => {
-          const action = updateUser(user);
-          dispatch(action);
-      })
-      .catch();
-    })
-    .catch()
-}
 
 export const postNewGroup = (name, leader, users) => dispatch => {
   axios.post('api/groups/', {name, leader: leader.id})
@@ -105,7 +77,7 @@ export const postNewGroup = (name, leader, users) => dispatch => {
         history.push(`/user-groups/${group.id}`)
       })
     })
-    .catch()
+    .catch(e => console.log(e))
   })
 }
 

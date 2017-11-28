@@ -6,50 +6,50 @@ import UserSettings from './user-settings'
 import { Segment, Header, Menu } from 'semantic-ui-react'
 
 export class UserProfile extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            activeItem: 'interests'
+            activeItem: 'days'
         }
         this.handleItemClick = this.handleItemClick.bind(this)
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-    render(){  
-        const subComponent = () =>{
-            if (this.state.activeItem === 'interests'){
-                return <UserInterests />
+    render() {
+        const user = this.props.user
+        const subComponent = () => {
+            if (this.state.activeItem === 'interests') {
+                return <UserInterests user={user} />
             }
-            if (this.state.activeItem === 'days'){
+            if (this.state.activeItem === 'days') {
                 return <UserDays />
             }
-            if (this.state.activeItem === 'settings'){
+            if (this.state.activeItem === 'settings') {
                 return <UserSettings />
             }
         }
-        const user = this.props.user
         const activeItem = this.state.activeItem
         return (
             <div>
-            <Menu tabular>
-                <Menu.Item name='interests' active={activeItem === 'interests'} onClick={this.handleItemClick} />
-                <Menu.Item name='days' active={activeItem === 'days'} onClick={this.handleItemClick} />
-                <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
-            </Menu>
-              {subComponent()}
-        </div>
+                <Menu tabular>
+                    <Menu.Item name='days' active={activeItem === 'days'} onClick={this.handleItemClick} />
+                    <Menu.Item name='interests' active={activeItem === 'interests'} onClick={this.handleItemClick} />
+                    <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
+                </Menu>
+                {subComponent()}
+            </div>
         )
     }
 }
 
 const mapState = (state) => {
+    // console.log('state', state)
     return {
         user: state.user
     }
 }
 
-const mapDispatch = null
 
-const Container = connect(mapState, mapDispatch)(UserProfile)
+const Container = connect(mapState)(UserProfile)
 
 export default Container
