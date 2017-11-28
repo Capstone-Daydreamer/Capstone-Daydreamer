@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Item, Divider, Grid, 
         Form, Button, Checkbox, 
-        Segment, Header } from 'semantic-ui-react'
+        Segment, Header, Card, } from 'semantic-ui-react'
 import { fetchUsers, postNewGroup } from '../store'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
@@ -16,13 +16,13 @@ export class NewGroup extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.loadInitialData()
     }
 
     handleChange = (e, { value }) => {
         let temp = this.state.value
-        if(this.state.value.indexOf(value) ===  -1){
+        if (this.state.value.indexOf(value) === -1) {
             temp.push(value)
         } else {
             let index = temp.indexOf(value)
@@ -118,10 +118,17 @@ const mapDispatch = (dispatch, ownProps) => {
             event.preventDefault()
             dispatch(postNewGroup(event.target.name.value, user, value));
             //must dispatch to cronofy
+            const email = user.email
+            emailjs.send('gmail', 'new_group_confirmation', {
+                email: email,
+                to_name: user.name,
+                from_name: 'Daydreamer',
+                message_html: 'You have been added to a new group'
+            })
         },
         loadInitialData() {
             dispatch(fetchUsers())
-          }
+        }
     }
 }
 

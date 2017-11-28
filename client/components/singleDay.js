@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
+import { fetchDay, fetchGroupInt, eventfulSearch } from '../store'
 import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
-import { fetchDay, fetchGroupInt } from '../store'
 
 /**
  * COMPONENT

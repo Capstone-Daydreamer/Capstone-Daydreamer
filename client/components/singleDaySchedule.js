@@ -12,9 +12,7 @@ export class SingleDaySchedule extends Component {
     }
 
     componentDidMount() {
-        console.log("IN AVAILABILITY")
         this.props.findGroupAvailability(this.props.groupId)
-        console.log("AVAILABILITY PASSED")
     }
     render() {
         const { cronofy } = this.props;

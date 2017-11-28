@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": ">= 8.4.0"
   },
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
     "cronofy": "^2.5.0",
+    "emailjs": "^1.0.12",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "firebase": "^4.6.2",
@@ -60,6 +61,7 @@
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-2": "^6.24.1",

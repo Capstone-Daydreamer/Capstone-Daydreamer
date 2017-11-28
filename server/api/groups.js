@@ -63,7 +63,7 @@ let leaderPicks = currentDay.categories
             where: {
               name: {$or: leaderPicks}
             },
-            attributes: ['name']}, 
+            attributes: ['name', 'alias']}, 
             attributes: ['name', 'alias']}}
     }})
     .catch(next)

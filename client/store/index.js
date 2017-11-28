@@ -11,6 +11,7 @@ import days from './day'
 import recommendations from './recommendation'
 import users from './users'
 import activity from './activity'
+import eventfulrecommend from './eventful'
 import cronofy from './cronofy'
 
 const reducer = combineReducers({ user,
@@ -22,7 +23,8 @@ const reducer = combineReducers({ user,
                                   categories,
                                   subCategories,
                                   yelprecommend,
-                                  recommendations})
+                                  recommendations,
+                                  eventfulrecommend})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -41,4 +43,4 @@ export * from './day'
 export * from './recommendation'
 export * from './users'
 export * from './activity'
-
+export * from './eventful'
