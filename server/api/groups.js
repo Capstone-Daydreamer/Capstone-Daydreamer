@@ -83,6 +83,6 @@ router.get('/recommendations/:id', async (req, res, next) => {
       groupArr.push(subcat)
     })
   })
-  res.json(checkAgainst(groupArr))
+  res.json(checkAgainst(groupArr, currentDay.id))
 })
 
