@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Menu, Grid, Card, Item, Divider } from 'semantic-ui-react'
+import AvailCard from './avail-card'
 import { fetchAvailability } from '../store'
+
 
 export class SingleDaySchedule extends Component {
     constructor() {
@@ -29,14 +31,15 @@ export class SingleDaySchedule extends Component {
                     {
                         cronofy.available_periods && cronofy.available_periods.map((period) => {
                             return (
-                                <div key={cronofy.available_periods.indexOf(period)}>
-                                    <Item.Content >
-                                        <Item.Header as='a'>{period.start}</Item.Header>
-                                        <Item.Header as='b'>{period.end}</Item.Header>
-                                        <Item.Meta>Attendees: {period.participants.length}</Item.Meta>
-                                    </Item.Content>
-                                    <Divider fitted />
-                                </div>
+                                <AvailCard period={period} />
+                                // <div key={cronofy.available_periods.indexOf(period)}>
+                                //     <Item.Content >
+                                //         <Item.Header as='a'>{period.start}</Item.Header>
+                                //         <Item.Header as='b'>{period.end}</Item.Header>
+                                //         <Item.Meta>Attendees: {period.participants.length}</Item.Meta>
+                                //     </Item.Content>
+                                //     <Divider fitted />
+                                // </div>
                             )
                         })
                     }

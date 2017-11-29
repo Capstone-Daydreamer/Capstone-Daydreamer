@@ -96,28 +96,28 @@ router.post('/availability/:groupId', (req, res, next) => {
 
   cronofyClient.availability(options)
   .then(function (response) {
-    var available_periods = response.available_periods;
-    console.log('looking for available periods', available_periods)
-    res.json(available_periods)
-    // res.json({
-    //   available_periods: [
-    //     {
-    //       start: '2017-12-26T09:00:00Z',
-    //       end: '2017-12-26T11:00:00Z',
-    //       participants: [
-    //         { sub: 'acc_567236000909002' },
-    //         { sub: 'acc_678347111010113' }
-    //       ]
-    //     },
-    //     {
-    //       start: '2017-12-27T11:00:00Z',
-    //       end: '2017-12-27T17:00:00Z',
-    //       participants: [
-    //         { sub: 'acc_567236000909002' },
-    //         { sub: 'acc_678347111010113' }
-    //       ]
-    //     },
-    //   ]
-    // });
+    // var available_periods = response.available_periods;
+    // console.log('looking for available periods', available_periods)
+    // res.json(available_periods)
+    res.json({
+      available_periods: [
+        {
+          start: '2017-12-26T09:00:00Z',
+          end: '2017-12-26T11:00:00Z',
+          participants: [
+            { sub: 'acc_567236000909002' },
+            { sub: 'acc_678347111010113' }
+          ]
+        },
+        {
+          start: '2017-12-27T11:00:00Z',
+          end: '2017-12-27T17:00:00Z',
+          participants: [
+            { sub: 'acc_567236000909002' },
+            { sub: 'acc_678347111010113' }
+          ]
+        },
+      ]
+    });
   }).catch(next)
 })
