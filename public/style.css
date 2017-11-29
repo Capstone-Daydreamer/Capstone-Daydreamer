@@ -27,6 +27,13 @@ a {
   justify-content: center;
 }
 
+#row {
+  display: flex;
+  flex-basis: 100%;
+  max-width: 100%;
+  justify-content: center;
+}
+
 #groups-header p{
   margin-top: 20px;
   font-family: "Open Sans", sans-serif;
@@ -83,6 +90,43 @@ a {
   max-width: 100%;
   max-height: 100vh;
   overflow: hidden;
+}
+
+#reco-card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+#reco-card{
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  border-style:solid;
+  border-color: #c0c0c0;
+  border-width:1px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 330px;
+  height: 330px;
+  transition: all ease-in-out 250ms;
+}
+
+#reco-card:hover{
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#reco-img {
+  max-height: 50%;
+  object-fit: none;
+}
+
+#reco-content {
+  padding: 20px;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 #card-group {

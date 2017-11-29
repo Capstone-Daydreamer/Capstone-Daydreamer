@@ -34,18 +34,20 @@ export class SingleDayEventfulCard extends React.Component {
               <Grid.Row>
                 {eventfulrec.map(currentRec => {
                   return (
-                    <Card
-                    key={currentRec.id} onClick={() => {
-                      this.handleClick(currentRec)
-                      this.props.selectedEvent(currentRec, id)
-                    }}>
-                      <Card.Content>
-                        <Card.Header>{currentRec.title}</Card.Header>
-                        <Card.Meta>{currentRec.start_time}</Card.Meta>
-                        <Card.Description>{currentRec.venue_address + ', ' + currentRec.city_name}</Card.Description>
-                      </Card.Content>
-                      <Card.Content extra>{currentRec.venue_name} </Card.Content>
-                    </Card>
+                    <div id="reco-card"
+                      key={currentRec.id} onClick={() => {
+                        this.handleClick(currentRec)
+                        this.props.selectedEvent(currentRec, id)
+                      }}>
+                      <img id="reco-img" src="/edit5.jpg" />
+                      <div id="reco-content">
+                        <div><p><b>{currentRec.title}</b></p></div>
+                        <Divider />
+                        <div><p>{currentRec.start_time}</p></div>
+                        <div><p>{currentRec.venue_address + ', ' + currentRec.city_name}</p></div>
+                        <div><p>{currentRec.venue_name}</p></div>
+                      </div>
+                      </div>
                   )
                 })}
               </Grid.Row>
@@ -53,14 +55,17 @@ export class SingleDayEventfulCard extends React.Component {
             <Divider />
           </div> :
           <div>
-            <Card key={rec.id}>
-              <Card.Content>
-                <Card.Header>{rec.title}</Card.Header>
-                <Card.Meta>{rec.start_time}</Card.Meta>
-                <Card.Description>{rec.venue_address + ', ' + rec.city_name}</Card.Description>
-              </Card.Content>
-              <Card.Content extra>{rec.venue_name} </Card.Content>
-            </Card>
+            <div id="reco-card"
+            key={rec.id}>
+            <img id="reco-img" src="/edit5.jpg" />
+            <div id="reco-content">
+              <div><p><b>{rec.title}</b></p></div>
+              <Divider />
+              <div><p>{rec.start_time}</p></div>
+              <div><p>{rec.venue_address + ', ' + rec.city_name}</p></div>
+              <div><p>{rec.venue_name}</p></div>
+            </div>
+            </div>
           </div>}
       </div>
     )

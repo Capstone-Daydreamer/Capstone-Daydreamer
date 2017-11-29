@@ -18,7 +18,7 @@ export class SingleDayYelpCard extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const id = this.props.daysId
     this.props.checkSelectedEvents(id)
   }
@@ -40,19 +40,19 @@ export class SingleDayYelpCard extends React.Component {
               <Grid.Row>
                 {yelprec.map(currentRec => {
                   return (
-                    <Card
+                    <div id="reco-card"
                       key={currentRec.id} onClick={() => {
                         this.handleClick(currentRec)
                         this.props.selectedEvent(currentRec, id)
                       }}>
-                      <Image src={currentRec.image_url} />
-                      <Card.Content>
-                        <Card.Header>{currentRec.name}</Card.Header>
-                        <Card.Meta>{currentRec.rating} stars</Card.Meta>
-                        <Card.Description>{currentRec.location.address1 + ', ' + currentRec.location.city + ', ' + currentRec.location.state}</Card.Description>
-                      </Card.Content>
-                      <Card.Content extra>{currentRec.price}</Card.Content>
-                    </Card>
+                      <img id="reco-img" src={currentRec.image_url} />
+                      <div id="reco-content">
+                        <div><p><b>{currentRec.name}</b></p></div>
+                        <Divider />
+                        <div><p>{currentRec.location.address1 + ', ' + currentRec.location.city + ', ' + currentRec.location.state}</p></div>
+                        <div><p>{currentRec.price}</p></div>
+                      </div>
+                    </div>
                   )
                 })}
               </Grid.Row>
@@ -60,15 +60,15 @@ export class SingleDayYelpCard extends React.Component {
             <Divider />
           </div> :
           <div>
-            <Card >
-              <Image src={rec.image_url} />
-              <Card.Content>
-                <Card.Header>{rec.name}</Card.Header>
-                <Card.Meta>{rec.rating} stars!!</Card.Meta>
-                <Card.Description>{rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state}</Card.Description>
-              </Card.Content>
-              <Card.Content extra>{rec.price}</Card.Content>
-            </Card>
+            <div id="reco-card">
+            <img id="reco-img" src={rec.image_url} />
+            <div id="reco-content">
+              <Divider />
+              <div><p>{rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state}</p></div>
+              <div><p>{rec.price}</p></div>
+              <div><p>{rec.rating} stars!!</p></div>
+            </div>
+          </div>
             <Divider />
           </div>
         }
@@ -90,7 +90,7 @@ const mapDispatch = dispatch => {
       const image = rec.image_url
       dispatch(postSelectedYelpActivities(name, location, id, rating, price, image))
     },
-    checkSelectedEvents(id){
+    checkSelectedEvents(id) {
       // dispatch(checkEvents(id))
     }
   }
