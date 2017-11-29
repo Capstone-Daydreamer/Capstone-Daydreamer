@@ -13,16 +13,17 @@ export class RecommendedEvents extends Component {
         }
     }
     componentDidMount() {
-        const { recommendations } = this.props
-        const location = 'Chicago, IL'
+        const { recommendations, days } = this.props
+        const location = days.location
         const keys = Object.keys(recommendations)
+        const chosenDay = days.date.slice(0,10)
         keys.forEach(key => {
             if (key === 'bars' || key === 'restaurants') {
                 this.props.loadYelp(key, location, recommendations[key])
             } else if (key === 'shows'){
-                this.props.loadEventful(recommendations[key], location, recommendations[key])
+                this.props.loadEventful(recommendations[key], location, recommendations[key], chosenDay)
             } else {
-                this.props.loadEventful(key, location, recommendations[key])
+                this.props.loadEventful(key, location, recommendations[key], chosenDay)
             }
         })
     }
@@ -57,8 +58,8 @@ const mapDispatch = dispatch => {
         loadYelp(term, location, categories) {
             dispatch(yelpSearch(term, location, categories))
         },
-        loadEventful(category, location, keywords) {
-            dispatch(eventfulPost(category, location, keywords))
+        loadEventful(category, location, keywords, date) {
+            dispatch(eventfulPost(category, location, keywords, date))
         }
     }
 }

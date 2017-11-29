@@ -12,10 +12,11 @@ const reject = (status, msg, next) => {
 router.post('/', (req, res, next) => {
     Day.create({
       name: req.body.currentDay.name,
-      categories: req.body.currentDay.cats,
+      categories: req.body.cats,
       start: req.body.currentDay.start,
       end: req.body.currentDay.end,
-      duration: req.body.currentDay.duration
+      duration: req.body.currentDay.duration,
+      location: req.body.currentDay.location
   })
     .then((day) => {
         res.json(day)

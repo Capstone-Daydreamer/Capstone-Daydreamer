@@ -22,8 +22,8 @@ export const eventfulSearch = () => dispatch => {
     .catch(e => console.error(e))
 }
 
-export const eventfulPost = (category, location, keywords) => dispatch => {
-  axios.post('/api/eventful', {category, location, keywords})
+export const eventfulPost = (category, location, keywords, date) => dispatch => {
+  axios.post('/api/eventful', {category, location, keywords, date})
     .then(res => dispatch(postEventful(res.data)))
     .catch(e => console.error(e))
 }

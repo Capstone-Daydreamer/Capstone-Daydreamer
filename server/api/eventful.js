@@ -9,7 +9,7 @@ router.post('/', (req, res, next) => {
     // Can use any options to refine search here
     // Options at ---  http://api.eventful.com/docs/events/search  ---
     location: req.body.location,
-    date: 'This Week',
+    date: req.body.date,
     // can also do date range as YYYYMMDD00-YYYYMMDD00
     sort_order: 'popularity',
     category: req.body.category,
