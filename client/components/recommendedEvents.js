@@ -18,7 +18,6 @@ export class RecommendedEvents extends Component {
         const keys = Object.keys(recommendations)
         keys.forEach(key => {
             if (key === 'Bars' || key === 'Restaurants') {
-                console.log('we are in the yelp!!')
                 this.props.loadYelp(key, location, recommendations[key])
             } else {
                 this.props.loadEventful(key, location, recommendations[key])
