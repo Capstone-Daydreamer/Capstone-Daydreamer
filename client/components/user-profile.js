@@ -43,7 +43,6 @@ export class UserProfile extends Component {
 }
 
 const mapState = (state) => {
-    // console.log('state', state)
     return {
         user: state.user
     }

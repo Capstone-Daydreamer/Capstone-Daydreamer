@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import { fetchDay, fetchGroupInt, eventfulSearch } from '../store'
+import { fetchDay, fetchGroupInt } from '../store'
 import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
 
 /**
@@ -18,7 +18,9 @@ export class SingleDay extends React.Component {
     this.handleItemClick = this.handleItemClick.bind(this)
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick(e, { name }) {
+    this.setState({ activeItem: name })
+  }
 
   componentDidMount() {
     const id = this.props.match.params.id
@@ -27,17 +29,6 @@ export class SingleDay extends React.Component {
   render() {
     const { days } = this.props
     const groupId = this.props.match.params.groupId
-    const today = new Date()
-    const event = new Date(days.date)
-    const stateOfDay = () => {
-      const sec = days.createdAt && event.getTime() - Date.now()
-
-      if (sec < 0) {
-        return true
-      } else {
-        return false
-      }
-    }
     const subComponent = () => {
       if (this.state.activeItem === 'schedule') {
         return <SingleDaySchedule days={days} groupId={groupId} />
@@ -45,8 +36,8 @@ export class SingleDay extends React.Component {
       if (this.state.activeItem === 'events') {
         return <SingleDayEvents days={days} />
       }
-  }
-  const activeItem = this.state.activeItem
+    }
+    const activeItem = this.state.activeItem
     return (
       <div>
         <Menu tabular>
@@ -66,7 +57,8 @@ export class SingleDay extends React.Component {
  */
 const mapState = (state) => {
   return {
-    days: state.days
+    days: state.days,
+    recommendations: state.recommendations
   }
 }
 

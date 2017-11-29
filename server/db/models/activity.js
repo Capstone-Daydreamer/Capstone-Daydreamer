@@ -8,6 +8,9 @@ const Activity = db.define('activity', {
     date: {
         type: Sequelize.DATE
     },
+    category: {
+        type: Sequelize.STRING
+    },
     location: {
         type: Sequelize.STRING
     },
