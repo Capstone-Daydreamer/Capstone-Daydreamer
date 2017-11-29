@@ -22,6 +22,9 @@ const Day = db.define('day', {
     },
     end: {
         type: Sequelize.STRING
+    },
+    location: {
+        type: Sequelize.STRING
     }
 })
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
   Card, Image, Divider, Grid
 } from 'semantic-ui-react'
-import { postSelectedYelpActivities, checkEvents } from '../store'
+import { postSelectedYelpActivities } from '../store'
 
 /**
  * COMPONENT
@@ -18,10 +18,6 @@ export class SingleDayYelpCard extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const id = this.props.daysId
-    this.props.checkSelectedEvents(id)
-  }
 
   handleClick(rec) {
     this.setState({ bool: false, rec: rec })
@@ -29,7 +25,7 @@ export class SingleDayYelpCard extends React.Component {
 
 
   render() {
-    const { yelprec } = this.props
+    const { yelprec, recommendations } = this.props
     const rec = this.state.rec
     const id = this.props.daysId
     return (
@@ -42,8 +38,17 @@ export class SingleDayYelpCard extends React.Component {
                   return (
                     <div id="reco-card"
                       key={currentRec.id} onClick={() => {
+                        let eventCat
+                        currentRec.categories.forEach(cat => {
+                          if (cat.alias === recommendations.bars){
+                             eventCat = 'bars'
+                          } else if (cat.alias === recommendations.restaurants){
+                            eventCat = 'restaurants'
+                          }
+                          return eventCat
+                        })
                         this.handleClick(currentRec)
-                        this.props.selectedEvent(currentRec, id)
+                        this.props.selectedEvent(currentRec, id, eventCat)
                       }}>
                       <img id="reco-img" src={currentRec.image_url} />
                       <div id="reco-content">
@@ -80,20 +85,24 @@ export class SingleDayYelpCard extends React.Component {
 /**
  * CONTAINER
  */
+const mapState = state => {
+  return {
+    recommendations: state.recommendations
+  }
+}
+
 const mapDispatch = dispatch => {
   return {
-    selectedEvent(rec, id) {
+    selectedEvent(rec, id, eventCat) {
       const name = rec.name
       const location = rec.location.address1 + ', ' + rec.location.city + ', ' + rec.location.state
       const rating = rec.rating
       const price = rec.price
       const image = rec.image_url
-      dispatch(postSelectedYelpActivities(name, location, id, rating, price, image))
-    },
-    checkSelectedEvents(id) {
-      // dispatch(checkEvents(id))
+      const ratPrice = [rating, price]
+      dispatch(postSelectedYelpActivities(name, location, id, ratPrice, image, eventCat, eventCat))
     }
   }
 }
 
-export default connect(null, mapDispatch)(SingleDayYelpCard)
+export default connect(mapState, mapDispatch)(SingleDayYelpCard)

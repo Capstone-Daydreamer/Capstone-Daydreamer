@@ -4,13 +4,13 @@ const db = require('../db')
 const UserSubCategory = db.define('userSubCategory', {
   userId: {
     type: Sequelize.INTEGER,
-    // allowNull: false,
-    // isInt: true
+    allowNull: false,
+    isInt: true
   },
   subCategoryId: {
     type: Sequelize.INTEGER,
-    // allowNull: false,
-    // isInt: true
+    allowNull: false,
+    isInt: true
   },
   love: {
     type: Sequelize.BOOLEAN,

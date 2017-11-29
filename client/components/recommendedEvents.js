@@ -13,20 +13,23 @@ export class RecommendedEvents extends Component {
         }
     }
     componentDidMount() {
-        const { recommendations } = this.props
-        const location = 'Chicago, IL'
+        const { recommendations, days } = this.props
+        const location = days.location
         const keys = Object.keys(recommendations)
+        const chosenDay = days.date.slice(0,10)
         keys.forEach(key => {
-            if (key === 'Bars' || key === 'Restaurants') {
+            if (key === 'bars' || key === 'restaurants') {
                 this.props.loadYelp(key, location, recommendations[key])
+            } else if (key === 'shows'){
+                this.props.loadEventful(recommendations[key], location, recommendations[key], chosenDay)
             } else {
-                this.props.loadEventful(key, location, recommendations[key])
+                this.props.loadEventful(key, location, recommendations[key], chosenDay)
             }
         })
     }
+
     render() {
-        const { days, yelprecommend, eventfulrecommend } = this.props
-        const event = new Date(days.date)
+        const { days, yelprecommend, eventfulrecommend, activity } = this.props
     return (
         <Grid centered columns={1} padded>
         <div id="row">
@@ -37,14 +40,14 @@ export class RecommendedEvents extends Component {
         <div id="row">  
           <div id="reco-card-group">
                 {
-                    yelprecommend.length && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} daysId={days.id}/>)
+                    yelprecommend.length  > 0 && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} daysId={days.id}/>)
                 }
         </div>
         </div>
         <div id="row"> 
         <div id="reco-card-group">
                 {
-                    eventfulrecommend.length && eventfulrecommend.map(rec => rec.search.events.event && <SingleDayEventfulCard key={rec.search.events.event.id || rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id} />)
+                    eventfulrecommend.length > 0 && eventfulrecommend.map(rec => rec.search.events.event && <SingleDayEventfulCard key={rec.search.events.event.id || rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id} />)
                 }
             </div>
         </div>
@@ -58,7 +61,8 @@ const mapState = (state) => {
         days: state.days,
         yelprecommend: state.yelprecommend,
         recommendations: state.recommendations,
-        eventfulrecommend: state.eventfulrecommend
+        eventfulrecommend: state.eventfulrecommend,
+        activity: state.activity
     }
 }
 
@@ -67,8 +71,8 @@ const mapDispatch = dispatch => {
         loadYelp(term, location, categories) {
             dispatch(yelpSearch(term, location, categories))
         },
-        loadEventful(category, location, keywords) {
-            dispatch(eventfulPost(category, location, keywords))
+        loadEventful(category, location, keywords, date) {
+            dispatch(eventfulPost(category, location, keywords, date))
         }
     }
 }

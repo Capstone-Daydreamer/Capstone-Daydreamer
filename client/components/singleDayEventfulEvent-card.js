@@ -26,13 +26,15 @@ export class SingleDayEventfulCard extends React.Component {
     const { eventfulrec } = this.props
     const rec = this.state.rec
     const id = this.props.daysId
+    console.log('eventful is rendering')
     return (
       <div>
+        <h3>hello</h3>
         {this.state.bool ?
           <div>
             <Grid centered>
               <Grid.Row>
-                {eventfulrec.map(currentRec => {
+                {eventfulrec.length ? eventfulrec.map(currentRec => {
                   return (
                     <div id="reco-card"
                       key={currentRec.id} onClick={() => {
@@ -49,7 +51,18 @@ export class SingleDayEventfulCard extends React.Component {
                       </div>
                       </div>
                   )
-                })}
+                }) :  <Card
+                key={eventfulrec.id} onClick={() => {
+                  this.handleClick(eventfulrec)
+                  this.props.selectedEvent(eventfulrec, id)
+                }}>
+                  <Card.Content>
+                    <Card.Header>{eventfulrec.title}</Card.Header>
+                    <Card.Meta>{eventfulrec.start_time}</Card.Meta>
+                    <Card.Description>{eventfulrec.venue_address + ', ' + eventfulrec.city_name}</Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>{eventfulrec.venue_name} </Card.Content>
+                </Card>}
               </Grid.Row>
             </Grid>
             <Divider />
