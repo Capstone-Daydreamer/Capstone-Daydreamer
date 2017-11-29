@@ -24,8 +24,8 @@ export const fetchActivities = id => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const postSelectedYelpActivities = (name, location, dayId, rating, price, image) => dispatch => {
-  axios.post('/api/activities', {name, location, rating, price, image})
+export const postSelectedYelpActivities = (name, location, dayId, [ratPri], image, category) => dispatch => {
+  axios.post('/api/activities', {name, location, rating: ratPri[0], price: ratPri[1], image, category})
   .then(res => res.data)
   .then(activity =>{
       axios.post('/api/activities/days', {dayId, activityId: activity.id})
@@ -44,9 +44,9 @@ export const postSelectedEventfulActivities = (name, location, dayId, venueName,
     .catch(err => console.log(err))
 }
 
-export const checkEvents = (id) => dispatch => {
-  axios.get(`/api/activities/${id}`)
-    .then(res => getSelectedActivities(dispatch(res.data)))
+export const checkEvents = (id, cat) => dispatch => {
+  axios.get(`/api/days/${id}/${cat}`)
+    .then(res => dispatch(getSelectedActivities(res.data)))
     .catch(err => console.log(err))
 }
 
@@ -60,7 +60,7 @@ export default function (activities = [], action) {
     case POST_SELECTED_ACTIVITES:
       return action.activities
     case GET_SELECTED_ACTIVITIES:
-      return action.activities
+      return [...activities, action.activities]
     default:
       return activities
   }

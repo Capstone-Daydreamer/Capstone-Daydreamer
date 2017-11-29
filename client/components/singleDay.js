@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import { fetchDay, fetchGroupInt, eventfulSearch } from '../store'
+import { fetchDay, fetchGroupInt, checkEvents } from '../store'
 import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
 
 /**
@@ -18,7 +18,12 @@ export class SingleDay extends React.Component {
     this.handleItemClick = this.handleItemClick.bind(this)
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick(e, { name }) {
+    const id = this.props.match.params.id
+    this.props.checkSelectedEvents(id, 'bars')
+    this.props.checkSelectedEvents(id, 'restaurants')
+    this.setState({ activeItem: name })
+  }
 
   componentDidMount() {
     const id = this.props.match.params.id
@@ -45,8 +50,8 @@ export class SingleDay extends React.Component {
       if (this.state.activeItem === 'events') {
         return <SingleDayEvents days={days} />
       }
-  }
-  const activeItem = this.state.activeItem
+    }
+    const activeItem = this.state.activeItem
     return (
       <div>
         <Menu tabular>
@@ -66,7 +71,8 @@ export class SingleDay extends React.Component {
  */
 const mapState = (state) => {
   return {
-    days: state.days
+    days: state.days,
+    recommendations: state.recommendations
   }
 }
 
@@ -75,6 +81,9 @@ const mapDispatch = dispatch => {
     loadDay(id) {
       dispatch(fetchDay(id))
       dispatch(fetchGroupInt(id))
+    },
+    checkSelectedEvents(id, cat) {
+      dispatch(checkEvents(id, cat))
     }
   }
 }

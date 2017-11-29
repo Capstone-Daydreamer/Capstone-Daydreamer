@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Menu, Grid, Card, Item, Divider } from 'semantic-ui-react'
-import { removeInterest, addInterest, destroyInterest, yelpSearch, eventfulPost } from '../store'
+import { yelpSearch, eventfulPost } from '../store'
 import SingleDayYelpCard from './singleDayYelpEvent-card'
 import SingleDayEventfulCard from './singleDayEventfulEvent-card'
 
@@ -16,20 +16,19 @@ export class SingleDayEvents extends Component {
         const { recommendations } = this.props
         const location = 'Chicago, IL'
         const keys = Object.keys(recommendations)
-        console.log('red', recommendations)
         keys.forEach(key => {
             if (key === 'bars' || key === 'restaurants') {
                 this.props.loadYelp(key, location, recommendations[key])
             } else if (key === 'shows'){
                 this.props.loadEventful(recommendations[key], location, recommendations[key])
             } else {
-                console.log('KEY', key)
                 this.props.loadEventful(key, location, recommendations[key])
             }
         })
     }
+
     render() {
-        const { days, yelprecommend, eventfulrecommend } = this.props
+        const { days, yelprecommend, eventfulrecommend, activity } = this.props
         const event = new Date(days.date)
         const stateOfDay = () => {
             const sec = days.createdAt && event.getTime() - Date.now()
@@ -40,7 +39,7 @@ export class SingleDayEvents extends Component {
                 return false
             }
         }
-        console.log('Events', eventfulrecommend)
+        console.log('act', activity)
         return (
             <div>
                 {stateOfDay() ? <div>
@@ -52,15 +51,15 @@ export class SingleDayEvents extends Component {
 
                     <div id="card-group">
                         {
-                            days.activities && days.activities.map((activity) => {
+                            days.activities && days.activities.map((act) => {
                                 return (
-                                    <div id="event-group-card" key={activity.id}>
+                                    <div id="event-group-card" key={act.id}>
                                         <img id="event-group-img" src="/edit3.jpg" />
                                         <div id="event-group-content">
-                                            <div><p><b>{activity.name}</b></p></div>
+                                            <div><p><b>{act.name}</b></p></div>
                                             <Divider />
-                                            <div><p>{activity.description}</p></div>
-                                            <div><p>{activity.location}</p></div>
+                                            <div><p>{act.description}</p></div>
+                                            <div><p>{act.location}</p></div>
                                         </div>
                                     </div>
                                 )
@@ -82,7 +81,8 @@ const mapState = (state) => {
         days: state.days,
         yelprecommend: state.yelprecommend,
         recommendations: state.recommendations,
-        eventfulrecommend: state.eventfulrecommend
+        eventfulrecommend: state.eventfulrecommend,
+        activity: state.activity
     }
 }
 
