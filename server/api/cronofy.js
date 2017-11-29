@@ -70,9 +70,7 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 
 // Route to GET availability accross a single group
 router.post('/availability/:groupId', (req, res, next) => {
-  console.log('***************made it to chronofy post', req.body)
   const currentDay = req.body
-  console.log('looking for current day',currentDay)
 
   var group = [
     // Needs to abstracted still
@@ -115,7 +113,6 @@ router.post('/availability/:groupId', (req, res, next) => {
   cronofyClient.availability(options)
   .then(function (response) {
     // var available_periods = response.available_periods;
-    // console.log('looking for available periods', available_periods)
     // res.json(available_periods)
     res.json({
       available_periods: [
