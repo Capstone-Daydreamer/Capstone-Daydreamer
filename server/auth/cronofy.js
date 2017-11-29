@@ -26,7 +26,6 @@ passport.use('cronofy', new OAuth2Strategy({
   clientSecret: process.env.CRONOFY_CLIENT_SECRET,
 }, async (token, refreshToken, profile, done) => {
 
-  //
   var newCronofyClient = new Cronofy({
     clientId: process.env.CRONOFY_CLIENT_ID,
     clientSecret: process.env.CRONOFY_CLIENT_SECRET,
@@ -37,7 +36,7 @@ passport.use('cronofy', new OAuth2Strategy({
   const options = {
     tzid: 'Etc/UTC',
   };
-
+  console.log(userId)
   const user = await User.findById(userId);
 
   const accountRes = await newCronofyClient.accountInformation(options)
