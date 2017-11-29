@@ -18,7 +18,11 @@ export class UserDaysCard extends Component {
         <img id="day-group-img" src="/edit5.jpg" />
         <div id="day-group-content">
         <div><p><b>{day.name}</b></p></div>
-        <div><p><b>{day.date.slice(0, 10)}</b></p></div>
+        <div><p><b>
+        {
+          day.date !== null && day.date.slice(0, 10)
+        }
+        </b></p></div>
           <Divider />
             {
               day.activities && day.activities.map((activity) => {

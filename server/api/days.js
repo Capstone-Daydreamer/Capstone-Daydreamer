@@ -24,6 +24,20 @@ router.post('/groups', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/:id', (req, res, next) => {
+    console.log('looking for req body', req.body)
+    Day.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    })
+      .then(() => {
+          res.sendStatus(201)
+      })
+      .catch(next)
+  })
+  
+
 router.get('/:id', (req, res, next) => {
     const id = req.params.id
     Day.findById(id, {

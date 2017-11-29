@@ -55,6 +55,19 @@ router.get('/accountinfo/:userId', (req, res, next) => {
     }).catch(next)
 })
 
+// router.get('/availability/', (req, res, next) => {
+  
+//     var options = {
+//       tzid: 'Etc/UTC',
+//     };
+  
+//     cronofyClient.accountInformation(options)
+//       .then(function (response) {
+//         var account = response.account;
+//         res.json(account);
+//       }).catch(next)
+//   })
+
 // Route to GET availability accross a single group
 router.post('/availability/:groupId', (req, res, next) => {
   console.log('***************made it to chronofy post', req.body)
@@ -78,11 +91,16 @@ router.post('/availability/:groupId', (req, res, next) => {
         required: 'all'
       }
     ],
-    required_duration: { minutes: currentDay.duration },
+    // required_duration: { minutes: currentDay.duration },
+    required_duration: { minutes: 60 },
     available_periods: [
+      // {
+      //   start: currentDay.start + ':00Z',
+      //   end: currentDay.end + ':00Z'
+      // }
       {
-        start: currentDay.start + ':00Z',
-        end: currentDay.end + ':00Z'
+        start: '2017-12-26T09:00:00Z',
+        end: '2017-12-26T11:00:00Z'
       }
     ]
   }

@@ -1,19 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { removeUser } from '../store'
-import {
-  Image, Card, Button, Icon
-} from 'semantic-ui-react'
+import { putDay } from '../store'
+import { Icon } from 'semantic-ui-react'
 
 /**
  * COMPONENT
  */
 export const AvailCard = (props) => {
   const period = props.period
-  console.log(period)
+  const day = props.day
+  const groupId = props.groupId
+  console.log('is day passed down', day)
   return (
-    <div id="avail-group-card" key={period.start}>
+    <div id="avail-group-card" key={period.start} onClick={(e) => props.handleDateClick(period.start, day.id, groupId, e)}>
     <div id="avail-group-content">
       <div>
         <p><Icon disabled name='calendar outline' /><b>Date: {period.start.slice(0, 10)} At: {period.start.slice(11, 17)}</b></p></div>
@@ -33,8 +33,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleRemoveClick(group, id){
-      dispatch(removeUser(group, id))
+    handleDateClick(date, dayId, groupId){
+      dispatch(putDay(date, dayId, groupId))
     }
   }
 }

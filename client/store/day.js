@@ -5,12 +5,14 @@ import history from '../history'
 */
 const GET_DAY = 'GET_DAY'
 const NEW_DAY = 'NEW_DAY'
+const UPDATE_DAY = 'UPDATE_DAY'
 
 /**
 * ACTION CREATORS
 */
 const getDay = day => ({ type: GET_DAY, day })
 const newDay = day => ({type: NEW_DAY, day})
+const updateDay = day => ({type: UPDATE_DAY, day})
 
 /**
 * THUNK CREATORS
@@ -38,6 +40,27 @@ export const addDay = (event, groupId, cats) => dispatch => {
     })
     .catch()
 }
+
+export const putDay = (date, dayId, groupId) => {
+  console.log(dayId);
+  return function (dispatch) {
+      axios.put(`/api/days/${dayId}`, { date })
+          .then(() => {
+              axios.get(`/api/days/${dayId}`)
+                  .then(res => res.data)
+                  .then((day) => {
+                      //const action = updateStudent({ id: studentid, name: newStudent, email: email, campusId: campusid });
+                      const action = updateDay(day);
+                      dispatch(action);
+                      history.push(`/user-groups/${groupId}`);
+                  })
+                  .catch()
+          })
+          .catch()
+  }
+}
+
+
 /**
 * REDUCER
 */
@@ -47,7 +70,10 @@ export default function (days = [], action) {
      return action.day
   case NEW_DAY:
      return [...days, action.day]
+  case UPDATE_DAY:
+     return action.day
    default:
      return days
  }
 }
+
