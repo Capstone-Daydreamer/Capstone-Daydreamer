@@ -11,6 +11,14 @@ const UserSubCategory = db.define('userSubCategory', {
     type: Sequelize.INTEGER,
     // allowNull: false,
     // isInt: true
+  },
+  love: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  dislike: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
