@@ -3,7 +3,7 @@
 const passport = require('passport');
 const router = require('express').Router();
 const Cronofy = require('cronofy');
-const { User } = require('../db/models');
+const { User, Group } = require('../db/models');
 
 module.exports = router
 
@@ -53,17 +53,20 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 })
 
 // Route to GET availability accross a single group
-router.get('/availability/:groupId', (req, res, next) => {
-  var group = [
-    // Needs to abstracted still
-    // group = everyone in group with account id and relevant calendar ids
-    { // Bens Information
-      account_id: 'acc_5a0e0f4cc631834e720004d7',
-      calendar_ids: ['cal_Wg4PW42@zx-aAAE1_vqr0kiOnXqIcyOH@pEbWFg']
-    },
+router.get('/availability/:groupId', async (req, res, next) => {
+  // var group = [
+  //   // Needs to abstracted still
+  //   // group = everyone in group with account id and relevant calendar ids
+  //   { // Bens Information
+  //     account_id: 'acc_5a0e0f4cc631834e720004d7',
+  //     calendar_ids: ['cal_Wg4PW42@zx-aAAE1_vqr0kiOnXqIcyOH@pEbWFg']
+  //   },
 
-  ]
-
+  // ]
+  const group = await Group.findById(req.params.groupId, { include: [ User ] });
+  const users = group.users;
+  console.log("GROUP", group)
+  res.json(group)
   var options = {
     participants: [
       {
@@ -80,10 +83,10 @@ router.get('/availability/:groupId', (req, res, next) => {
     ]
   }
 
-  group.forEach(user => {
+  users.forEach(user => {
     options.participants[0].members.push({
-      sub: user.account_id,
-      calendar_ids: user.calendar_ids
+      sub: user.cronofyAccId,
+      calendar_ids: user.calendarTokens
     })
   })
 
