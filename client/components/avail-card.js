@@ -11,7 +11,6 @@ export const AvailCard = (props) => {
   const period = props.period
   const day = props.day
   const groupId = props.groupId
-  console.log('is day passed down', day)
   return (
     <div id="avail-group-card" key={period.start} onClick={(e) => props.handleDateClick(period.start, day.id, groupId, e)}>
     <div id="avail-group-content">
