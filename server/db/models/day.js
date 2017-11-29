@@ -16,6 +16,12 @@ const Day = db.define('day', {
     },
     categories: {
         type: Sequelize.ARRAY(Sequelize.TEXT)
+    },
+    start: {
+        type: Sequelize.STRING
+    },
+    end: {
+        type: Sequelize.STRING
     }
 })
 
