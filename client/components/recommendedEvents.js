@@ -27,7 +27,6 @@ export class RecommendedEvents extends Component {
     render() {
         const { days, yelprecommend, eventfulrecommend } = this.props
         const event = new Date(days.date)
-        console.log('yelp', yelprecommend)
     return (
             <div>
                 {
