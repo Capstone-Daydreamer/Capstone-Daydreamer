@@ -113,7 +113,7 @@ a {
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 330px;
-  height: 330px;
+  height: 360px;
   transition: all ease-in-out 250ms;
 }
 
@@ -227,7 +227,7 @@ a {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   flex-basis: 80%;
   width: 600px;
-  height: 350px;
+  height: 400px;
   transition: all ease-in-out 250ms;
 }
 

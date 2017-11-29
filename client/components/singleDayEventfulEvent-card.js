@@ -29,7 +29,6 @@ export class SingleDayEventfulCard extends React.Component {
     console.log('eventful is rendering')
     return (
       <div>
-        <h3>hello</h3>
         {this.state.bool ?
           <div>
             <Grid centered>
