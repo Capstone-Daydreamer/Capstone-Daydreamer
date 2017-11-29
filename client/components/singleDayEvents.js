@@ -16,10 +16,14 @@ export class SingleDayEvents extends Component {
         const { recommendations } = this.props
         const location = 'Chicago, IL'
         const keys = Object.keys(recommendations)
+        console.log('red', recommendations)
         keys.forEach(key => {
             if (key === 'bars' || key === 'restaurants') {
                 this.props.loadYelp(key, location, recommendations[key])
+            } else if (key === 'shows'){
+                this.props.loadEventful(recommendations[key], location, recommendations[key])
             } else {
+                console.log('KEY', key)
                 this.props.loadEventful(key, location, recommendations[key])
             }
         })
@@ -36,12 +40,13 @@ export class SingleDayEvents extends Component {
                 return false
             }
         }
+        console.log('Events', eventfulrecommend)
         return (
             <div>
                 {stateOfDay() ? <div>
                     <div id="row">
                         <div id="groups-header"><h1>Scheduled Events</h1>
-                            <p>Here's whats on the docket.</p>
+                            <p>Here's what events you went to!</p>
                         </div>
                     </div>
 
@@ -66,33 +71,7 @@ export class SingleDayEvents extends Component {
                 </div> :
                     yelprecommend && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} daysId={days.id}/>)
                 }
-                {!stateOfDay() && eventfulrecommend && eventfulrecommend.map(rec => <SingleDayEventfulCard key={rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id} />)}
-                {/* {stateOfDay() ?
-                    <Grid columns={8} padded>
-                        <Item.Group>
-                            <Item>
-                                {
-                                    days.activities && days.activities.map((activity) => {
-                                        return (
-                                            <div key={activity.id}>
-                                                <Item.Content >
-                                                    <Item.Header as='a'>{activity.name}</Item.Header>
-                                                    <Item.Meta>{activity.description}</Item.Meta>
-                                                    <Item.Description>{activity.location}</Item.Description>
-                                                </Item.Content>
-                                                <Divider fitted />
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </Item>
-                        </Item.Group>
-                    </Grid> :
-                    yelprecommend && yelprecommend.map(yelprec => <SingleDayYelpCard key={yelprec[0].id} yelprec={yelprec} daysId={days.id}/> )
-                }
-                {!stateOfDay() && eventfulrecommend && eventfulrecommend.map(rec => <SingleDayEventfulCard key={rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id}/>)}
-                    yelprecommend && yelprecommend.map(yelprec => <SingleDayEventCard key={yelprec[0].id} yelprec={yelprec} />)
-                } */}
+                {!stateOfDay() && eventfulrecommend.length && eventfulrecommend.map(rec => rec.search.events.event && <SingleDayEventfulCard key={rec.search.events.event.id || rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id} />)}
             </div>
         )
     }

@@ -32,7 +32,7 @@ export class SingleDayEventfulCard extends React.Component {
           <div>
             <Grid centered>
               <Grid.Row>
-                {eventfulrec.map(currentRec => {
+                {eventfulrec.length ? eventfulrec.map(currentRec => {
                   return (
                     <Card
                     key={currentRec.id} onClick={() => {
@@ -47,7 +47,18 @@ export class SingleDayEventfulCard extends React.Component {
                       <Card.Content extra>{currentRec.venue_name} </Card.Content>
                     </Card>
                   )
-                })}
+                }) :  <Card
+                key={eventfulrec.id} onClick={() => {
+                  this.handleClick(eventfulrec)
+                  this.props.selectedEvent(eventfulrec, id)
+                }}>
+                  <Card.Content>
+                    <Card.Header>{eventfulrec.title}</Card.Header>
+                    <Card.Meta>{eventfulrec.start_time}</Card.Meta>
+                    <Card.Description>{eventfulrec.venue_address + ', ' + eventfulrec.city_name}</Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>{eventfulrec.venue_name} </Card.Content>
+                </Card>}
               </Grid.Row>
             </Grid>
             <Divider />
