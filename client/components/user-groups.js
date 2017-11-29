@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 import UserGroupsCard from './user-groups-card.js'
 import {
-  Container, Card, Icon
+  Grid, Divider, Icon
 } from 'semantic-ui-react'
 
 /**
@@ -13,25 +13,30 @@ import {
 export const UserGroups = (props) => {
   const { email, groups } = props
   return (
-    <Container>
-      <h3>Welcome, {email}</h3>
-      <p>Below is a list of the groups you're currently a part of. This is some unessicary filler text that the developer left behind because he was too lazy to be creative. It's sooooo much easier to know what text is gonna look like when theres actually text, so he's probably gonna put as much here as he feels like typing.... Guess what! He's back at it again since we need to make this text way longer on a full screen. Why you ask? Becuase having reactive components is hip and in right now, and the longer I keep this stream of consciousness going the more proud my inner James Joyce will be.</p>
-      <Card.Group>
-        <Card>
-          <Card.Content header='ADD A NEW EVENT' />
-          <Card.Content>
-            <Icon name='add to calendar' />
-          </Card.Content>
-          <Card.Content extra>
-            <Icon name='user' />
-            Your Friends Could Go Here!
-          </Card.Content>
-        </Card>
+    <Grid centered columns={1} padded>
+    <div id="row">
+      <div id="groups-header"><h1>Current Groups</h1>
+        <p>Your awesome groups are here. Feel free to create new groups!</p>
+      </div>
+    </div>
+    <div id="row">  
+      <div id="card-group">
+        <a href="/new-group">
+        <div id="group-card">
+          <img id="group-img" src="./edit1.gif" />
+          <div id="group-content">
+            <div><p><b><Icon name="user" />Add new group</b></p></div>
+            <Divider />
+            <div><p>Discription or something filler-y goes here</p></div> 
+          </div>
+        </div>
+        </a>
         {groups ? groups.map(group =>
           (<UserGroupsCard key={group.id} group={group} />)
         ) : <div />}
-      </Card.Group>
-    </Container>
+      </div>
+    </div>
+    </Grid>
   )
 }
 

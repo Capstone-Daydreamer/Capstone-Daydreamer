@@ -21,17 +21,12 @@ passport.use('cronofy', new OAuth2Strategy({
   tokenURL: 'https://api.cronofy.com/oauth/token',
   clientSecret: process.env.CRONOFY_CLIENT_SECRET,
 }, async (token, refreshToken, profile, done) => {
-  console.log('ACCESS', token)
-  console.log('REFRESH', refreshToken)
-  console.log('PROFILE', profile)
-  console.log('DONE', done)
   const user = await User.findById(2);
   await user.update({
     cronofyAccId: token,
     cronofyRefreshToken: refreshToken,
   });
   // cronofyClient.requestAccessToken({ code: token })
-  // console.log(stuff)
   done(null, user)
 }));
 

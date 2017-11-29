@@ -17,42 +17,36 @@ const Main = (props) => {
   const { children, handleClick, isLoggedIn } = props
 
   return (
-    <div>
-      <Menu inverted>
-        <Container>
-          <Menu.Item>
-            <Link to="/"><h1 >Daydreamer</h1> </Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link to="/user-groups">Groups</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link to="#">Events</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <Link to="/Profile">Profile</Link>
-          </Menu.Item>
-          {
-            isLoggedIn
-              ? <div>
-                {/* The navbar will show these links after you log in */}
-                <Menu.Item>
-                  <a href="/#" onClick={handleClick}>Logout</a>
-                </Menu.Item>
-              </div>
-              : <div>
-                {/* The navbar will show these links before you log in */}
-                <Menu.Item>
-                  <Link to="/login">Login</Link>
-                </Menu.Item>
-                <Menu.Item>
-                  <Link to="/signup">Sign Up</Link>
-                </Menu.Item>
-              </div>
-          }
-        </Container>
-      </Menu>
-      {children}
+    <div id="site">
+      <header>
+        <div className="container">
+          <nav>
+            <ul>
+              <li><a href="/">Daydreamer |</a></li>
+              {
+                isLoggedIn
+                  ? <span>
+                    {/* The navbar will show these links after you log in */}
+                    <li>
+                      <li><a href="/user-groups">Groups |</a></li>
+                      <li><a href="/events">Events |</a></li>
+                      <li><a href="/profile">Profile |</a></li>
+                      <a href="/#" onClick={handleClick}>Logout |</a>
+                    </li>
+                  </span>
+                  : <span>
+                    {/* The navbar will show these links before you log in */}
+                    <li><a href="/login">Login |</a></li>
+                    <li><a href="/signup">Sign Up |</a></li>
+                  </span>
+              }
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="site-content">
+        {children}
+      </div>
       <Footer />
     </div >
   )

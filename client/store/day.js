@@ -26,7 +26,7 @@ export const addDay = (name, groupId, cats) => dispatch => {
   return axios.post(`/api/days`, {name, cats})
     .then(res => res.data)
     .then((day) => {
-      axios.post(`api/days/groups`, {dayId: day.id, groupId})
+      axios.post(`/api/days/groups`, {dayId: day.id, groupId})
       dispatch(newDay(day))
       history.push(`/user-groups/group/${groupId}`)
     })

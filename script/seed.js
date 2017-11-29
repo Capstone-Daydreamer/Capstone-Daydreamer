@@ -31,7 +31,6 @@ const activities = [
 
 const activitySubcat = [
   {activityId: 1, subCategoryId: 58}, //1
-  {activityId: 1, subCategoryId: 62}, //2
   {activityId: 2, subCategoryId: 29}, //3
   {activityId: 3, subCategoryId: 16}, //4
   {activityId: 3, subCategoryId: 19}, //5
@@ -39,7 +38,6 @@ const activitySubcat = [
   {activityId: 4, subCategoryId: 3}, //7
   {activityId: 5, subCategoryId: 34}, //8
   {activityId: 6, subCategoryId: 57}, //9
-  {activityId: 6, subCategoryId: 62}, //10
   {activityId: 7, subCategoryId: 6}, //11
   {activityId: 7, subCategoryId: 34}, //12
   {activityId: 8, subCategoryId: 1}, //13
@@ -50,7 +48,7 @@ const activitySubcat = [
   {activityId: 9, subCategoryId: 31}, //18
   {activityId: 10, subCategoryId: 22}, //19
   {activityId: 10, subCategoryId: 25}, //20
-  {activityId: 11, subCategoryId: 66}, //21
+  {activityId: 11, subCategoryId: 64}, //21
 ]
 
 const groups = [
@@ -207,13 +205,13 @@ const activitiesDays = [
 ]
 
 const cats = [
-  { name: 'Bars'}, //1
-  { name: 'Concerts'}, //2
-  { name: 'Movies'}, //3
-  { name: 'Museums'}, //4
-  { name: 'Restaurants'}, //5
-  { name: 'Sports Games'}, //6
-  { name: 'Theater'} //7
+  { name: 'Bars', alias: 'bars'}, //1
+  { name: 'Music', alias: 'music'}, //2
+  { name: 'Movies', alias: 'movies_film'}, //3
+  { name: 'Museums', alias: 'attractions'}, //4
+  { name: 'Restaurants', alias:'restaurants'}, //5
+  { name: 'Sports Games',alias: 'sports'}, //6
+  { name: 'Theater', alias:'performing_arts'} //7
 ]
 
 const catSubcat = [
@@ -278,251 +276,342 @@ const catSubcat = [
   {categoryId: 6, subCategoryId: 59},
   {categoryId: 6, subCategoryId: 60},
   {categoryId: 6, subCategoryId: 61},
-  {categoryId: 6, subCategoryId: 62},
-  {categoryId: 6, subCategoryId: 63},
-  {categoryId: 7, subCategoryId: 64}, //22
-  {categoryId: 7, subCategoryId: 65}, //25
-  {categoryId: 7, subCategoryId: 66}, //28
+  {categoryId: 7, subCategoryId: 62}, //22
+  {categoryId: 7, subCategoryId: 63}, //25
+  {categoryId: 7, subCategoryId: 64}, //28
 ]
 
 const subcats = [
-  { name: 'Beer' }, //1
-  { name: 'Champagne' }, //2
-  { name: 'Cocktail' }, //3
-  { name: 'Dive' }, //4
-  { name: 'Pub' }, //5
-  { name: 'Sports' }, //6
-  { name: 'Tiki' }, //7
-  { name: 'Whiskey' }, //8
-  { name: 'Wine' }, //9
-  { name: 'Country' }, //10
-  { name: 'Electric Dance Music' }, //11
-  { name: 'Folk' }, //12
-  { name: 'Hip Hop' }, //13
-  { name: 'Jazz' }, //14
-  { name: 'Opera' }, //15
-  { name: 'Pop' }, //16
-  { name: 'Punk' }, //17
-  { name: 'Rap' }, //18
-  { name: 'Rock' }, //19
-  { name: 'Action' }, //20
-  { name: 'Animation' }, //21
-  { name: 'Comedy Movie' }, //22
-  { name: 'Children Movie' }, //23
-  { name: 'Documentary' }, //24
-  { name: 'Drama Movie' }, //25
-  { name: 'Fantasy' }, //26
-  { name: 'Horror' }, //27
-  { name: 'Musical Movie' }, //28
-  { name: 'SciFi' }, //29
-  { name: 'Western' }, //30
-  { name: 'Art' }, //31
-  { name: 'Children Museum' }, //32
-  { name: 'History' }, //33
-  { name: 'American' }, //34
-  { name: 'Asian Fusion' }, //35
-  { name: 'Barbeque' }, //36
-  { name: 'Cajun' }, //37
-  { name: 'Chinese' },//38
-  { name: 'Dessert' },//39
-  { name: 'French' },//40
-  { name: 'German' },//41
-  { name: 'Gluten-Free' },//42
-  { name: 'Greek' },//43
-  { name: 'Indian' },//44
-  { name: 'Italian' },//45
-  { name: 'Japanese' },//46
-  { name: 'Mediterranean' },//47
-  { name: 'Polish' },//48
-  { name: 'Seafood' },//49
-  { name: 'Southern' },//50
-  { name: 'Steak House' },//51
-  { name: 'Tapas' },//52
-  { name: 'Thai' },  //53
-  { name: 'Vegan' },//54
-  { name: 'Vegetarian' }, //55
-  { name: 'Baseball' },//56
-  { name: 'Basketball' },//57
-  { name: 'Football' },//58
-  { name: 'Soccer' },//59
-  { name: 'Golf' },//60
-  { name: 'Tennis' },//61
-  { name: 'Pro' },//62
-  { name: 'College' },//63
-  { name: 'Comedy Theatre' }, //64
-  { name: 'Drama Theatre' }, //65
-  { name: 'Musical Theatre' }, //66
+  { name: 'Beer', alias: 'beerbar' }, //1
+  { name: 'Champagne', alias: 'champagne_bars' }, //2
+  { name: 'Cocktail', alias: 'cocktailbars' }, //3
+  { name: 'Dive', alias: 'divebars' }, //4
+  { name: 'Pub', alias: 'pubs' }, //5
+  { name: 'Sports', alias: 'sportsbars' }, //6
+  { name: 'Tiki', alias: 'tikibars' }, //7
+  { name: 'Whiskey', alias: 'whiskeybars' }, //8
+  { name: 'Wine', alias: 'wine_bars' }, //9
+  { name: 'Country', alias: 'country' }, //10
+  { name: 'Electric Dance Music', alias: 'edm' }, //11
+  { name: 'Folk', alias: 'folk' }, //12
+  { name: 'Hip Hop', alias: 'hip hop' }, //13
+  { name: 'Jazz', alias: 'jazz' }, //14
+  { name: 'Opera', alias: 'opera' }, //15
+  { name: 'Pop', alias: 'pop' }, //16
+  { name: 'Punk', alias: 'punk' }, //17
+  { name: 'Rap', alias: 'rap' }, //18
+  { name: 'Rock', alias: 'rock' }, //19
+  { name: 'Action', alias: 'action' }, //20
+  { name: 'Animation', alias: 'animation' }, //21
+  { name: 'Comedy Movie', alias: 'comedy movie' }, //22
+  { name: 'Children Movie', alias: 'children movie' }, //23
+  { name: 'Documentary', alias: 'documentary' }, //24
+  { name: 'Drama Movie', alias: 'drama' }, //25
+  { name: 'Fantasy', alias: 'fantasy' }, //26
+  { name: 'Horror', alias: 'horror' }, //27
+  { name: 'Musical Movie', alias: 'musical' }, //28
+  { name: 'SciFi', alias: 'scifi' }, //29
+  { name: 'Western', alias: 'western' }, //30
+  { name: 'Art', alias: 'art museum' }, //31
+  { name: 'Children Museum', alias: 'children museum' }, //32
+  { name: 'History', alias: 'history museum' }, //33
+  { name: 'American', alias: 'newamerican' }, //34
+  { name: 'Asian Fusion', alias: 'asianfusion' }, //35
+  { name: 'Barbeque', alias: 'bbq' }, //36
+  { name: 'Cajun', alias: 'cajun' }, //37
+  { name: 'Chinese', alias: 'chinese' },//38
+  { name: 'Dessert', alias: 'dessert' },//39
+  { name: 'French', alias: 'french' },//40
+  { name: 'German', alias: 'german' },//41
+  { name: 'Gluten-Free', alias: 'gluten_free' },//42
+  { name: 'Greek', alias: 'greek' },//43
+  { name: 'Indian', alias: 'indpak' },//44
+  { name: 'Italian', alias: 'italian' },//45
+  { name: 'Japanese', alias: 'japanese'},//46
+  { name: 'Mediterranean', alias: 'mediterranean' },//47
+  { name: 'Polish', alias: 'polish' },//48
+  { name: 'Seafood', alias: 'seafood' },//49
+  { name: 'Southern', alias: 'southern' },//50
+  { name: 'Steak House', alias: 'steak' },//51
+  { name: 'Tapas', alias: 'tapas' },//52
+  { name: 'Thai', alias: 'thai' },  //53
+  { name: 'Vegan', alias: 'vegan' },//54
+  { name: 'Vegetarian', alias: 'vegetarian' }, //55
+  { name: 'Baseball', alias: 'baseball' },//56
+  { name: 'Basketball', alias: 'basketball' },//57
+  { name: 'Football' , alias: 'football'},//58
+  { name: 'Soccer', alias: 'soccer' },//59
+  { name: 'Golf', alias: 'golf' },//60
+  { name: 'Tennis', alias: 'tennis' },//61
+  { name: 'Comedy Theatre', alias: 'comedy' }, //62
+  { name: 'Drama Theatre', alias: 'drama' }, //63
+  { name: 'Musical Theatre', alias: 'musical'}, //64
 ]
 
 const userSubcat = [
-  {userId: 1, subCategoryId: 1}, //1
-  {userId: 1, subCategoryId: 5}, //2
-  {userId: 1, subCategoryId: 6}, //3
-  {userId: 1, subCategoryId: 8}, //4
-  {userId: 1, subCategoryId: 19}, //5
-  {userId: 1, subCategoryId: 22}, //6
-  {userId: 1, subCategoryId: 25}, //7
-  {userId: 1, subCategoryId: 29}, //8
-  {userId: 1, subCategoryId: 34}, //9
-  {userId: 1, subCategoryId: 44}, //10
-  {userId: 1, subCategoryId: 49}, //11
-  {userId: 1, subCategoryId: 58}, //12
-  {userId: 1, subCategoryId: 62}, //13
-  {userId: 1, subCategoryId: 63}, //14
-  {userId: 2, subCategoryId: 1},
-  {userId: 2, subCategoryId: 3},
-  {userId: 2, subCategoryId: 5},
-  {userId: 2, subCategoryId: 6},
-  {userId: 2, subCategoryId: 8},
-  {userId: 2, subCategoryId: 10},
-  {userId: 2, subCategoryId: 16},
-  {userId: 2, subCategoryId: 19},
-  {userId: 2, subCategoryId: 22},
-  {userId: 2, subCategoryId: 25},
-  {userId: 2, subCategoryId: 30},
-  {userId: 2, subCategoryId: 34},
-  {userId: 2, subCategoryId: 39},
-  {userId: 2, subCategoryId: 45},
-  {userId: 2, subCategoryId: 48},
-  {userId: 2, subCategoryId: 57},
-  {userId: 2, subCategoryId: 58},
-  {userId: 2, subCategoryId: 62},
-  {userId: 3, subCategoryId: 2},
-  {userId: 3, subCategoryId: 3},
-  {userId: 3, subCategoryId: 6},
-  {userId: 3, subCategoryId: 9},
-  {userId: 3, subCategoryId: 14},
-  {userId: 3, subCategoryId: 15},
-  {userId: 3, subCategoryId: 16},
-  {userId: 3, subCategoryId: 24},
-  {userId: 3, subCategoryId: 33},
-  {userId: 3, subCategoryId: 40},
-  {userId: 3, subCategoryId: 42},
-  {userId: 3, subCategoryId: 55},
-  {userId: 3, subCategoryId: 58},
-  {userId: 3, subCategoryId: 66},
-  {userId: 4, subCategoryId: 1},
-  {userId: 4, subCategoryId: 2},
-  {userId: 4, subCategoryId: 6},
-  {userId: 4, subCategoryId: 7},
-  {userId: 4, subCategoryId: 11},
-  {userId: 4, subCategoryId: 20},
-  {userId: 4, subCategoryId: 27},
-  {userId: 4, subCategoryId: 29},
-  {userId: 4, subCategoryId: 34},
-  {userId: 4, subCategoryId: 36},
-  {userId: 4, subCategoryId: 42},
-  {userId: 4, subCategoryId: 51},
-  {userId: 4, subCategoryId: 53},
-  {userId: 4, subCategoryId: 57},
-  {userId: 4, subCategoryId: 61},
-  {userId: 4, subCategoryId: 62},
-  {userId: 4, subCategoryId: 66},
-  {userId: 5, subCategoryId: 1},
-  {userId: 5, subCategoryId: 6},
-  {userId: 5, subCategoryId: 13},
-  {userId: 5, subCategoryId: 17},
-  {userId: 5, subCategoryId: 22},
-  {userId: 5, subCategoryId: 25},
-  {userId: 5, subCategoryId: 28},
-  {userId: 5, subCategoryId: 33},
-  {userId: 5, subCategoryId: 34},
-  {userId: 5, subCategoryId: 35},
-  {userId: 5, subCategoryId: 38},
-  {userId: 5, subCategoryId: 42},
-  {userId: 5, subCategoryId: 46},
-  {userId: 5, subCategoryId: 57},
-  {userId: 5, subCategoryId: 62},
-  {userId: 5, subCategoryId: 63},
-  {userId: 6, subCategoryId: 2},
-  {userId: 6, subCategoryId: 9},
-  {userId: 6, subCategoryId: 10},
-  {userId: 6, subCategoryId: 16},
-  {userId: 6, subCategoryId: 26},
-  {userId: 6, subCategoryId: 29},
-  {userId: 6, subCategoryId: 47},
-  {userId: 6, subCategoryId: 54},
-  {userId: 6, subCategoryId: 66},
-  {userId: 7, subCategoryId: 13},
-  {userId: 7, subCategoryId: 18},
-  {userId: 7, subCategoryId: 22},
-  {userId: 7, subCategoryId: 25},
-  {userId: 7, subCategoryId: 37},
-  {userId: 7, subCategoryId: 41},
-  {userId: 7, subCategoryId: 46},
-  {userId: 8, subCategoryId: 4},
-  {userId: 8, subCategoryId: 12},
-  {userId: 8, subCategoryId: 21},
-  {userId: 8, subCategoryId: 26},
-  {userId: 8, subCategoryId: 29},
-  {userId: 8, subCategoryId: 39},
-  {userId: 8, subCategoryId: 64},
-  {userId: 9, subCategoryId: 1},
-  {userId: 9, subCategoryId: 3},
-  {userId: 9, subCategoryId: 5},
-  {userId: 9, subCategoryId: 6},
-  {userId: 9, subCategoryId: 8},
-  {userId: 9, subCategoryId: 19},
-  {userId: 9, subCategoryId: 22},
-  {userId: 9, subCategoryId: 25},
-  {userId: 9, subCategoryId: 42},
-  {userId: 9, subCategoryId: 44},
-  {userId: 9, subCategoryId: 53},
-  {userId: 9, subCategoryId: 58},
-  {userId: 9, subCategoryId: 62},
-  {userId: 9, subCategoryId: 63},
-  {userId: 10, subCategoryId: 3},
-  {userId: 10, subCategoryId: 7},
-  {userId: 10, subCategoryId: 14},
-  {userId: 10, subCategoryId: 16},
-  {userId: 10, subCategoryId: 19},
-  {userId: 10, subCategoryId: 23},
-  {userId: 10, subCategoryId: 29},
-  {userId: 10, subCategoryId: 31},
-  {userId: 10, subCategoryId: 32},
-  {userId: 10, subCategoryId: 34},
-  {userId: 10, subCategoryId: 35},
-  {userId: 10, subCategoryId: 39},
-  {userId: 10, subCategoryId: 50},
-  {userId: 10, subCategoryId: 66},
-  {userId: 11, subCategoryId: 2},
-  {userId: 11, subCategoryId: 4},
-  {userId: 11, subCategoryId: 14},
-  {userId: 11, subCategoryId: 16},
-  {userId: 11, subCategoryId: 23},
-  {userId: 11, subCategoryId: 29},
-  {userId: 11, subCategoryId: 31},
-  {userId: 11, subCategoryId: 34},
-  {userId: 11, subCategoryId: 37},
-  {userId: 11, subCategoryId: 40},
-  {userId: 11, subCategoryId: 46},
-  {userId: 11, subCategoryId: 65},
-  {userId: 12, subCategoryId: 16},
-  {userId: 12, subCategoryId: 23},
-  {userId: 12, subCategoryId: 31},
-  {userId: 12, subCategoryId: 34},
-  {userId: 12, subCategoryId: 53},
-  {userId: 13, subCategoryId: 1},
-  {userId: 13, subCategoryId: 3},
-  {userId: 13, subCategoryId: 6},
-  {userId: 13, subCategoryId: 9},
-  {userId: 13, subCategoryId: 13},
-  {userId: 13, subCategoryId: 15},
-  {userId: 13, subCategoryId: 16},
-  {userId: 13, subCategoryId: 19},
-  {userId: 13, subCategoryId: 22},
-  {userId: 13, subCategoryId: 27},
-  {userId: 13, subCategoryId: 31},
-  {userId: 13, subCategoryId: 34},
-  {userId: 13, subCategoryId: 38},
-  {userId: 13, subCategoryId: 42},
-  {userId: 13, subCategoryId: 45},
-  {userId: 13, subCategoryId: 49},
-  {userId: 13, subCategoryId: 57},
-  {userId: 13, subCategoryId: 58},
-  {userId: 13, subCategoryId: 60},
-  {userId: 13, subCategoryId: 62},
-  {userId: 13, subCategoryId: 66},
+  {userId: 1, subCategoryId: 1, love: true}, //1
+  {userId: 1, subCategoryId: 5, love: true}, //2
+  {userId: 1, subCategoryId: 6, love: true}, //3
+  {userId: 1, subCategoryId: 8, love: true}, //4
+  {userId: 1, subCategoryId: 10, dislike: true},
+  {userId: 1, subCategoryId: 15, dislike: true},
+  {userId: 1, subCategoryId: 16, dislike: true},  
+  {userId: 1, subCategoryId: 19, love: true}, //5
+  {userId: 1, subCategoryId: 22, love: true}, //6
+  {userId: 1, subCategoryId: 25, love: true}, //7
+  {userId: 1, subCategoryId: 29, love: true}, //8
+  {userId: 1, subCategoryId: 34, love: true}, //9
+  {userId: 1, subCategoryId: 35, dislike: true},
+  {userId: 1, subCategoryId: 39, dislike: true},
+  {userId: 1, subCategoryId: 41, dislike: true},
+  {userId: 1, subCategoryId: 44, love: true}, //10
+  {userId: 1, subCategoryId: 47, dislike: true},
+  {userId: 1, subCategoryId: 49, love: true}, //11
+  {userId: 1, subCategoryId: 53, dislike: true},
+  {userId: 1, subCategoryId: 57, dislike: true},
+  {userId: 1, subCategoryId: 58, love: true}, //12
+  {userId: 1, subCategoryId: 62, love: true}, //13
+  {userId: 1, subCategoryId: 63, love: true}, //14
+  {userId: 2, subCategoryId: 1, love: true},
+  {userId: 2, subCategoryId: 3, love: true},
+  {userId: 2, subCategoryId: 4, dislike: true},  
+  {userId: 2, subCategoryId: 5, love: true},
+  {userId: 2, subCategoryId: 6, love: true},
+  {userId: 2, subCategoryId: 8, love: true},
+  {userId: 2, subCategoryId: 10, love: true},
+  {userId: 2, subCategoryId: 12, dislike: true},
+  {userId: 2, subCategoryId: 16, love: true},
+  {userId: 2, subCategoryId: 17, dislike: true},  
+  {userId: 2, subCategoryId: 19, love: true},
+  {userId: 2, subCategoryId: 22, love: true},
+  {userId: 2, subCategoryId: 25, love: true},
+  {userId: 2, subCategoryId: 29, dislike: true},  
+  {userId: 2, subCategoryId: 30, love: true},
+  {userId: 2, subCategoryId: 32, dislike: true},  
+  {userId: 2, subCategoryId: 34, love: true},
+  {userId: 2, subCategoryId: 36, dislike: true},  
+  {userId: 2, subCategoryId: 39, love: true},
+  {userId: 2, subCategoryId: 45, love: true},
+  {userId: 2, subCategoryId: 48, love: true},
+  {userId: 2, subCategoryId: 49, dislike: true},
+  {userId: 2, subCategoryId: 51, dislike: true},
+  {userId: 2, subCategoryId: 55, dislike: true},  
+  {userId: 2, subCategoryId: 57, love: true},
+  {userId: 2, subCategoryId: 58, love: true},
+  {userId: 2, subCategoryId: 62, love: true},
+  {userId: 3, subCategoryId: 1, dislike: true},  
+  {userId: 3, subCategoryId: 2, love: true},
+  {userId: 3, subCategoryId: 3, love: true},
+  {userId: 3, subCategoryId: 6, love: true},
+  {userId: 3, subCategoryId: 8, dislike: true},
+  {userId: 3, subCategoryId: 9, love: true},
+  {userId: 3, subCategoryId: 13, dislike: true},
+  {userId: 3, subCategoryId: 14, love: true},
+  {userId: 3, subCategoryId: 15, love: true},
+  {userId: 3, subCategoryId: 16, love: true},
+  {userId: 3, subCategoryId: 20, dislike: true},
+  {userId: 3, subCategoryId: 24, love: true},
+  {userId: 3, subCategoryId: 27, dislike: true},
+  {userId: 3, subCategoryId: 32, dislike: true},
+  {userId: 3, subCategoryId: 33, love: true},
+  {userId: 3, subCategoryId: 38, dislike: true},
+  {userId: 3, subCategoryId: 40, love: true},
+  {userId: 3, subCategoryId: 42, love: true},
+  {userId: 3, subCategoryId: 43, dislike: true},
+  {userId: 3, subCategoryId: 46, dislike: true},
+  {userId: 3, subCategoryId: 52, dislike: true},
+  {userId: 3, subCategoryId: 55, love: true},
+  {userId: 3, subCategoryId: 57, dislike: true},
+  {userId: 3, subCategoryId: 58, love: true},
+  {userId: 3, subCategoryId: 62, dislike: true},
+  {userId: 3, subCategoryId: 64, love: true},
+  {userId: 4, subCategoryId: 1, love: true},
+  {userId: 4, subCategoryId: 2, love: true},
+  {userId: 4, subCategoryId: 5, dislike: true},
+  {userId: 4, subCategoryId: 6, love: true},
+  {userId: 4, subCategoryId: 7, love: true},
+  {userId: 4, subCategoryId: 10, dislike: true},
+  {userId: 4, subCategoryId: 11, love: true},
+  {userId: 4, subCategoryId: 13, dislike: true},
+  {userId: 4, subCategoryId: 16, dislike: true},
+  {userId: 4, subCategoryId: 20, love: true},
+  {userId: 4, subCategoryId: 22, dislike: true},
+  {userId: 4, subCategoryId: 25, dislike: true},
+  {userId: 4, subCategoryId: 27, love: true},
+  {userId: 4, subCategoryId: 29, love: true},
+  {userId: 4, subCategoryId: 34, love: true},
+  {userId: 4, subCategoryId: 36, love: true},
+  {userId: 4, subCategoryId: 38, dislike: true},
+  {userId: 4, subCategoryId: 42, love: true},
+  {userId: 4, subCategoryId: 44, dislike: true},
+  {userId: 4, subCategoryId: 49, dislike: true},
+  {userId: 4, subCategoryId: 50, dislike: true},
+  {userId: 4, subCategoryId: 51, love: true},
+  {userId: 4, subCategoryId: 53, love: true},
+  {userId: 4, subCategoryId: 56, dislike: true},
+  {userId: 4, subCategoryId: 57, love: true},
+  {userId: 4, subCategoryId: 61, love: true},
+  {userId: 4, subCategoryId: 62, love: true},
+  {userId: 4, subCategoryId: 64, love: true},
+  {userId: 5, subCategoryId: 1, love: true},
+  {userId: 5, subCategoryId: 2, dislike: true},
+  {userId: 5, subCategoryId: 5, dislike: true},
+  {userId: 5, subCategoryId: 6, love: true},
+  {userId: 5, subCategoryId: 8, dislike: true},
+  {userId: 5, subCategoryId: 13, love: true},
+  {userId: 5, subCategoryId: 14, dislike: true},
+  {userId: 5, subCategoryId: 17, love: true},
+  {userId: 5, subCategoryId: 21, dislike: true},
+  {userId: 5, subCategoryId: 22, love: true},
+  {userId: 5, subCategoryId: 25, love: true},
+  {userId: 5, subCategoryId: 28, love: true},
+  {userId: 5, subCategoryId: 29, dislike: true},
+  {userId: 5, subCategoryId: 33, love: true},
+  {userId: 5, subCategoryId: 34, love: true},
+  {userId: 5, subCategoryId: 35, love: true},
+  {userId: 5, subCategoryId: 36, dislike: true},
+  {userId: 5, subCategoryId: 38, love: true},
+  {userId: 5, subCategoryId: 42, love: true},
+  {userId: 5, subCategoryId: 43, dislike: true},
+  {userId: 5, subCategoryId: 46, love: true},
+  {userId: 5, subCategoryId: 48, dislike: true},
+  {userId: 5, subCategoryId: 52, dislike: true},
+  {userId: 5, subCategoryId: 54, dislike: true},
+  {userId: 5, subCategoryId: 57, love: true},
+  {userId: 5, subCategoryId: 62, love: true},
+  {userId: 5, subCategoryId: 63, love: true},
+  {userId: 5, subCategoryId: 64, dislike: true},
+  {userId: 6, subCategoryId: 1, dislike: true},
+  {userId: 6, subCategoryId: 2, love: true},
+  {userId: 6, subCategoryId: 7, dislike: true},
+  {userId: 6, subCategoryId: 9, love: true},
+  {userId: 6, subCategoryId: 10, love: true},
+  {userId: 6, subCategoryId: 13, dislike: true},
+  {userId: 6, subCategoryId: 16, love: true},
+  {userId: 6, subCategoryId: 19, dislike: true},
+  {userId: 6, subCategoryId: 24, dislike: true},
+  {userId: 6, subCategoryId: 26, love: true},
+  {userId: 6, subCategoryId: 27, dislike: true},
+  {userId: 6, subCategoryId: 29, love: true},
+  {userId: 6, subCategoryId: 32, dislike: true},
+  {userId: 6, subCategoryId: 35, dislike: true},
+  {userId: 6, subCategoryId: 37, dislike: true},
+  {userId: 6, subCategoryId: 39, dislike: true},
+  {userId: 6, subCategoryId: 41, dislike: true},
+  {userId: 6, subCategoryId: 47, love: true},
+  {userId: 6, subCategoryId: 54, love: true},
+  {userId: 6, subCategoryId: 62, dislike: true},
+  {userId: 6, subCategoryId: 64, love: true},
+  {userId: 7, subCategoryId: 13, love: true},
+  {userId: 7, subCategoryId: 18, love: true},
+  {userId: 7, subCategoryId: 22, love: true},
+  {userId: 7, subCategoryId: 23, dislike: true},
+  {userId: 7, subCategoryId: 25, love: true},
+  {userId: 7, subCategoryId: 37, love: true},
+  {userId: 7, subCategoryId: 41, love: true},
+  {userId: 7, subCategoryId: 46, love: true},
+  {userId: 8, subCategoryId: 2, dislike: true},
+  {userId: 8, subCategoryId: 4, love: true},
+  {userId: 8, subCategoryId: 12, love: true},
+  {userId: 8, subCategoryId: 21, love: true},
+  {userId: 8, subCategoryId: 26, love: true},
+  {userId: 8, subCategoryId: 29, love: true},
+  {userId: 8, subCategoryId: 39, love: true},
+  {userId: 8, subCategoryId: 40, dislike: true},
+  {userId: 8, subCategoryId: 64, love: true},
+  {userId: 9, subCategoryId: 1, love: true},
+  {userId: 9, subCategoryId: 3, love: true},
+  {userId: 9, subCategoryId: 5, love: true},
+  {userId: 9, subCategoryId: 6, love: true},
+  {userId: 9, subCategoryId: 8, love: true},
+  {userId: 9, subCategoryId: 9, dislike: true},
+  {userId: 9, subCategoryId: 12, dislike: true},
+  {userId: 9, subCategoryId: 19, love: true},
+  {userId: 9, subCategoryId: 22, love: true},
+  {userId: 9, subCategoryId: 25, love: true},
+  {userId: 9, subCategoryId: 29, dislike: true},
+  {userId: 9, subCategoryId: 37, dislike: true},
+  {userId: 9, subCategoryId: 42, love: true},
+  {userId: 9, subCategoryId: 44, love: true},
+  {userId: 9, subCategoryId: 53, love: true},
+  {userId: 9, subCategoryId: 57, dislike: true},
+  {userId: 9, subCategoryId: 58, love: true},
+  {userId: 9, subCategoryId: 62, love: true},
+  {userId: 9, subCategoryId: 63, love: true},
+  {userId: 10, subCategoryId: 3, love: true},
+  {userId: 10, subCategoryId: 4, dislike: true},
+  {userId: 10, subCategoryId: 7, love: true},
+  {userId: 10, subCategoryId: 14, love: true},
+  {userId: 10, subCategoryId: 16, love: true},
+  {userId: 10, subCategoryId: 19, love: true},
+  {userId: 10, subCategoryId: 20, dislike: true},
+  {userId: 10, subCategoryId: 23, love: true},
+  {userId: 10, subCategoryId: 29, love: true},
+  {userId: 10, subCategoryId: 31, love: true},
+  {userId: 10, subCategoryId: 32, love: true},
+  {userId: 10, subCategoryId: 34, love: true},
+  {userId: 10, subCategoryId: 35, love: true},
+  {userId: 10, subCategoryId: 39, love: true},
+  {userId: 10, subCategoryId: 41, dislike: true},
+  {userId: 10, subCategoryId: 45, dislike: true},
+  {userId: 10, subCategoryId: 49, dislike: true},
+  {userId: 10, subCategoryId: 50, love: true},
+  {userId: 10, subCategoryId: 55, dislike: true},
+  {userId: 10, subCategoryId: 63, dislike: true},
+  {userId: 10, subCategoryId: 64, love: true},
+  {userId: 11, subCategoryId: 2, love: true},
+  {userId: 11, subCategoryId: 4, love: true},
+  {userId: 11, subCategoryId: 7, dislike: true},
+  {userId: 11, subCategoryId: 9, dislike: true},
+  {userId: 11, subCategoryId: 14, love: true},
+  {userId: 11, subCategoryId: 16, love: true},
+  {userId: 11, subCategoryId: 19, dislike: true},
+  {userId: 11, subCategoryId: 23, love: true},
+  {userId: 11, subCategoryId: 25, dislike: true},
+  {userId: 11, subCategoryId: 29, love: true},
+  {userId: 11, subCategoryId: 31, love: true},
+  {userId: 11, subCategoryId: 34, love: true},
+  {userId: 11, subCategoryId: 37, love: true},
+  {userId: 11, subCategoryId: 40, love: true},
+  {userId: 11, subCategoryId: 44, dislike: true},
+  {userId: 11, subCategoryId: 46, love: true},
+  {userId: 11, subCategoryId: 59, dislike: true},
+  {userId: 11, subCategoryId: 63, love: true},
+  {userId: 12, subCategoryId: 16, love: true},
+  {userId: 12, subCategoryId: 23, love: true},
+  {userId: 12, subCategoryId: 29, dislike: true},
+  {userId: 12, subCategoryId: 31, love: true},
+  {userId: 12, subCategoryId: 34, love: true},
+  {userId: 12, subCategoryId: 39, dislike: true},
+  {userId: 12, subCategoryId: 45, dislike: true},
+  {userId: 12, subCategoryId: 53, love: true},
+  {userId: 13, subCategoryId: 1, love: true},
+  {userId: 13, subCategoryId: 3, love: true},
+  {userId: 13, subCategoryId: 6, love: true},
+  {userId: 13, subCategoryId: 9, love: true},
+  {userId: 13, subCategoryId: 11, dislike: true},
+  {userId: 13, subCategoryId: 13, love: true},
+  {userId: 13, subCategoryId: 15, love: true},
+  {userId: 13, subCategoryId: 16, love: true},
+  {userId: 13, subCategoryId: 19, love: true},
+  {userId: 13, subCategoryId: 22, love: true},
+  {userId: 13, subCategoryId: 23, dislike: true},
+  {userId: 13, subCategoryId: 27, love: true},
+  {userId: 13, subCategoryId: 31, love: true},
+  {userId: 13, subCategoryId: 34, love: true},
+  {userId: 13, subCategoryId: 35, dislike: true},
+  {userId: 13, subCategoryId: 38, love: true},
+  {userId: 13, subCategoryId: 42, love: true},
+  {userId: 13, subCategoryId: 45, love: true},
+  {userId: 13, subCategoryId: 46, dislike: true},
+  {userId: 13, subCategoryId: 49, love: true},
+  {userId: 13, subCategoryId: 57, love: true},
+  {userId: 13, subCategoryId: 58, love: true},
+  {userId: 13, subCategoryId: 60, love: true},
+  {userId: 13, subCategoryId: 61, dislike: true},
+  {userId: 13, subCategoryId: 62, love: true},
+  {userId: 13, subCategoryId: 63, dislike: true},
+  {userId: 13, subCategoryId: 64, love: true},
 ]
 
 const seedData = () =>

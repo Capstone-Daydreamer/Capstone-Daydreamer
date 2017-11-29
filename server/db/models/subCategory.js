@@ -4,6 +4,9 @@ const db = require('../db')
 const SubCategory = db.define('subCategory', {
     name: {
       type: Sequelize.STRING
+    },
+    alias: {
+      type: Sequelize.STRING
     }
 })
 

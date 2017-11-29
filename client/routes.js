@@ -4,8 +4,8 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, UserProfile, UserGroups, SingleGroup, NewDay, SingleDay } from './components'
-import { me, fetchCategories, fetchSubCategories } from './store'
+import { Main, Landing, Login, Signup, UserHome, Events, UserProfile, UserGroups, SingleGroup, NewDay, SingleDay, NewGroup } from './components'
+import { me } from './store'
 
 /**
  * COMPONENT
@@ -24,14 +24,17 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are available to all visitors */}
             {/* Routes commented out until actual components are ready to be rendered in */}
+            <Route exact path="/" component={Landing} />
             <Route exact path="/user-groups" component={UserGroups} />
             <Route exact path="/user-groups/:id" component={SingleGroup} />
+            <Route exact path="/user-groups/:groupId/:id" component={SingleDay} />
             {/* <Route path="/Events" component={Events} /> */}
-            <Route path="/Profile" component={UserProfile} />
+            <Route path="/profile" component={UserProfile} />
             <Route path="/newDay" component={NewDay} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route exact path="/user-groups/group/:id" component={SingleDay} />
+            <Route path="/new-group" component={NewGroup} />
+            <Route path="/events" component={Events} />
             {
               isLoggedIn &&
               <Switch>
@@ -63,8 +66,6 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me())
-      dispatch(fetchCategories())
-      dispatch(fetchSubCategories())
     }
   }
 }
