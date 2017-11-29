@@ -19,7 +19,7 @@ export class Events extends Component {
                    activities && activities.map((activity) => {
                        return (
                         <div id="event-group-card" key={activity.id}>
-                        <img id="event-group-img" src="./edit2.jpg" />
+                        <img id="event-group-img" src="/edit2.jpg" />
                         <div id="event-group-content">
                           <div><p><b>{activity.name}</b></p></div>
                           <Divider />

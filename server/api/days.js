@@ -30,12 +30,15 @@ router.get('/:id/:cat', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     Day.create({
-        name: req.body.name,
-        categories: req.body.cats
+      name: req.body.currentDay.name,
+      categories: req.body.currentDay.cats,
+      start: req.body.currentDay.start,
+      end: req.body.currentDay.end,
+      duration: req.body.currentDay.duration
+  })
+    .then((day) => {
+        res.json(day)
     })
-        .then((day) => {
-            res.json(day)
-        })
         .catch(next)
 })
 
@@ -46,6 +49,19 @@ router.post('/groups', (req, res, next) => {
         })
         .catch(next)
 })
+
+router.put('/:id', (req, res, next) => {
+    Day.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    })
+      .then(() => {
+          res.sendStatus(201)
+      })
+      .catch(next)
+  })
+  
 
 router.get('/:id', (req, res, next) => {
     const id = req.params.id

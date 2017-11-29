@@ -35,8 +35,8 @@ router.post('/fb', (req, res, next) => {
   .then(foundUser => (foundUser
     ? res.json(foundUser)
     : User.create({
-        name: req.body.name, 
-        email: req.body.email, 
+        name: req.body.name,
+        email: req.body.email,
         fbId: req.body.fbId
       })
       .then(createdUser => res.json(createdUser))
