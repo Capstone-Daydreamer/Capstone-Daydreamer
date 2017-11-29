@@ -208,7 +208,7 @@ const cats = [
   { name: 'Bars', alias: 'bars'}, //1
   { name: 'Music', alias: 'music'}, //2
   { name: 'Movies', alias: 'movies_film'}, //3
-  { name: 'Museums', alias: 'attractions'}, //4
+  { name: 'Shows', alias: 'shows'}, //4
   { name: 'Restaurants', alias:'restaurants'}, //5
   { name: 'Sports Games',alias: 'sports'}, //6
   { name: 'Theater', alias:'performing_arts'} //7
@@ -300,7 +300,7 @@ const subcats = [
   { name: 'Pop', alias: 'pop' }, //16
   { name: 'Punk', alias: 'punk' }, //17
   { name: 'Rap', alias: 'rap' }, //18
-  { name: 'Rock', alias: 'rock' }, //19
+  { name: 'Rock', alias: 'rock concert' }, //19
   { name: 'Action', alias: 'action' }, //20
   { name: 'Animation', alias: 'animation' }, //21
   { name: 'Comedy Movie', alias: 'comedy movie' }, //22
@@ -310,11 +310,11 @@ const subcats = [
   { name: 'Fantasy', alias: 'fantasy' }, //26
   { name: 'Horror', alias: 'horror' }, //27
   { name: 'Musical Movie', alias: 'musical' }, //28
-  { name: 'SciFi', alias: 'scifi' }, //29
+  { name: 'SciFi', alias: 'sci-fi' }, //29
   { name: 'Western', alias: 'western' }, //30
-  { name: 'Art', alias: 'art museum' }, //31
-  { name: 'Children Museum', alias: 'children museum' }, //32
-  { name: 'History', alias: 'history museum' }, //33
+  { name: 'Comedy Show', alias: 'comedy' }, //33
+  { name: 'Shows good for Families', alias: 'family_fun_kids' }, //32
+  { name: 'Shows with Literary Focus', alias: 'books' }, //31
   { name: 'American', alias: 'newamerican' }, //34
   { name: 'Asian Fusion', alias: 'asianfusion' }, //35
   { name: 'Barbeque', alias: 'bbq' }, //36

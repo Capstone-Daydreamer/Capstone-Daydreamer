@@ -28,7 +28,8 @@ export const addDay = (event, groupId, cats) => dispatch => {
   const currentDay = { name: event.name.value, 
                 start: event.startDate.value, 
                 end: event.endDate.value,
-                duration: event.Duration.value
+                duration: event.Duration.value,
+                location: event.location.value
               }
   return axios.post(`/api/days`, {currentDay, cats})
     .then(res => res.data)
@@ -37,7 +38,7 @@ export const addDay = (event, groupId, cats) => dispatch => {
       dispatch(newDay(day))
       history.push(`/user-groups/${groupId}/${day.id}`)
     })
-    .catch()
+    .catch(e => console.log(e))
 }
 
 export const putDay = (date, dayId, groupId) => {
@@ -52,9 +53,9 @@ export const putDay = (date, dayId, groupId) => {
                       dispatch(action);
                       history.push(`/user-groups/${groupId}`);
                   })
-                  .catch()
+                  .catch(e => console.log(e))
           })
-          .catch()
+          .catch(e => console.log(e))
   }
 }
 
