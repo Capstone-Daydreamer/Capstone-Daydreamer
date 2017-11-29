@@ -25,8 +25,6 @@ router.get('/:userId', async (req, res, next) => {
   cronofyClient.listCalendars(options)
     .then(async (response) => {
       let user = await User.findById(req.params.userId)
-      console.log(user)
-      console.log(req.params.userId)
 
       let calendarArr = [];
       var calendars = response.calendars;
