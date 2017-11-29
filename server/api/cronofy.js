@@ -51,11 +51,11 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 })
 
 // router.get('/availability/', (req, res, next) => {
-  
+
 //     var options = {
 //       tzid: 'Etc/UTC',
 //     };
-  
+
 //     cronofyClient.accountInformation(options)
 //       .then(function (response) {
 //         var account = response.account;
@@ -104,7 +104,27 @@ router.get('/availability/:groupId', async (req, res, next) => {
   cronofyClient.availability(options)
     .then(function (response) {
       var available_periods = response.available_periods;
-      res.json(available_periods)
+      // res.json(available_periods)
       // Dummy JSON data for testing reasons
+      res.json({
+        "available_periods": [
+          {
+            "start": "2017-11-26T09:00:00Z",
+            "end": "2017-11-26T11:00:00Z",
+            "participants": [
+              { "sub": "acc_567236000909002" },
+              { "sub": "acc_678347111010113" }
+            ]
+          },
+          {
+            "start": "2017-11-27T11:00:00Z",
+            "end": "2017-11-27T17:00:00Z",
+            "participants": [
+              { "sub": "acc_567236000909002" },
+              { "sub": "acc_678347111010113" }
+            ]
+          },
+        ]
+      })
     }).catch(next)
 })
