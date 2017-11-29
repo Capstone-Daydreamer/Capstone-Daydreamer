@@ -6,13 +6,11 @@ import history from '../history'
  */
 const GET_ACTIVITIES = 'GET_ACTIVITIES'
 const POST_SELECTED_ACTIVITES = 'POST_SELECTED_ACTIVITES'
-const GET_SELECTED_ACTIVITIES = 'GET_SELECTED_ACTIVITIES'
 /**
  * ACTION CREATORS
  */
 const getActivities = (activities) => ({ type: GET_ACTIVITIES, activities })
 const postActivities = activities => ({type: POST_SELECTED_ACTIVITES, activities})
-const getSelectedActivities = activities => ({type: GET_SELECTED_ACTIVITIES, activities})
 
 /**
  * THUNK CREATORS
@@ -44,11 +42,6 @@ export const postSelectedEventfulActivities = (name, location, dayId, venueName,
     .catch(err => console.log(err))
 }
 
-export const checkEvents = (id, cat) => dispatch => {
-  axios.get(`/api/days/${id}/${cat}`)
-    .then(res => dispatch(getSelectedActivities(res.data)))
-    .catch(err => console.log(err))
-}
 
 /**
  * REDUCER
@@ -59,8 +52,6 @@ export default function (activities = [], action) {
       return action.activities
     case POST_SELECTED_ACTIVITES:
       return action.activities
-    case GET_SELECTED_ACTIVITIES:
-      return [...activities, action.activities]
     default:
       return activities
   }

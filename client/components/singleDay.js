@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import { fetchDay, fetchGroupInt, checkEvents } from '../store'
+import { fetchDay, fetchGroupInt } from '../store'
 import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
 
 /**
@@ -19,9 +19,6 @@ export class SingleDay extends React.Component {
   }
 
   handleItemClick(e, { name }) {
-    const id = this.props.match.params.id
-    this.props.checkSelectedEvents(id, 'bars')
-    this.props.checkSelectedEvents(id, 'restaurants')
     this.setState({ activeItem: name })
   }
 
@@ -32,17 +29,6 @@ export class SingleDay extends React.Component {
   render() {
     const { days } = this.props
     const groupId = this.props.match.params.groupId
-    const today = new Date()
-    const event = new Date(days.date)
-    const stateOfDay = () => {
-      const sec = days.createdAt && event.getTime() - Date.now()
-
-      if (sec < 0) {
-        return true
-      } else {
-        return false
-      }
-    }
     const subComponent = () => {
       if (this.state.activeItem === 'schedule') {
         return <SingleDaySchedule days={days} groupId={groupId} />
@@ -81,9 +67,6 @@ const mapDispatch = dispatch => {
     loadDay(id) {
       dispatch(fetchDay(id))
       dispatch(fetchGroupInt(id))
-    },
-    checkSelectedEvents(id, cat) {
-      dispatch(checkEvents(id, cat))
     }
   }
 }

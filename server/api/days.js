@@ -8,25 +8,6 @@ const reject = (status, msg, next) => {
     next(err);
 }
 
-router.get('/:id/:cat', (req, res, next) => {
-    const id = req.params.id
-    Day.findById(id, {
-        include: [{
-            model: Activity, where: {
-                category: req.params.cat
-            }
-        }]
-    })
-        .then((day) => {
-            // console.log('DAY', day.activities)
-            if (!day) {
-                res.json(day);
-            } else {
-                res.json(day.activities)
-            }
-        })
-        .catch(next)
-})
 
 router.post('/', (req, res, next) => {
     Day.create({
