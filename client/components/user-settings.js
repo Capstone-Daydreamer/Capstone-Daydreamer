@@ -4,22 +4,23 @@ import { Grid, Form, Button } from 'semantic-ui-react'
 import axios from 'axios'
 
 export class UserSettings extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-           formError: false
+            formError: false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleSubmit(evt){
+    handleSubmit(evt) {
         evt.preventDefault()
-        if (evt.target.password.value === evt.target.confirmPassword.value){
-          axios.put(`/api/users/${this.props.user.id}`, { password: evt.target.password.value})
-        }  
+        if (evt.target.password.value === evt.target.confirmPassword.value) {
+            axios.put(`/api/users/${this.props.user.id}`, { password: evt.target.password.value })
+        }
     }
 
-    render(){ 
+    render() {
+        const { user } = this.props;
         return (
             <Grid centered columns={1} padded>
             <div id="row">
@@ -27,19 +28,18 @@ export class UserSettings extends Component {
                 <p>Profile tweaks go here.</p>
               </div>
             </div>
-            <div id="row">  
-            <Form onSubmit={this.handleSubmit}>
-            <Form.Field>
-                <label>New Password</label>
-                <input name="password"type="password" placeholder='Password' />
-            </Form.Field>
-            <Form.Field>
-                <label>Confirm Password</label>
-                <input name="confirmPassword" type="password" placeholder='Confirm Password' />
-            </Form.Field>
-            <Button type='submit'>Submit</Button>
-        </Form>
-            </div>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Field>
+                        <label>New Password</label>
+                        <input name="password" type="password" placeholder="Password" />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Confirm Password</label>
+                        <input name="confirmPassword" type="password" placeholder="Confirm Password" />
+                    </Form.Field>
+                    <Button type="submit">Submit</Button>
+                </Form>
+                <Button type="submit" href={`http://127.0.0.1:8080/auth/cronofy/${user.id}`}>Authenticate with your Calendars</Button>
             </Grid>
         )
     }

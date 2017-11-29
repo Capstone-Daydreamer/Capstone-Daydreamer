@@ -18,25 +18,22 @@ var cronofyClient = new Cronofy({
 
 // Route to GET all Calendars
 router.get('/:userId', async (req, res, next) => {
-  const user = await User.findById(req.params.userId)
-
-  // Code to abstract client privilages
-  // To be used for each route, with different parameters depending on bare minimum needed
-  // var cronofyClient = new Cronofy({
-  //   client_id: process.env.CRONOFY_CLIENT_ID,
-  //   client_secret: process.env.CRONOFY_CLIENT_ID,
-  //   account_id: user.cronofyAccId,
-  //   access_token: user.cronofyAccessToken,
-  //   refresh_token: user.cronofyRefreshToken,
-  // });
-
   var options = {
     tzid: 'Etc/UTC',
   };
 
   cronofyClient.listCalendars(options)
-    .then(function (response) {
+    .then(async (response) => {
+      let user = await User.findById(req.params.userId)
+      console.log(user)
+      console.log(req.params.userId)
+      
+      let calendarArr = [];
       var calendars = response.calendars;
+      calendars.forEach( calendar => calendarArr.push(calendar.calendar_id))
+      await user.update({
+        calendarTokens: calendarArr,
+      });
       res.json(calendars);
     })
 })
