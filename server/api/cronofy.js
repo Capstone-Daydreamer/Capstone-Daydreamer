@@ -11,9 +11,9 @@ module.exports = router
 var cronofyClient = new Cronofy({
   client_id: process.env.CRONOFY_CLIENT_ID,
   client_secret: process.env.CRONOFY_CLIENT_ID,
-  account_id: 'acc_5a0e0f4cc631834e720004d7',
-  access_token: 'XxShWb2gjnkO6CGZtLAQwUVjnyEG3TVn',
-  refresh_token: 'L9KGBv-OAugyTI_2mN8_dt-9NBx9EamT'
+  // account_id: 'acc_5a0e0f4cc631834e720004d7',
+  access_token: 'kQjGF1tChy4bLcN5_sQD8MkIThd17nZF',
+  refresh_token: process.env.CRONOFY_REFRESH
 });
 
 // Route to GET all Calendars
@@ -27,10 +27,10 @@ router.get('/:userId', async (req, res, next) => {
       let user = await User.findById(req.params.userId)
       console.log(user)
       console.log(req.params.userId)
-      
+
       let calendarArr = [];
       var calendars = response.calendars;
-      calendars.forEach( calendar => calendarArr.push(calendar.calendar_id))
+      calendars.forEach(calendar => calendarArr.push(calendar.calendar_id))
       await user.update({
         calendarTokens: calendarArr,
       });
@@ -54,19 +54,10 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 
 // Route to GET availability accross a single group
 router.get('/availability/:groupId', async (req, res, next) => {
-  // var group = [
-  //   // Needs to abstracted still
-  //   // group = everyone in group with account id and relevant calendar ids
-  //   { // Bens Information
-  //     account_id: 'acc_5a0e0f4cc631834e720004d7',
-  //     calendar_ids: ['cal_Wg4PW42@zx-aAAE1_vqr0kiOnXqIcyOH@pEbWFg']
-  //   },
-
-  // ]
-  const group = await Group.findById(req.params.groupId, { include: [ User ] });
+  const group = await Group.findById(req.params.groupId, { include: [User] });
   const users = group.users;
-  console.log("GROUP", group)
-  res.json(group)
+
+  // Create options to be sent into the API
   var options = {
     participants: [
       {
@@ -83,6 +74,7 @@ router.get('/availability/:groupId', async (req, res, next) => {
     ]
   }
 
+  // Looks at each user and adds their Cronofy authentication info to the object
   users.forEach(user => {
     options.participants[0].members.push({
       sub: user.cronofyAccId,
@@ -90,28 +82,12 @@ router.get('/availability/:groupId', async (req, res, next) => {
     })
   })
 
+  // Checks availability using Options combined with relevant User info
+  // res.json(options)
   cronofyClient.availability(options)
-  .then(function (response) {
-    var available_periods = response.available_periods;
-    res.json({
-      available_periods: [
-        {
-          start: '2017-12-26T09:00:00Z',
-          end: '2017-12-26T11:00:00Z',
-          participants: [
-            { sub: 'acc_567236000909002' },
-            { sub: 'acc_678347111010113' }
-          ]
-        },
-        {
-          start: '2017-12-27T11:00:00Z',
-          end: '2017-12-27T17:00:00Z',
-          participants: [
-            { sub: 'acc_567236000909002' },
-            { sub: 'acc_678347111010113' }
-          ]
-        },
-      ]
-    });
-  }).catch(next)
+    .then(function (response) {
+      var available_periods = response.available_periods;
+      res.json(available_periods)
+      // Dummy JSON data for testing reasons
+    }).catch(next)
 })

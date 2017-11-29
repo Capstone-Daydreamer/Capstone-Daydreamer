@@ -34,18 +34,27 @@ passport.use('cronofy', new OAuth2Strategy({
     refresh_token: refreshToken
   });
 
+  const options = {
+    tzid: 'Etc/UTC',
+  };
+
   const user = await User.findById(userId);
 
-  const response = await newCronofyClient.listCalendars({
-    tzid: 'Etc/UTC',
-  })
+  const accountRes = await newCronofyClient.accountInformation(options)
+
+  const accountInfo = accountRes.account
+
+  const calendarRes = await newCronofyClient.listCalendars(options)
+
+  var calendars = calendarRes.calendars;
+
   let calendarArr = [];
-  var calendars = response.calendars;
   calendars.forEach( calendar => calendarArr.push(calendar.calendar_id))
 
   await user.update({
-    cronofyAccId: token,
+    cronofyAccessToken: token,
     cronofyRefreshToken: refreshToken,
+    cronofyAccId: accountInfo.account_id,
     calendarTokens: calendarArr,
   });
   // cronofyClient.requestAccessToken({ code: token })
@@ -64,11 +73,7 @@ router.get('/:userId', (req, res, next) => {
 // Finish the authentication process by attempting to obtain an access
 // token.  If authorization was granted, the user will be logged in.
 // Otherwise, authentication has failed.
-router.get('/callback', (req, res, next) => {
-  console.log("CALLBACK USER", userId);
-  next();
-},
-  passport.authorize('cronofy', {
+router.get('/callback', passport.authorize('cronofy', {
     successRedirect: `http://127.0.0.1:8080/profile`,
     failureRedirect: `http://127.0.0.1:8080/profile`
   })
