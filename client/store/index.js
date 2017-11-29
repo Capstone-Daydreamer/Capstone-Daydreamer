@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -13,6 +13,7 @@ import users from './users'
 import activity from './activity'
 import eventfulrecommend from './eventful'
 import cronofy from './cronofy'
+import userSubCategories from './userSubcats'
 
 const reducer = combineReducers({ user,
                                   days,
@@ -24,11 +25,12 @@ const reducer = combineReducers({ user,
                                   subCategories,
                                   yelprecommend,
                                   recommendations,
-                                  eventfulrecommend})
+                                  eventfulrecommend,
+                                  userSubCategories})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: true})
+  createLogger({ collapsed: true })
 ))
 const store = createStore(reducer, middleware)
 
@@ -43,4 +45,5 @@ export * from './day'
 export * from './recommendation'
 export * from './users'
 export * from './activity'
+export * from './userSubcats'
 export * from './eventful'

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Menu, Grid, Card } from 'semantic-ui-react'
-import {fetchCategories, fetchSubCategories, addInterest, destroyInterest} from '../store'
+import { fetchCategories, fetchSubCategories, fetchUserSubCategories } from '../store'
+import UserInterestCard from './user-interest-card'
+import { withRouter } from 'react-router-dom'
 
 export class UserInterests extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             activeItem: '',
@@ -14,37 +16,29 @@ export class UserInterests extends Component {
     }
 
     componentDidMount() {
-        this.props.loadInitialData()
-      }
+        const id = this.props.user.id
+        this.props.loadInitialData(id)
+    }
 
     handleItemClick = (e, cat) => {
         this.setState({ activeItem: cat.name, activeItemId: cat.id })
     }
 
 
-    render(){ 
-        const user = this.props.user
-        const userCategories = user.id && user.subCategories.map((subCategory) => {
-            return subCategory.id
-        })
+    render() {
+        const { user, userSubCategories, categories } = this.props
         const activeItem = this.state.activeItem
-        const categories = this.props.categories
-        const subCategories = this.props.subCategories.length > 0 && this.props.subCategories.filter((subCategory)=> {
+        const subCategories = this.props.subCategories.length > 0 && this.props.subCategories.filter((subCategory) => {
             if (this.state.activeItemId === -1) {
                 return subCategory
             } return subCategory.categories[0].id === this.state.activeItemId
         })
-        const userInterest = (subCategory) => {
-            if (userCategories.length && userCategories.indexOf(subCategory.id) !== -1){
-                return 'green'
-            }
-            return 'red'
-        }
+        
         return (
             <Grid>
                 <Grid.Column width={4}>
                     <Menu pointing secondary vertical>
-                    <Menu.Item name="All" active={activeItem === "All"} onClick={(evt) => this.handleItemClick(evt, {name: name, id: -1})} />
+                        <Menu.Item name="All" active={activeItem === "All"} onClick={(evt) => this.handleItemClick(evt, { name: name, id: -1 })} />
                         {
                             categories && categories.map((category) => {
                                 return <Menu.Item key={category.id} name={category.name} active={activeItem === category.name} onClick={(evt) => this.handleItemClick(evt, category)} />
@@ -57,18 +51,7 @@ export class UserInterests extends Component {
                         <p>Keep your interests up to date so we can keep giving awesome recommendations.</p>
                     </div>
                     <Card.Group>
-                        {
-                            subCategories.length > 0 && subCategories.map((subCategory) => {
-                                return (
-                                    <Card key={subCategory.id} color={userInterest(subCategory)} onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)}>
-                                        <Card.Content>
-                                            <Card.Header>{subCategory.name}</Card.Header>
-                                        </Card.Content>
-                                    </Card>
-                                )
-                            })
-                            
-                        }
+                        {subCategories.length > 0 && subCategories.map(subCategory => <UserInterestCard key={subCategory.id} subCategory={subCategory} userSubCategories={userSubCategories} user={user} />)}
                     </Card.Group>
                 </Grid.Column>
             </Grid>
@@ -80,26 +63,20 @@ const mapState = (state) => {
     return {
         user: state.user,
         categories: state.categories,
-        subCategories: state.subCategories
+        subCategories: state.subCategories,
+        userSubCategories: state.userSubCategories
     }
 }
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = (dispatch) => {
     return {
-        handleIntUpdate(e, cat, color, user) {
-            if (color === 'red'){
-                dispatch(addInterest(user.id, cat.id))
-            } else {
-                dispatch(destroyInterest(user.id, cat.id))
-            }
-        },
-        loadInitialData() {
+        loadInitialData(id) {
             dispatch(fetchCategories())
             dispatch(fetchSubCategories())
-          }
+            dispatch(fetchUserSubCategories(id))
+        }
     }
 }
 
-const Container = connect(mapState, mapDispatch)(UserInterests)
 
-export default Container
+export default withRouter(connect(mapState, mapDispatch)(UserInterests))

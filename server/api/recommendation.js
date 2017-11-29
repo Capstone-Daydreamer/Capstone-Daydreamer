@@ -33,42 +33,54 @@ const bigcats = [{
     }
 }]
 
-const checkAgainst = (userSubs) => {
+const checkAgainst = (userSubs, id) => {
     let results = {}
     
     userSubs.forEach((userSub) => {
-        let catsName = userSub.categories[0].dataValues.alias
-        let subName = userSub.alias
+        let catsName = userSub.categories[0].name
+        let subName = userSub.alias ? userSub.alias : userSub.name
+        let opinion = userSub.userSubCategory.love ? 1 : -1
+        if (!userSub.userSubCategory.love && !userSub.userSubCategory.dislike) opinion = 0
         if (results[catsName]) {
             if (results[catsName][subName]) {
-                results[catsName][subName]++
+                results[catsName][subName] += opinion
             } else {
-                results[catsName][subName] = 1
+                results[catsName][subName] = opinion
             }
         } else {
-            let obj = { [subName]: 1 }
+            let obj = { [subName]: opinion }
             results[catsName] = obj
         }
         
     })
-    return finalPick(results)
+    return finalPick(results, id)
 }
 
 
-function finalPick(obj) {
+function finalPick(obj, id) {
     let lastresult = {}
     const arrKey = Object.keys(obj)
     arrKey.forEach(cat => {
         lastresult[cat] = ''
-        const arrKeySubcat = Object.keys(obj[cat])
-        let max = 0
-        arrKeySubcat.forEach(subcat => {
-            if (obj[cat][subcat] > max) {
-                lastresult[cat] = subcat
-                max = obj[cat][subcat]
-            }
-        })
+        let arrKeySubcat = Object.keys(obj[cat])
+        if (cat === 'Restaurants' || cat === 'Bars'){
+            arrKeySubcat = arrKeySubcat.filter(subcat => {
+                return (obj[cat][subcat] > 0)
+            })
+            if (arrKeySubcat.length <= 0) arrKeySubcat = Object.keys(obj[cat])
+            let hash = id % arrKeySubcat.length
+            lastresult[cat] = arrKeySubcat[hash]
+        } else {
+            let max = 0
+            arrKeySubcat.forEach(subcat => {
+                if (obj[cat][subcat] > max) {
+                    lastresult[cat] = subcat
+                    max = obj[cat][subcat]
+                }
+            })
+        }
     })
+    console.log('res', lastresult)
     return lastresult
 }
 

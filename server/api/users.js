@@ -24,6 +24,34 @@ router.get('/all', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/love', (req, res, next) => {
+  UserSubCategory.update(req.body, {
+    where: {
+      userId: req.body.userId,
+      subCategoryId: req.body.subCategoryId
+    },
+    returning: true
+  })
+  .then((instance) => {
+    res.json(instance[1][0])
+  })
+  .catch()
+})
+
+router.put('/hate', (req, res, next) => {
+  UserSubCategory.update(req.body, {
+    where: {
+      userId: req.body.userId,
+      subCategoryId: req.body.subCategoryId
+    },
+    returning: true
+  })
+  .then((instance) => {
+    res.json(instance[1][0])
+  })
+  .catch()
+})
+
 router.put('/:id', (req, res, next) => {
   User.findById(req.params.id)
   .then((user)=> {
@@ -32,7 +60,7 @@ router.put('/:id', (req, res, next) => {
   .catch(next);
 });
 
-router.post('/add', (req, res, next) => {
+router.post('/add/love', (req, res, next) => {
   UserSubCategory.create(req.body)
   .then((instance) => {
     res.json(instance)
@@ -40,15 +68,11 @@ router.post('/add', (req, res, next) => {
   .catch()
 })
 
-router.delete('/remove/:userId/:subCategoryId', (req, res, next) => {
-  UserSubCategory.destroy({
-    where: {
-      userId: req.params.userId,
-      subCategoryId: req.params.subCategoryId
-    }
-  })
-  .then(() => {
-    res.sendStatus(201)
+
+router.post('/add/dislike', (req, res, next) => {
+  UserSubCategory.create(req.body)
+  .then((instance) => {
+    res.json(instance)
   })
   .catch()
 })
@@ -66,7 +90,7 @@ router.get('/subCategory/:id', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  User.findOne({where: {id: req.params.id}, include: [{ model: Group, nested: true, include: [{ model: Day, nested: true, include: [{ model: Activity, nested: true }] }] }, { model: SubCategory}]})
+  User.findOne({where: {id: req.params.id}, include: [{ model: Group, include: [{ model: Day}] }, { model: SubCategory}, { model: Activity}]})
   .then(user => {
     res.json(user)
   })

@@ -3,7 +3,7 @@ const {User, Group, Day, Activity, SubCategory} = require('../db/models')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
-  User.findOne({where: {email: req.body.email}, include: [{ model: Group, nested: true, include: [{ model: Day, nested: true, include: [{ model: Activity, nested: true }] }] }, { model: SubCategory}, { model: Activity}]})
+  User.findOne({where: {email: req.body.email}, include: [{ model: Group, include: [{ model: Day }] }, { model: SubCategory}, { model: Activity}]})
     .then(user => {
       if (!user) {
         res.status(401).send('User not found')
