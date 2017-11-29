@@ -23,7 +23,6 @@ export class Chat extends React.Component {
     const rootRef = firebase.database().ref().child('messages');
     const groupMessageRef = rootRef.child(1);
     groupMessageRef.limitToLast(6).on('child_added', data => {
-      console.log('Added', data.val());
       let val = data.val();
       this.setState({
         messages: [...this.state.messages, val]
@@ -53,7 +52,6 @@ export class Chat extends React.Component {
   }
 
   render() {
-    console.log("MESSAGES", this.state.messages)
     let keyInt = 0;
     return (
       <div id="messages-card-container" >
