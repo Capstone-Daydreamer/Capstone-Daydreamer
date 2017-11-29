@@ -6,10 +6,14 @@ const { User } = require('../db/models');
 const Cronofy = require('cronofy');
 module.exports = router
 
+
+
 var cronofyClient = new Cronofy({
-  clientId: process.env.CRONOFY_CLIENT_ID,
-  clientSecret: process.env.CRONOFY_CLIENT_SECRET
-});
+  client_id: process.env.CRONOFY_CLIENT_ID,
+  client_secret: process.env.CRONOFY_CLIENT_ID,
+})
+
+let userId = 0
 
 passport.use('cronofy', new OAuth2Strategy({
   responseType: 'code',
@@ -17,32 +21,55 @@ passport.use('cronofy', new OAuth2Strategy({
   callbackURL: process.env.CRONOFY_CALLBACK,
   authorizationURL: 'https://app.cronofy.com/oauth/authorize',
   scope: ['create_calendar', 'read_events', 'create_event', 'delete_event', 'read_free_busy', 'change_participation_status'],
-  state: {/* Can put anything you need here... client ID? */},
+  state: {/* Can put anything you need here... client ID? */ },
   tokenURL: 'https://api.cronofy.com/oauth/token',
   clientSecret: process.env.CRONOFY_CLIENT_SECRET,
 }, async (token, refreshToken, profile, done) => {
-  const user = await User.findById(2);
+
+  //
+  var newCronofyClient = new Cronofy({
+    clientId: process.env.CRONOFY_CLIENT_ID,
+    clientSecret: process.env.CRONOFY_CLIENT_SECRET,
+    access_token: token,
+    refresh_token: refreshToken
+  });
+
+  const user = await User.findById(userId);
+
+  const response = await newCronofyClient.listCalendars({
+    tzid: 'Etc/UTC',
+  })
+  let calendarArr = [];
+  var calendars = response.calendars;
+  calendars.forEach( calendar => calendarArr.push(calendar.calendar_id))
+
   await user.update({
     cronofyAccId: token,
     cronofyRefreshToken: refreshToken,
+    calendarTokens: calendarArr,
   });
   // cronofyClient.requestAccessToken({ code: token })
   done(null, user)
 }));
 
-
 // Redirect the user to the OAuth 2.0 provider for authentication.  When
 // complete, the provider will redirect the user back to the application at
 //     /auth/provider/callback
-router.get('/', passport.authorize('cronofy'));
+router.get('/:userId', (req, res, next) => {
+  if (userId === 0) userId = req.params.userId;
+  next();
+}, passport.authorize('cronofy'));
 
 // The OAuth 2.0 provider has redirected the user back to the application.
 // Finish the authentication process by attempting to obtain an access
 // token.  If authorization was granted, the user will be logged in.
 // Otherwise, authentication has failed.
-router.get('/callback',
-    passport.authorize('cronofy', {
-      successRedirect: '/success',
-      failureRedirect: '/failure'
-    })
+router.get('/callback', (req, res, next) => {
+  console.log("CALLBACK USER", userId);
+  next();
+},
+  passport.authorize('cronofy', {
+    successRedirect: `http://127.0.0.1:8080/profile`,
+    failureRedirect: `http://127.0.0.1:8080/profile`
+  })
 );
