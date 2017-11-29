@@ -22,17 +22,24 @@ export class UserSettings extends Component {
     render(){ 
         return (
             <Grid centered columns={1} padded>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Field>
-                        <label>New Password</label>
-                        <input name="password"type="password" placeholder='Password' />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Confirm Password</label>
-                        <input name="confirmPassword" type="password" placeholder='Confirm Password' />
-                    </Form.Field>
-                    <Button type='submit'>Submit</Button>
-                </Form>
+            <div id="row">
+              <div id="groups-header"><h1>Account Settings</h1>
+                <p>Profile tweaks go here.</p>
+              </div>
+            </div>
+            <div id="row">  
+            <Form onSubmit={this.handleSubmit}>
+            <Form.Field>
+                <label>New Password</label>
+                <input name="password"type="password" placeholder='Password' />
+            </Form.Field>
+            <Form.Field>
+                <label>Confirm Password</label>
+                <input name="confirmPassword" type="password" placeholder='Confirm Password' />
+            </Form.Field>
+            <Button type='submit'>Submit</Button>
+        </Form>
+            </div>
             </Grid>
         )
     }
