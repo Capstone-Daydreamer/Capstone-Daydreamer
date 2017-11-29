@@ -25,7 +25,6 @@ router.post('/groups', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-    console.log('looking for req body', req.body)
     Day.update(req.body, {
         where: {
             id: req.params.id
