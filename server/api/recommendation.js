@@ -37,8 +37,8 @@ const checkAgainst = (userSubs, id) => {
     let results = {}
     
     userSubs.forEach((userSub) => {
-        let catsName = userSub.categories[0].name
-        let subName = userSub.alias ? userSub.alias : userSub.name
+        let catsName = userSub.categories[0].alias
+        let subName = userSub.alias
         let opinion = userSub.userSubCategory.love ? 1 : -1
         if (!userSub.userSubCategory.love && !userSub.userSubCategory.dislike) opinion = 0
         if (results[catsName]) {
@@ -80,7 +80,6 @@ function finalPick(obj, id) {
             })
         }
     })
-    console.log('res', lastresult)
     return lastresult
 }
 

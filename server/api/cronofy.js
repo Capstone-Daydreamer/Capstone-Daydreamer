@@ -18,25 +18,22 @@ var cronofyClient = new Cronofy({
 
 // Route to GET all Calendars
 router.get('/:userId', async (req, res, next) => {
-  const user = await User.findById(req.params.userId)
-
-  // Code to abstract client privilages
-  // To be used for each route, with different parameters depending on bare minimum needed
-  // var cronofyClient = new Cronofy({
-  //   client_id: process.env.CRONOFY_CLIENT_ID,
-  //   client_secret: process.env.CRONOFY_CLIENT_ID,
-  //   account_id: user.cronofyAccId,
-  //   access_token: user.cronofyAccessToken,
-  //   refresh_token: user.cronofyRefreshToken,
-  // });
-
   var options = {
     tzid: 'Etc/UTC',
   };
 
   cronofyClient.listCalendars(options)
-    .then(function (response) {
+    .then(async (response) => {
+      let user = await User.findById(req.params.userId)
+      console.log(user)
+      console.log(req.params.userId)
+      
+      let calendarArr = [];
       var calendars = response.calendars;
+      calendars.forEach( calendar => calendarArr.push(calendar.calendar_id))
+      await user.update({
+        calendarTokens: calendarArr,
+      });
       res.json(calendars);
     })
 })
@@ -55,8 +52,23 @@ router.get('/accountinfo/:userId', (req, res, next) => {
     }).catch(next)
 })
 
+// router.get('/availability/', (req, res, next) => {
+  
+//     var options = {
+//       tzid: 'Etc/UTC',
+//     };
+  
+//     cronofyClient.accountInformation(options)
+//       .then(function (response) {
+//         var account = response.account;
+//         res.json(account);
+//       }).catch(next)
+//   })
+
 // Route to GET availability accross a single group
-router.get('/availability/:groupId', (req, res, next) => {
+router.post('/availability/:groupId', (req, res, next) => {
+  const currentDay = req.body
+
   var group = [
     // Needs to abstracted still
     // group = everyone in group with account id and relevant calendar ids
@@ -74,11 +86,16 @@ router.get('/availability/:groupId', (req, res, next) => {
         required: 'all'
       }
     ],
+    // required_duration: { minutes: currentDay.duration },
     required_duration: { minutes: 60 },
     available_periods: [
+      // {
+      //   start: currentDay.start + ':00Z',
+      //   end: currentDay.end + ':00Z'
+      // }
       {
-        start: '2017-12-21T09:00:00Z',
-        end: '2017-12-21T18:00:00Z'
+        start: '2017-12-26T09:00:00Z',
+        end: '2017-12-26T11:00:00Z'
       }
     ]
   }
@@ -92,7 +109,8 @@ router.get('/availability/:groupId', (req, res, next) => {
 
   cronofyClient.availability(options)
   .then(function (response) {
-    var available_periods = response.available_periods;
+    // var available_periods = response.available_periods;
+    // res.json(available_periods)
     res.json({
       available_periods: [
         {

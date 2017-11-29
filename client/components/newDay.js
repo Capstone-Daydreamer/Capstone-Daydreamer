@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Grid, Form, Button, Checkbox, Segment, Header } from 'semantic-ui-react'
-import { addDay } from '../store'
+import { addDay, fetchAvailability, fetchCategories } from '../store'
 import { withRouter } from 'react-router-dom'
 
 export class NewDay extends Component {
@@ -12,9 +12,13 @@ export class NewDay extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
     }
+    componentDidMount(){
+        this.props.getCats()
+    }
+
     handleChange = (e, { value }) => {
         let temp = this.state.value
-        if(this.state.value.indexOf(value) ===  -1){
+        if (this.state.value.indexOf(value) === -1) {
             temp.push(value)
         } else {
             let index = temp.indexOf(value)
@@ -31,142 +35,66 @@ export class NewDay extends Component {
         return (
             <Segment>
                 <Segment>
-                <Header as='h3' textAlign='center'> Hi {groups.name}</Header>
-                
+                    <Header as='h3' textAlign='center'> Hi {groups.name}</Header>
+
                 </Segment>
-            <Form onSubmit={(evt) => this.props.handleSubmit(evt, user.id, this.state.value)}>
-            <Grid centered columns={16} padded>
-                <Grid.Row>
-                    <Form.Field>
-                        <label>Event Name</label>
-                        <input 
-                            name="name" 
-                            placeholder='Enter Event Name' />
-                    </Form.Field>
-                </Grid.Row>
-                <Grid.Row>
-                {/* <Form.Group inline>
-                    <label>Groups</label>
-                    {
-                      groups !== undefined && groups.map((group) => {
-                        return <Form.Radio 
-                                name="group" 
-                                key={group.id} 
-                                label={group.name} 
-                                value={group.id} 
-                                checked={value === group.id} 
-                                onChange={this.handleChange} />
-                      })
-                    }
-                </Form.Group> */}
-                <Form.Group inline>
-                    <label>Groups</label>
-                    {
-                      categories !== undefined && categories.map((category) => {
-                        return <Form.Checkbox
-                                name="category" 
-                                key={category.id} 
-                                label={category.name} 
-                                value={category.name} 
-                                checked={value.indexOf(category.name) !== -1} 
-                                onChange={this.handleChange} />
-                      })
-                    }
-                </Form.Group>
-                </Grid.Row>
-              <Grid.Row>
-                    <Form.Field>
-                        <label>Duration</label>
-                        <input 
-                            name="duration" 
-                            placeholder='Duration' />
-                    </Form.Field>
-              </Grid.Row>
-              <Grid.Row>
-                    <Form.Field>
-                        <label>Start Date</label>
-                        <input 
-                            name="startDate1" 
-                            placeholder='Start Date Option 1' />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>End Date</label>
-                        <input 
-                            name="endDate1" 
-                            placeholder='End Date Option 1' />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Start Time</label>
-                        <input 
-                            name="startTime1" 
-                            placeholder='Start Time Option 1' />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>End Time</label>
-                        <input 
-                            name="endTime1" 
-                            placeholder='End Time Option 1' />
-                    </Form.Field>
-              </Grid.Row>
-              <Grid.Row>
-              <Form.Field>
-                  
-                  <input 
-                      name="startDate2" 
-                      placeholder='Start Date Option 2' />
-              </Form.Field>
-              <Form.Field>
-                  
-                  <input 
-                      name="endDate2" 
-                      placeholder='End Date Option 2' />
-              </Form.Field>
-              <Form.Field>
-                  
-                  <input 
-                      name="startTime2" 
-                      placeholder='Start Time Option 2' />
-              </Form.Field>
-              <Form.Field>
-    
-                  <input 
-                      name="endTime2" 
-                      placeholder='End Time Option 2' />
-              </Form.Field>
-        </Grid.Row>
-        <Grid.Row>
-        <Form.Field>
-            
-            <input 
-                name="startDate3" 
-                placeholder='Start Date Option 3' />
-        </Form.Field>
-        <Form.Field>
-            
-            <input 
-                name="endDate3" 
-                placeholder='End Date Option 3' />
-        </Form.Field>
-        <Form.Field>
-            
-            <input 
-                name="startTime3" 
-                placeholder='Start Time Option 3' />
-        </Form.Field>
-        <Form.Field>
-            <input 
-                name="endTime3" 
-                placeholder='End Time Option 3' />
-        </Form.Field>
-  </Grid.Row>
-              
-              <Grid.Row>
-                    <Button 
-                        type='submit'>Submit</Button>
-            </Grid.Row>
-            </Grid>
-              </Form>
-              </Segment>
+                <Form onSubmit={(evt) => this.props.handleSubmit(evt, user.id, value)}>
+                    <Grid centered columns={16} padded>
+                        <Grid.Row>
+                            <Form.Field>
+                                <label>Event Name</label>
+                                <input
+                                    name="name"
+                                    placeholder='Enter Event Name' />
+                            </Form.Field>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Form.Field>
+                                <label>Event City and State</label>
+                                <input
+                                    name="location"
+                                    placeholder='Chicago, IL' />
+                            </Form.Field>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Form.Group inline>
+                                {
+                                    categories !== undefined && categories.map((category) => {
+                                        return <Form.Checkbox name="category" key={category.id} label={category.name} value={category.name} checked={value.indexOf(category.name) !== -1} onChange={this.handleChange} />
+                                    })
+                                }
+                            </Form.Group>
+                        </Grid.Row>
+
+                        <Grid.Row>
+                            <Form.Field>
+                                <label>Start Date</label>
+                                <input
+                                    type='datetime-local'
+                                    name="startDate"
+                                    placeholder='Start Date Option 1' />
+                            </Form.Field>
+                            <Form.Field>
+                                <label>End Date</label>
+                                <input
+                                    type="datetime-local"
+                                    name="endDate"
+                                    placeholder='End Date Option 1' />
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Duration</label>
+                                <input
+                                    type="number"
+                                    name="Duration"
+                                    placeholder='Duration' />
+                            </Form.Field>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Button type="submit">Submit</Button>
+                        </Grid.Row>
+                    </Grid>
+                </Form>
+            </Segment>
         )
     }
 }
@@ -183,8 +111,11 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         handleSubmit(event, id, value) {
             event.preventDefault()
-            dispatch(addDay(event.target.name.value, ownProps.match.params.id, value));
-            //must dispatch to cronofy
+            const groupId = ownProps.match.params.groupId
+            dispatch(addDay(event.target, groupId, value));
+        },
+        getCats(){
+            dispatch(fetchCategories())
         }
     }
 }
