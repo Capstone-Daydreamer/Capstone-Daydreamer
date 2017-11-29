@@ -19,33 +19,33 @@ const Main = (props) => {
   return (
     <div id="site">
       <header>
-    <div className="container">
-      <nav>
-        <ul>
-          <li><a href="/">Daydreamer |</a></li>
-          <li><a href="/user-groups">Groups |</a></li>
-          <li><a href="/events">Events |</a></li>
-          <li><a href="/profile">Profile |</a></li>
-          {
-            isLoggedIn
-            ? <span>
-                {/* The navbar will show these links after you log in */}
-                <li>
-                  <a href="/#" onClick={handleClick}>Logout |</a>
-                </li>
-              </span>
-              : <span>
-                {/* The navbar will show these links before you log in */}
-                <li><a href="/login">Login |</a></li>
-                <li><a href="/signup">Sign Up |</a></li>
-              </span>
-          }
-          </ul>
-        </nav>
-          </div>
-        </header>
-        <div id="site-content">
-      {children}
+        <div className="container">
+          <nav>
+            <ul>
+              <li><a href="/">Daydreamer |</a></li>
+              {
+                isLoggedIn
+                  ? <span>
+                    {/* The navbar will show these links after you log in */}
+                    <li>
+                      <li><a href="/user-groups">Groups |</a></li>
+                      <li><a href="/events">Events |</a></li>
+                      <li><a href="/profile">Profile |</a></li>
+                      <a href="/#" onClick={handleClick}>Logout |</a>
+                    </li>
+                  </span>
+                  : <span>
+                    {/* The navbar will show these links before you log in */}
+                    <li><a href="/login">Login |</a></li>
+                    <li><a href="/signup">Sign Up |</a></li>
+                  </span>
+              }
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="site-content">
+        {children}
       </div>
       <Footer />
     </div >
