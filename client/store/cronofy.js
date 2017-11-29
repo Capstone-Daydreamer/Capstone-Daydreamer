@@ -13,8 +13,8 @@ const getAvailability = cronofyInfo => ({ type: GET_AVAILABILITY, cronofyInfo })
 /**
  * THUNK CREATORS
  */
-export const fetchAvailability = groupId => dispatch => {
-  axios.get(`/api/cronofy/availability/${groupId}`)
+export const fetchAvailability = (event, groupId) => dispatch => {
+  axios.post(`/api/cronofy/availability/${groupId}`, event)
     .then(res =>
       dispatch(getAvailability(res.data)))
     .catch(err => console.log(err))

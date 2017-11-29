@@ -23,6 +23,11 @@ export class UserSettings extends Component {
         const { user } = this.props;
         return (
             <Grid centered columns={1} padded>
+            <div id="row">
+              <div id="groups-header"><h1>Account Settings</h1>
+                <p>Profile tweaks go here.</p>
+              </div>
+            </div>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                         <label>New Password</label>

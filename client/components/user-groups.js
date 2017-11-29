@@ -23,7 +23,7 @@ export const UserGroups = (props) => {
       <div id="card-group">
         <a href="/new-group">
         <div id="group-card">
-          <img id="group-img" src="./edit1.gif" />
+          <img id="group-img" src="/edit1.gif" />
           <div id="group-content">
             <div><p><b><Icon name="user" />Add new group</b></p></div>
             <Divider />

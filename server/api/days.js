@@ -3,9 +3,12 @@ const { Day, GroupDay, Activity } = require('../db/models')
 module.exports = router
 
 router.post('/', (req, res, next) => {
-  Day.create({
-      name: req.body.name,
-      categories: req.body.cats
+    Day.create({
+      name: req.body.currentDay.name,
+      categories: req.body.currentDay.cats,
+      start: req.body.currentDay.start,
+      end: req.body.currentDay.end,
+      duration: req.body.currentDay.duration
   })
     .then((day) => {
         res.json(day)
@@ -20,6 +23,19 @@ router.post('/groups', (req, res, next) => {
     })
     .catch(next)
 })
+
+router.put('/:id', (req, res, next) => {
+    Day.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    })
+      .then(() => {
+          res.sendStatus(201)
+      })
+      .catch(next)
+  })
+  
 
 router.get('/:id', (req, res, next) => {
     const id = req.params.id
