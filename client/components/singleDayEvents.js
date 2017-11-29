@@ -14,18 +14,7 @@ export class SingleDayEvents extends Component {
 
         }
     }
-    // componentDidMount() {
-    //     const { recommendations } = this.props
-    //     const location = 'Chicago, IL'
-    //     const keys = Object.keys(recommendations)
-    //     keys.forEach(key => {
-    //         if (key === 'bars' || key === 'restaurants') {
-    //             this.props.loadYelp(key, location, recommendations[key])
-    //         } else {
-    //             this.props.loadEventful(key, location, recommendations[key])
-    //         }
-    //     })
-    // }
+
     render() {
         const { days } = this.props
         const event = new Date(days.date)
