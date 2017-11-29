@@ -25,7 +25,6 @@ export const fetchDay = id => dispatch => {
 }
 
 export const addDay = (event, groupId, cats) => dispatch => {
-  console.log('looking for event', event)
   const currentDay = { name: event.name.value, 
                 start: event.startDate.value, 
                 end: event.endDate.value,
@@ -42,7 +41,6 @@ export const addDay = (event, groupId, cats) => dispatch => {
 }
 
 export const putDay = (date, dayId, groupId) => {
-  console.log(dayId);
   return function (dispatch) {
       axios.put(`/api/days/${dayId}`, { date })
           .then(() => {
