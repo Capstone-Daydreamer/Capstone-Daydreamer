@@ -25,9 +25,9 @@ export const UserGroups = (props) => {
         <div id="group-card">
           <img id="group-img" src="/edit1.gif" />
           <div id="group-content">
-            <div><p><b><Icon name="user" />Add new group</b></p></div>
+            <div><p><b><Icon name="users" />Add a new group</b></p></div>
             <Divider />
-            <div><p>Discription or something filler-y goes here</p></div> 
+            <div><p>Describe your great groups!</p></div> 
           </div>
         </div>
         </a>
