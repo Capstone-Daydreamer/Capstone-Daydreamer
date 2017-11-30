@@ -31,11 +31,10 @@ a {
   justify-content: center;
 }
 
-#row {
+#login-form {
   display: flex;
-  flex-basis: 100%;
-  max-width: 100%;
-  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
 }
 
 #groups-header p{
@@ -245,6 +244,7 @@ a {
   align-content: center;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 #user-card-group {

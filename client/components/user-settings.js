@@ -23,23 +23,33 @@ export class UserSettings extends Component {
         const { user } = this.props;
         return (
             <Grid centered columns={1} padded>
-            <div id="row">
-              <div id="groups-header"><h1>Account Settings</h1>
+                <Grid.Row>
+                <div id="groups-header"><h1>Account Settings</h1>
                 <p>Profile tweaks go here.</p>
-              </div>
             </div>
+              </Grid.Row>
+            <div id="login-form">
                 <Form onSubmit={this.handleSubmit}>
+                <div>
                     <Form.Field>
                         <label>New Password</label>
                         <input name="password" type="password" placeholder="Password" />
                     </Form.Field>
+                    </div>
+                    <div>
                     <Form.Field>
                         <label>Confirm Password</label>
                         <input name="confirmPassword" type="password" placeholder="Confirm Password" />
                     </Form.Field>
-                    <Button type="submit">Submit</Button>
+                    </div>
+                    <div>
+                    <Button color="teal" type="submit">Submit</Button>
+                    </div>
                 </Form>
+                <div>
                 <Button type="submit" href={`http://127.0.0.1:8080/auth/cronofy/${user.id}`}>Authenticate with your Calendars</Button>
+                </div>
+                </div>
             </Grid>
         )
     }
