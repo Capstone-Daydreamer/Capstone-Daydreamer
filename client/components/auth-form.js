@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { auth, fb } from '../store'
 import FacebookLogin from 'react-facebook-login';
+import { Form, Grid } from 'semantic-ui-react'
 /*
  * COMPONENT
  */
@@ -10,34 +11,42 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error, responseFacebook } = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
+    <Grid centered columns={1} padded>
+    <div id="login-form">
+      <Form onSubmit={handleSubmit} name={name}>
+      <div>
+        <Form.Field>
           <label htmlFor="email"><small>Email</small></label>
           <input name="email" type="text" />
+        </Form.Field>
         </div>
         {displayName === 'Sign Up' &&
-          <div>
+        <div>
+          <Form.Field>
             <label htmlFor="name"><small>Name</small></label>
             <input name="personname" type="name" />
+          </Form.Field>
           </div>}
-        <div>
+          <div>
+        <Form.Field>
           <label htmlFor="password"><small>Password</small></label>
           <input name="password" type="password" />
+        </Form.Field>
         </div>
         <div>
           <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      </Form>
+      {/* <a href="/auth/google">{displayName} with Google</a>
       <FacebookLogin
         appId={933986046768442}
         autoLoad={false}
         fields="name,email,picture"
         scope="public_profile,user_friends"
-        callback={responseFacebook} />
-    </div>
+        callback={responseFacebook} /> */}
+        </div>
+    </Grid>
   )
 }
 
