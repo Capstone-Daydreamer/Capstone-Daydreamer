@@ -25,15 +25,19 @@ export class Chat extends React.Component {
     groupMessageRef.limitToLast(6).on('child_added', data => {
       console.log('Added', data.val());
       let val = data.val();
+      let newMessages = this.state.messages
+      if (newMessages.length > 6) newMessages = newMessages.shift()
       this.setState({
-        messages: [...this.state.messages, val]
+        messages: [...newMessages, val]
       })
     });
-    groupMessageRef.limitToLast(6).on('child_changed', data => {
-      let val = data.val(); 
-      this.setState = {
-        messages: [ ...this.state.messages, { key: data.key, name: val.name, text: val.text}]
-      }
+    groupMessageRef.limitToLast(10).on('child_changed', data => {
+      let val = data.val();
+      let newMessages = this.state.messages
+      if (newMessages.length > 6) newMessages = newMessages.shift()
+      this.setState({
+        messages: [...newMessages, val]
+      })
     });
   }
 
