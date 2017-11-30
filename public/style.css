@@ -1,11 +1,12 @@
 html, body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-family: 'Roboto', 'Roboto Condensed', sans-serif;
 }
 
 body {
 	margin: 0;
 	/* font-family: 'Lato', sans-serif; */
-	font-weight: 300;
+  font-weight: 300;
+  background-color: #F4F4F4;
 }
 a {
   color: inherit; /* blue colors for links too */
@@ -324,7 +325,7 @@ a {
 }
 
 header {
-  background: white;
+  background: #F4F4F4;;
 }
 
 header::after {
@@ -351,26 +352,26 @@ nav ul {
 nav li {
   display: inline-block;
   margin-left: 40px;
-  padding-top: 23px;
+  padding-top: 10px;
   position: relative;
 }
 
 nav a {
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: #00303F;
   text-decoration: none;
   font-size: 14px;
 }
 
 nav a:hover {
-  color: #55d6aa;
+  color: #DCAE1D;
 }
 
 nav a::before {
   content: '';
   display: block;
   height: 5px;
-  background-color: #55d6aa;
+  background-color: #DCAE1D;
 
   position: absolute;
   top: 0;
@@ -385,7 +386,8 @@ nav a:hover::before {
 
 #footer {
   display: flex;
-  background-color: #edeae5;
+  background-color: #00303F;
+  color: #F4F4F4;
   justify-content: space-evenly;
   font-family: 'Raleway', sans-serif;
 }
@@ -403,6 +405,16 @@ nav a:hover::before {
   background-size: cover;
   background-attachment: fixed;
 }
+
+
+/* Landing Page */
+.landing-h1 {
+  margin: .5em !important;
+
+  font-size: 8em !important;
+  font-family: 'Alegreya', serif !important;
+}
+
 
 /* Single Group CSS */
 .wrapper {

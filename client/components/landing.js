@@ -36,6 +36,7 @@ class Landing extends Component {
               as='h1'
               content='Daydreamer'
               inverted
+              className="landing-h1"
               style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '-.5em', marginTop: '2em' }}
             />
             <Header

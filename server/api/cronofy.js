@@ -50,7 +50,28 @@ router.get('/accountinfo/:userId', (req, res, next) => {
     }).catch(next)
 })
 
-// router.get('/availability/', (req, res, next) => {
+router.get('/availability/:groupId', (req, res, next) => {
+
+  res.json({
+    "available_periods": [
+      {
+        "start": "2017-11-26T09:00:00Z",
+        "end": "2017-11-26T11:00:00Z",
+        "participants": [
+          { "sub": "acc_567236000909002" },
+          { "sub": "acc_678347111010113" }
+        ]
+      },
+      {
+        "start": "2017-11-27T11:00:00Z",
+        "end": "2017-11-27T17:00:00Z",
+        "participants": [
+          { "sub": "acc_567236000909002" },
+          { "sub": "acc_678347111010113" }
+        ]
+      },
+    ]
+  })
 
 //     var options = {
 //       tzid: 'Etc/UTC',
@@ -63,68 +84,68 @@ router.get('/accountinfo/:userId', (req, res, next) => {
 //       }).catch(next)
 //   })
 
-// Route to GET availability accross a single group
-router.get('/availability/:groupId', async (req, res, next) => {
-  const group = await Group.findById(req.params.groupId, { include: [User] });
-  const users = group.users;
-  // const currentDay = req.body
+// // Route to GET availability accross a single group
+// router.get('/availability/:groupId', async (req, res, next) => {
+//   const group = await Group.findById(req.params.groupId, { include: [User] });
+//   const users = group.users;
+//   // const currentDay = req.body
 
-  // Create options to be sent into the API
-  var options = {
-    participants: [
-      {
-        members: [],
-        required: 'all'
-      }
-    ],
-    // required_duration: { minutes: currentDay.duration },
-    required_duration: { minutes: 60 },
-    available_periods: [
-      // {
-      //   start: currentDay.start + ':00Z',
-      //   end: currentDay.end + ':00Z'
-      // }
-      {
-        start: '2017-12-26T09:00:00Z',
-        end: '2017-12-26T11:00:00Z'
-      }
-    ]
-  }
+//   // Create options to be sent into the API
+//   var options = {
+//     participants: [
+//       {
+//         members: [],
+//         required: 'all'
+//       }
+//     ],
+//     // required_duration: { minutes: currentDay.duration },
+//     required_duration: { minutes: 60 },
+//     available_periods: [
+//       // {
+//       //   start: currentDay.start + ':00Z',
+//       //   end: currentDay.end + ':00Z'
+//       // }
+//       {
+//         start: '2017-12-26T09:00:00Z',
+//         end: '2017-12-26T11:00:00Z'
+//       }
+//     ]
+//   }
 
-  // Looks at each user and adds their Cronofy authentication info to the object
-  users.forEach(user => {
-    options.participants[0].members.push({
-      sub: user.cronofyAccId,
-      calendar_ids: user.calendarTokens
-    })
-  })
+//   // Looks at each user and adds their Cronofy authentication info to the object
+//   users.forEach(user => {
+//     options.participants[0].members.push({
+//       sub: user.cronofyAccId,
+//       calendar_ids: user.calendarTokens
+//     })
+//   })
 
-  // Checks availability using Options combined with relevant User info
-  // res.json(options)
-  cronofyClient.availability(options)
-    .then(function (response) {
-      var available_periods = response.available_periods;
-      // res.json(available_periods)
-      // Dummy JSON data for testing reasons
-      res.json({
-        "available_periods": [
-          {
-            "start": "2017-11-26T09:00:00Z",
-            "end": "2017-11-26T11:00:00Z",
-            "participants": [
-              { "sub": "acc_567236000909002" },
-              { "sub": "acc_678347111010113" }
-            ]
-          },
-          {
-            "start": "2017-11-27T11:00:00Z",
-            "end": "2017-11-27T17:00:00Z",
-            "participants": [
-              { "sub": "acc_567236000909002" },
-              { "sub": "acc_678347111010113" }
-            ]
-          },
-        ]
-      })
-    }).catch(next)
+//   // Checks availability using Options combined with relevant User info
+//   // res.json(options)
+//   cronofyClient.availability(options)
+//     .then(function (response) {
+//       var available_periods = response.available_periods;
+//       // res.json(available_periods)
+//       // Dummy JSON data for testing reasons
+//       res.json({
+//         "available_periods": [
+//           {
+//             "start": "2017-11-26T09:00:00Z",
+//             "end": "2017-11-26T11:00:00Z",
+//             "participants": [
+//               { "sub": "acc_567236000909002" },
+//               { "sub": "acc_678347111010113" }
+//             ]
+//           },
+//           {
+//             "start": "2017-11-27T11:00:00Z",
+//             "end": "2017-11-27T17:00:00Z",
+//             "participants": [
+//               { "sub": "acc_567236000909002" },
+//               { "sub": "acc_678347111010113" }
+//             ]
+//           },
+//         ]
+//       })
+//     }).catch(next)
 })
