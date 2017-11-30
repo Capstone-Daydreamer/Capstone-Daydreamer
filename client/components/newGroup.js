@@ -53,6 +53,14 @@ export class NewGroup extends Component {
                     </Form.Field>
                 </Grid.Row>
                 <Grid.Row>
+                <Form.Field>
+                    <label>Add a short group description!</label>
+                    <input 
+                        name="description" 
+                        placeholder='Group description' />
+                </Form.Field>
+            </Grid.Row>
+                <Grid.Row>
                 <Header as='h3' textAlign='center'>Select some cool group members and click <Button 
                         type='submit' color='teal'>Submit!</Button></Header>
                 </Grid.Row>
@@ -116,7 +124,7 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         handleSubmit(event, user, value) {
             event.preventDefault()
-            dispatch(postNewGroup(event.target.name.value, user, value));
+            dispatch(postNewGroup(event.target.name.value, user, value, event.target.description.value));
             //must dispatch to cronofy
             const email = user.email
             emailjs.send('gmail', 'new_group_confirmation', {

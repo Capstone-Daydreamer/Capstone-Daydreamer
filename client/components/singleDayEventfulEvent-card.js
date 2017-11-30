@@ -26,7 +26,6 @@ export class SingleDayEventfulCard extends React.Component {
     const { eventfulrec } = this.props
     const rec = this.state.rec
     const id = this.props.daysId
-    console.log('eventful is rendering')
     return (
       <div>
         {this.state.bool ?

@@ -10,6 +10,9 @@ const Group = db.define('group', {
     },
     memberAccountIds: {
         type: Sequelize.ARRAY(Sequelize.STRING)
+    },
+    description: {
+        type: Sequelize.TEXT
     }
 })
 
