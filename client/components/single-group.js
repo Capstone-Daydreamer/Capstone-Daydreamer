@@ -39,30 +39,26 @@ export class SingleGroup extends React.Component {
     const days = groups.days
     return (
       <Container>
-      <div className="wrapper">
-        <div className="users-grid">
-            {users ? users.map(user => <SingleGroupCard key={user.id} group={groups} user={user} leader={groups.leader} />) : <div />}
-        </div>
-
-        <div id="groups-header group-header-grid">
+        <div className="groups-header w3-twothird">
           <h1>{groups.name}</h1>
           <p>{groups.description}</p>
-          <a href={`/newDay/${groups.id}`}>
-          <div id="day-group-card" >
-          <img id="day-group-img" src="/edit5.jpg" />
-          <div id="day-group-content">
-              <h3>Add a new day</h3>
-            </div>
-          </div>
-          </a>
+          <Card.Group className="days-grid">
+            <a href={`/newDay/${groups.id}`}>
+              <div id="day-group-card" >
+                <img id="day-group-img" src="/edit5.jpg" />
+                <div id="day-group-content">
+                  <h3>Add a new day</h3>
+                </div>
+              </div>
+            </a>
+            {days && days.map(day => <GroupDay key={day.id} day={day} group={groups} style={{ width: '200px' }} />)}
+          </Card.Group>
         </div>
-        <div />
-        <Chat className="chat-grid" />
 
-        <Card.Group className="days-grid">
-          {days && days.map(day => <GroupDay key={day.id} day={day} group={groups} />)}
-        </Card.Group>
-      </div>
+        <div className="users-grid w3-third">
+          {users ? users.map(user => <SingleGroupCard key={user.id} group={groups} user={user} leader={groups.leader} />) : <div />}
+          <Chat className="chat-grid" />
+        </div>
       </Container>
     )
   }
