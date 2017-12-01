@@ -36,6 +36,7 @@ export class SingleGroup extends React.Component {
 
   render() {
     const { groups } = this.props
+    if (!groups) return (<div />)
     const users = groups.users
     const days = groups.days
     return (
