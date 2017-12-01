@@ -24,13 +24,14 @@ export class SingleDay extends React.Component {
   }
 
   componentDidMount() {
+    const groupId = this.props.match.params.groupId
     const id = this.props.match.params.id
-    this.props.loadDay(id)
+    this.props.loadDay(id, groupId)
   }
   render() {
     const { days, groups } = this.props
+    if (!days || !groups) return (<Loader active />)
     const users = groups.users
-    if (!days) return (<Loader active />)
     const groupId = this.props.match.params.groupId
     const subComponent = () => {
       if (!days.date) {
@@ -67,10 +68,10 @@ const mapState = (state) => {
 
 const mapDispatch = dispatch => {
   return {
-    loadDay(id) {
+    loadDay(id, groupId) {
       dispatch(fetchDay(id))
       dispatch(fetchGroupInt(id))
-      dispatch(fetchGroup(id))
+      dispatch(fetchGroup(groupId))
     }
   }
 }
