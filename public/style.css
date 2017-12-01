@@ -403,18 +403,23 @@ nav a:hover::before {
   background-image: url(./hero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed !important;
 }
 
 
 /* Landing Page */
-.landing-h1 {
-  margin: .5em !important;
-
-  font-size: 8em !important;
+.landing-head {
   font-family: 'Alegreya', serif !important;
+  font-weight: 700 !important;
+  line-height: 46px !important;
+  font-size: 46px !important;
+  margin: 0 0 43px 0 !important;
 }
 
+.landing-wrapper {
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+}
 
 /* Single Group CSS */
 .wrapper {
@@ -626,4 +631,20 @@ main, #messages-card {
 .mdl-button .material-icons {
   top: -1px;
   margin-right: 5px;
+}
+
+.react-rotating-text-cursor {
+  animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
+}
+ 
+@keyframes blinking-cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

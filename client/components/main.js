@@ -21,12 +21,12 @@ const Main = (props) => {
         <div className="container">
           <nav>
             <ul>
-              <li><a href="/">Daydreamer |</a></li>
               {
                 isLoggedIn
                   ? <span>
                     {/* The navbar will show these links after you log in */}
-                    <li>
+                    <ul>
+                    <li><a href="/">Daydreamer |</a></li>
                       <li><a href="/user-groups">Groups |</a></li>
                       <li><a href="/events">Events |</a></li>
                       <li><a href="/profile">Profile |</a></li>
@@ -37,7 +37,7 @@ const Main = (props) => {
                          props.match.url !== '/' ? <li><a href="/signup">Sign Up |</a></li> : <li />
                       }
                       <a href="/#" onClick={handleClick}>Logout |</a>
-                    </li>
+                    </ul>
                   </span>
                   : <span />
               }

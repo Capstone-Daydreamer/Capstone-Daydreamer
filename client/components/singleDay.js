@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
 import { fetchDay, fetchGroupInt } from '../store'
-import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
+import { Menu, Grid, Card, Icon, Button, Loader, Container } from 'semantic-ui-react'
 
 /**
  * COMPONENT
@@ -28,26 +28,23 @@ export class SingleDay extends React.Component {
   }
   render() {
     const { days } = this.props
+    if (!days) return ( <Loader active />)
     const groupId = this.props.match.params.groupId
     const subComponent = () => {
-      if (this.state.activeItem === 'schedule') {
+      if (!days.date) {
         return <SingleDaySchedule days={days} groupId={groupId} />
       }
-      if (this.state.activeItem === 'events') {
+      else {
         return <SingleDayEvents days={days} />
       }
     }
     const activeItem = this.state.activeItem
     return (
-      <div>
-        <Menu tabular>
-          <Menu.Item name='schedule' active={activeItem === 'schedule'} onClick={this.handleItemClick} />
-          <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick} />
-        </Menu>
+      <Container>
         <Grid columns={1} padded>
           {subComponent()}
         </Grid>
-      </div>
+      </Container>
     )
   }
 }

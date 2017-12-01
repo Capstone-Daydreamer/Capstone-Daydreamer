@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchDay, fetchGroupInt } from '../store'
 import * as firebase from 'firebase';
@@ -18,8 +17,7 @@ export class Chat extends React.Component {
     this.loadMessages();
   }
 
-  loadMessages = event => {
-    const { group } = this.props;
+  loadMessages = () => {
     const rootRef = firebase.database().ref().child('messages');
     const groupMessageRef = rootRef.child(1);
     groupMessageRef.limitToLast(6).on('child_added', data => {
@@ -29,7 +27,7 @@ export class Chat extends React.Component {
       })
     });
     groupMessageRef.limitToLast(6).on('child_changed', data => {
-      let val = data.val(); 
+      let val = data.val();
       this.setState = {
         messages: [ ...this.state.messages, { key: data.key, name: val.name, text: val.text}]
       }
@@ -38,7 +36,7 @@ export class Chat extends React.Component {
 
   messageSubmit = event => {
     event.preventDefault();
-    const { user, group } = this.props;
+    const { user  } = this.props;
     const rootRef = firebase.database().ref().child('messages');
     const groupMessageRef = rootRef.child(1);
 
@@ -62,11 +60,11 @@ export class Chat extends React.Component {
               {this.state.messages.map(message => {
                 return (
                   <div className="message-container" key={keyInt++}>
-                  <div className='spacing'>
-                    <div className='pic'></div>
+                  <div className="spacing">
+                    <div className="pic" />
                   </div>
-                  <p className='message'>{message.text}</p>
-                  <h1 className='name'>{message.name}</h1>
+                  <p className="message">{message.text}</p>
+                  <h1 className="name">{message.name}</h1>
                   </div>
                 )
               })}
