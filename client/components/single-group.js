@@ -47,7 +47,7 @@ export class SingleGroup extends React.Component {
           <Card.Group className="days-grid">
             <a href={`/newDay/${groups.id}`}>
               <div id="day-group-card" >
-                <img id="day-group-img" src="/edit5.jpg" />
+                <img id="day-group-img" src="/edit10.jpeg" />
                 <div id="day-group-content">
                   <h3>Add a new day</h3>
                 </div>
