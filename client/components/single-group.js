@@ -52,7 +52,7 @@ export class SingleGroup extends React.Component {
                 </div>
               </div>
             </a>
-            {days && days.map(day => <GroupDay key={day.id} day={day} group={groups} style={{ width: '200px' }} />)}
+            {days && days.map(day => <GroupDay key={day.id} day={day} group={groups}/>)}
           </Card.Group>
         </div>
 

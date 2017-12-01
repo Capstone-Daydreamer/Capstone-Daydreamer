@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
-  Card, Image, Divider, Grid
+ Divider, Grid
 } from 'semantic-ui-react'
 import { postSelectedYelpActivities } from '../store'
 
