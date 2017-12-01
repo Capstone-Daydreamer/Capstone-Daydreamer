@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Grid, Card, Item, Divider } from 'semantic-ui-react'
-import SingleDayYelpCard from './singleDayYelpEvent-card' //may not need
-import SingleDayEventfulCard from './singleDayEventfulEvent-card' //may not need
-import { removeInterest, addInterest, destroyInterest, yelpSearch, eventfulPost } from '../store'
+import { yelpSearch, eventfulPost } from '../store'
 import SingleDayPick from './singleDayPick'
 import SingleDayPast from './singleDayPast'
 import SingleDayConfirmed from './singleDayConfirmed'

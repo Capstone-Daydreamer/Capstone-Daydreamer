@@ -50,19 +50,6 @@ router.get('/accountinfo/:userId', (req, res, next) => {
     }).catch(next)
 })
 
-// router.get('/availability/', (req, res, next) => {
-
-//     var options = {
-//       tzid: 'Etc/UTC',
-//     };
-
-//     cronofyClient.accountInformation(options)
-//       .then(function (response) {
-//         var account = response.account;
-//         res.json(account);
-//       }).catch(next)
-//   })
-
 // Route to GET availability accross a single group
 router.get('/availability/:groupId', async (req, res, next) => {
   const group = await Group.findById(req.params.groupId, { include: [User] });
@@ -125,6 +112,5 @@ router.get('/availability/:groupId', async (req, res, next) => {
       var available_periods = response.available_periods;
       // res.json(available_periods)
       // Dummy JSON data for testing reasons
-      
     }).catch(next)
 })

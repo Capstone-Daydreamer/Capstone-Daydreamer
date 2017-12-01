@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {
   Button,
   Container,
-  Divider,
-  Grid,
-  Header,
   Icon,
-  Image,
-  List,
-  Menu,
-  Segment,
-  Visibility,
 } from 'semantic-ui-react'
+import ReactRotatingText from 'react-rotating-text';
+
 import { connect } from 'react-redux'
 
 
@@ -21,72 +15,77 @@ import { connect } from 'react-redux'
  */
 
 class Landing extends Component {
-  state = {}
+
   render() {
     const { isLoggedIn } = this.props
     return (
       <div>
-        {this.stuff}
         <div
-          className='background-image'
-          style={{ textAlign: 'center', minHeight: 550, minWidth: '100vw', padding: '1em 0em' }}
+          className="background-image"
+          style={{ textAlign: 'center', minHeight: 550, minWidth: '100vw', padding: '128px 16px' }}
           vertical
         >
-          <Container text>
-            <Header
-              as='h1'
-              content='Daydreamer'
-              inverted
-              style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '-.5em', marginTop: '2em' }}
-            />
-            <Header
-              as='h2'
-              content='Let us plan your dream day for you!'
-              inverted
-              style={{ fontSize: '1.5em', fontWeight: 'bold' }}
-            />
-            {
-              !isLoggedIn && 
-              <div>
-                <a href="/login"><Button size='huge'>
-                  Log In
-                    <Icon name='right arrow' />
-                </Button></a>
-                <a href="/signup"><Button size='huge'>
-                  Sign Up
-                    <Icon name='right arrow' />
-                </Button></a>
-              </div>
-            }
-          </Container>
-
+          <h1 className="w3-margin w3-jumbo" style={{ color: '#F4F4F4' }}>Daydreamer</h1>
+          <p className="w3-xlarge" style={{ color: '#F4F4F4' }}>Make Your Dream Day</p>
+          <p className="w3-xlarge" style={{ color: '#F4F4F4' }}>More <ReactRotatingText items={['Awesome', 'Exciting', 'Fluid', 'Accessable', 'Varied', 'Entertaining']} pause={2000} emptyPause={100} /> </p>
+          {
+            !isLoggedIn &&
+            <div>
+              <a href="/login"><Button size="huge">
+                Log In
+                    <Icon name="right arrow" />
+              </Button></a>
+              <a href="/signup"><Button size="huge">
+                Sign Up
+                    <Icon name="right arrow" />
+              </Button></a>
+            </div>
+          }
         </div>
+        <Container>
+          {this.stuff}
 
-        <Segment style={{ padding: '8em 0em' }} vertical>
-          <Grid container stackable verticalAlign='middle'>
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <Header as='h3' style={{ fontSize: '2em' }}>Plan your perfect day</Header>
-                <p style={{ fontSize: '1.33em' }}>
-                  With our application, you can find open times in the schedules of you and your friends to find the perfect time to see each other.
-                </p>
-                <Header as='h3' style={{ fontSize: '2em' }}>Chat with your group in real time</Header>
-                <p style={{ fontSize: '1.33em' }}>
-                  Chat with your group in real time to optimize organization
-                </p>
-              </Grid.Column>
-              <Grid.Column floated='right' width={6}>
-                <Image
-                  bordered
-                  rounded
-                  size='large'
-                  src='/tourists.png'
-                />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
+          <div className="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+            <div className="w3-content">
+              <div className="w3-third w3-center">
+                <img src="/tourists.png" style={{ width: '80%', height: 'auto' }} />
+              </div>
 
+              <div className="w3-twothird">
+                <h1>Who Are We?</h1>
+                <h5 className="w3-padding-32">Daydreamer is your personal dynamic event scheduling assistant.</h5>
+
+                <p className="w3-text-grey" style={{ marginBottom: '75px' }}>Using Daydreamer, you can efficiently plan and coordnate events between you and your friends. This is accomplished by cross referencing the schedules of everyone who authorizes with the app and recommending interesting happenings near you, personally tailored to what you like. This ensures that you and everyone invited will make the most of your day out!</p>
+              </div>
+            </div>
+
+            <div className="w3-row-padding w3-center w3-margin-top">
+              <div className="w3-third">
+                <div className="w3-card w3-container" style={{ minHeight: '460px' }}>
+                  <h3>Schedule</h3><br />
+                  <i className="fa fa-calendar w3-margin-bottom w3-text-theme" style={{ fontSize: '120px' }} />
+                  <p>Plan your events with others around everyones schedules in just a few clicks, that way no one gets left behind!</p>
+                </div>
+              </div>
+
+              <div className="w3-third">
+                <div className="w3-card w3-container" style={{ minHeight: '460px' }}>
+                  <h3>Recommend</h3><br />
+                  <i className="fa fa-exchange w3-margin-bottom w3-text-theme" style={{ fontSize: '120px' }} />
+                  <p>Our advanced algorithems search events happening near you, that way you always know what to do on your night out!</p>
+                </div>
+              </div>
+
+              <div className="w3-third">
+                <div className="w3-card w3-container" style={{ minHeight: '460px' }}>
+                  <h3>Discuss</h3><br />
+                  <i className="fa fa-comments-o w3-margin-bottom w3-text-theme" style={{ fontSize: '120px' }} />
+                  <p>Easily talk to your group members without having to leave the application, allowing for quick and easy coordination!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
       </div>
     )
   }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { removeUser } from '../store'
 import {
-  Image, Card, Button, Item, Divider
+  Item, Divider
 } from 'semantic-ui-react'
 
 /**

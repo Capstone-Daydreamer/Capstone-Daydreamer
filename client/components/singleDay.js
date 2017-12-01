@@ -1,10 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import { fetchDay, fetchGroupInt } from '../store'
-import { Menu, Grid, Card, Icon, Button } from 'semantic-ui-react'
+import { fetchDay, fetchGroupInt, fetchGroup } from '../store'
+import { Grid, Loader, Container } from 'semantic-ui-react'
+import Chat from './chatbox'
+import SingleGroupCard from './single-group-member-card';
 
 /**
  * COMPONENT
@@ -18,7 +19,7 @@ export class SingleDay extends React.Component {
     this.handleItemClick = this.handleItemClick.bind(this)
   }
 
-  handleItemClick(e, { name }) {
+  handleItemClick(event, { name }) {
     this.setState({ activeItem: name })
   }
 
@@ -27,27 +28,28 @@ export class SingleDay extends React.Component {
     this.props.loadDay(id)
   }
   render() {
-    const { days } = this.props
+    const { days, groups } = this.props
+    const users = groups.users
+    if (!days) return (<Loader active />)
     const groupId = this.props.match.params.groupId
     const subComponent = () => {
-      if (this.state.activeItem === 'schedule') {
+      if (!days.date) {
         return <SingleDaySchedule days={days} groupId={groupId} />
       }
-      if (this.state.activeItem === 'events') {
+      else {
         return <SingleDayEvents days={days} />
       }
     }
-    const activeItem = this.state.activeItem
     return (
-      <div>
-        <Menu tabular>
-          <Menu.Item name='schedule' active={activeItem === 'schedule'} onClick={this.handleItemClick} />
-          <Menu.Item name='events' active={activeItem === 'events'} onClick={this.handleItemClick} />
-        </Menu>
-        <Grid columns={1} padded>
+      <Container>
+        <div className="w3-twothird">
           {subComponent()}
-        </Grid>
-      </div>
+        </div>
+        <div className="users-grid w3-third w3-light-grey" style={{ padding: '0px 15px' }}>
+          {users ? users.map(user => <SingleGroupCard key={user.id} group={groups} user={user} leader={groups.leader} />) : <div />}
+          <Chat className="chat-grid" />
+        </div>
+      </Container>
     )
   }
 }
@@ -58,6 +60,7 @@ export class SingleDay extends React.Component {
 const mapState = (state) => {
   return {
     days: state.days,
+    groups: state.groups,
     recommendations: state.recommendations
   }
 }
@@ -67,6 +70,7 @@ const mapDispatch = dispatch => {
     loadDay(id) {
       dispatch(fetchDay(id))
       dispatch(fetchGroupInt(id))
+      dispatch(fetchGroup(id))
     }
   }
 }
