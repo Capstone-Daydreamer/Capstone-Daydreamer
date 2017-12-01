@@ -17,7 +17,7 @@ export class RecommendedEvents extends Component {
         const location = days.location
         const keys = Object.keys(recommendations)
         const chosenDay = days.date.slice(0,10)
-        keys.forEach(key => {
+        keys.forEach(key => {            
             if (key === 'bars' || key === 'restaurants') {
                 this.props.loadYelp(key, location, recommendations[key])
             } else if (key === 'shows'){

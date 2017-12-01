@@ -15,7 +15,7 @@ export class SingleDayEvents extends Component {
     }
 
     render() {
-        const { days } = this.props
+        const { days, recommendations } = this.props
         const event = new Date(days.date)
         const stateOfDay = () => {
             const sec = days.createdAt && event.getTime() - Date.now()
@@ -35,7 +35,10 @@ export class SingleDayEvents extends Component {
             } else if ( !stateOfDay() && days.activities.length > 0){
                 return <SingleDayConfirmed days={days} />
             } else {
-                return <RecommendedEvents />
+                if (Object.keys(recommendations).length){
+                    return <RecommendedEvents recommendations={recommendations} />
+                }
+                return <div> </div>
             }
         }
 
@@ -50,6 +53,7 @@ export class SingleDayEvents extends Component {
 const mapState = (state) => {
     return {
         days: state.days,
+        recommendations: state.recommendations
     }
 }
 
