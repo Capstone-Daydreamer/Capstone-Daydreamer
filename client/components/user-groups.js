@@ -15,7 +15,7 @@ export const UserGroups = (props) => {
   return (
     <Grid centered columns={1} padded>
     <div id="row">
-      <div id="groups-header"><h1>Current Groups</h1>
+      <div id="groups-header">
         <p>Your awesome groups are here. Feel free to create new groups!</p>
       </div>
     </div>

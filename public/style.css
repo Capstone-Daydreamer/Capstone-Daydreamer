@@ -615,3 +615,23 @@ main, #messages-card {
   top: -1px;
   margin-right: 5px;
 }
+
+.interest-card {
+  background-color: white !important
+}
+
+.interest-card-like {
+  background-color: #469539 !important
+}
+
+.interest-card-dislike {
+  background-color: #b03221 !important
+}
+
+/* .interest-card-text { 
+  color: white !important
+}  */
+
+.interest-card-button {
+  background-color: black !important
+}
