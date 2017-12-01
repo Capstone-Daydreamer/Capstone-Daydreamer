@@ -7,7 +7,7 @@ export function SingleDayPast(props) {
     return (
         <div>
             <div id="row">
-                <div id="groups-header"><h1>Past Events</h1>
+                <div id="groups-header">
                     <p>Here's what you did for {days.name}</p>
                 </div>
             </div>

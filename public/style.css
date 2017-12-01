@@ -649,3 +649,23 @@ main, #messages-card {
     opacity: 0;
   }
 }
+
+.interest-card {
+  background-color: white !important
+}
+
+.interest-card-like {
+  background-color: #469539 !important
+}
+
+.interest-card-dislike {
+  background-color: #b03221 !important
+}
+
+/* .interest-card-text { 
+  color: white !important
+}  */
+
+.interest-card-button {
+  background-color: black !important
+}

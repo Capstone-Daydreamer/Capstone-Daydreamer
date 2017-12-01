@@ -47,7 +47,7 @@ export class UserInterests extends Component {
                     </Menu>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <div id="interests-header"><h1>Interests</h1>
+                    <div id="interests-header">
                         <p>Keep your interests up to date so we can keep giving awesome recommendations.</p>
                     </div>
                     <Card.Group>
