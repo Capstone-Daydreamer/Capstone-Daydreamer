@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter, Link } from 'react-router-dom'
 import {
   Button,
   Container,
@@ -21,8 +22,8 @@ import { connect } from 'react-redux'
 
 class Landing extends Component {
   state = {}
-
   render() {
+    const { isLoggedIn } = this.props
     return (
       <div>
         {this.stuff}
@@ -44,14 +45,19 @@ class Landing extends Component {
               inverted
               style={{ fontSize: '1.5em', fontWeight: 'bold' }}
             />
-            <Button size='huge'>
-              Log In
-                <Icon name='right arrow' />
-            </Button>
-            <Button size='huge'>
-              Sign Up
-                <Icon name='right arrow' />
-            </Button>
+            {
+              !isLoggedIn && 
+              <div>
+                <a href="/login"><Button size='huge'>
+                  Log In
+                    <Icon name='right arrow' />
+                </Button></a>
+                <a href="/signup"><Button size='huge'>
+                  Sign Up
+                    <Icon name='right arrow' />
+                </Button></a>
+              </div>
+            }
           </Container>
 
         </div>
@@ -74,14 +80,8 @@ class Landing extends Component {
                   bordered
                   rounded
                   size='large'
-                  src='url(../../public/tourists.png)'
+                  src='/tourists.png'
                 />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column textAlign='center'>
-                <Button size='huge'>Login</Button>
-                <Button size='huge'>Sign-up</Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -92,4 +92,11 @@ class Landing extends Component {
   }
 }
 
-export default Landing
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.user.id
+  }
+}
+
+export default withRouter(connect(mapState)(Landing))
+
