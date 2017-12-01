@@ -16,7 +16,7 @@ export function SingleDayConfirmed(props) {
                     days.activities && days.activities.map((activity) => {
                         return (
                             <div id="event-group-card" key={activity.id}>
-                                <img id="event-group-img" src="/edit3.jpg" />
+                                <img id="event-group-img" src={`/edit${activity.id}.jpeg`} />
                                 <div id="event-group-content" style={{ overflowY: "scroll" }}>
                                     <div><p><b>{activity.name}</b></p></div>
                                     <Divider />
