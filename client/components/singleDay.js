@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
 import { fetchDay, fetchGroupInt } from '../store'
-import { Menu, Grid, Card, Icon, Button, Loader, Container } from 'semantic-ui-react'
+import { Grid, Loader, Container } from 'semantic-ui-react'
 
 /**
  * COMPONENT
@@ -18,7 +17,7 @@ export class SingleDay extends React.Component {
     this.handleItemClick = this.handleItemClick.bind(this)
   }
 
-  handleItemClick(e, { name }) {
+  handleItemClick(event, { name }) {
     this.setState({ activeItem: name })
   }
 
@@ -38,7 +37,6 @@ export class SingleDay extends React.Component {
         return <SingleDayEvents days={days} />
       }
     }
-    const activeItem = this.state.activeItem
     return (
       <Container>
         <Grid columns={1} padded>

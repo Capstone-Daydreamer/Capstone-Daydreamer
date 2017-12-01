@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SingleGroupCard from './single-group-member-card';
 import GroupDay from './user-days-card';
 import Chat from './chatbox';
 import {
-  Container, Card, Divider, Icon
+  Container, Card,
 } from 'semantic-ui-react';
 import { fetchGroup } from '../store'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import * as firebase from 'firebase';
 
 /**

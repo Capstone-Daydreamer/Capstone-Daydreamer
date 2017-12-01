@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import {
   Button,
   Container,
-  Divider,
-  Grid,
-  Header,
   Icon,
-  Image,
-  List,
-  Menu,
-  Segment,
-  Visibility,
 } from 'semantic-ui-react'
 import ReactRotatingText from 'react-rotating-text';
 
@@ -37,7 +29,7 @@ class Landing extends Component {
           <p className="w3-xlarge">Make Your Dream Day</p>
           <p className="w3-xlarge">More <ReactRotatingText items={['Awesome', 'Exciting', 'Fluid', 'Accessable', 'Varied', 'Entertaining']} pause={2000} emptyPause={100} /> </p>
           {
-              !isLoggedIn && 
+              !isLoggedIn &&
               <div>
                 <a href="/login"><Button size="huge">
                   Log In
@@ -70,7 +62,7 @@ class Landing extends Component {
             <div className="w3-third">
               <div className="w3-card w3-container" style={{ minHeight: '460px' }}>
                 <h3>Responsive</h3><br />
-                <i className="fa fa-desktop w3-margin-bottom w3-text-theme" style={{ fontSize: "120px" }} />
+                <i className="fa fa-desktop w3-margin-bottom w3-text-theme" style={{ fontSize: '120px' }} />
                 <p>Built-in responsiveness</p>
                 <p>Mobile first fluid grid</p>
                 <p>Fits any screen sizes</p>
@@ -79,9 +71,9 @@ class Landing extends Component {
             </div>
 
             <div className="w3-third">
-              <div className="w3-card w3-container" style={{ minHeight: "460px" }}>
+              <div className="w3-card w3-container" style={{ minHeight: '460px' }}>
                 <h3>Standard CSS</h3><br />
-                <i className="fa fa-css3 w3-margin-bottom w3-text-theme" style={{ fontSize: "120px" }}></i>
+                <i className="fa fa-css3 w3-margin-bottom w3-text-theme" style={{ fontSize: '120px' }} />
                 <p>Standard CSS only</p>
                 <p>Easy to learn</p>
                 <p>No need for jQuery</p>
@@ -92,7 +84,7 @@ class Landing extends Component {
             <div className="w3-third">
               <div className="w3-card w3-container" style={{ minHeight: '460px' }}>
                 <h3>Design</h3><br />
-                <i className="fa fa-diamond w3-margin-bottom w3-text-theme" style={{ fontSize: "120px" }} />
+                <i className="fa fa-diamond w3-margin-bottom w3-text-theme" style={{ fontSize: '120px' }} />
                 <p>Paper like design</p>
                 <p>Bold colors and shadows</p>
                 <p>Equal across platforms</p>
