@@ -43,19 +43,17 @@ export class UserInterestCard extends React.Component {
       return 'black'
     }
     return (
-      <Card className={this.state.btnClass} >
+      <Card className={userInterest(subCategory)} >
         <Card.Content>
           <Card.Header className="interest-card-text">{subCategory.name}</Card.Header>
           <Button
             className="interest-card-button" positive compact value="like" onClick={(evt) => {
-              this.handleClick('green')
               this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)
             }} >
             <Icon color="green" name="thumbs up" />
           </Button>
           <Button
             className="interest-card-button" negative compact value="dislike" onClick={(evt) => {
-              this.handleClick('red')
               this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)
             }} >
             <Icon color="red" name="thumbs down" />
