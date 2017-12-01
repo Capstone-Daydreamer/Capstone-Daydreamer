@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
-import { fetchDay, fetchGroupInt } from '../store'
+import { fetchDay, fetchGroupInt, fetchGroup } from '../store'
 import { Grid, Loader, Container } from 'semantic-ui-react'
+import Chat from './chatbox'
+import SingleGroupCard from './single-group-member-card';
 
 /**
  * COMPONENT
@@ -26,8 +28,9 @@ export class SingleDay extends React.Component {
     this.props.loadDay(id)
   }
   render() {
-    const { days } = this.props
-    if (!days) return ( <Loader active />)
+    const { days, groups } = this.props
+    const users = groups.users
+    if (!days) return (<Loader active />)
     const groupId = this.props.match.params.groupId
     const subComponent = () => {
       if (!days.date) {
@@ -39,9 +42,13 @@ export class SingleDay extends React.Component {
     }
     return (
       <Container>
-        <Grid columns={1} padded>
+        <div className="w3-twothird">
           {subComponent()}
-        </Grid>
+        </div>
+        <div className="users-grid w3-third w3-light-grey" style={{ padding: '0px 15px' }}>
+          {users ? users.map(user => <SingleGroupCard key={user.id} group={groups} user={user} leader={groups.leader} />) : <div />}
+          <Chat className="chat-grid" />
+        </div>
       </Container>
     )
   }
@@ -53,6 +60,7 @@ export class SingleDay extends React.Component {
 const mapState = (state) => {
   return {
     days: state.days,
+    groups: state.groups,
     recommendations: state.recommendations
   }
 }
@@ -62,6 +70,7 @@ const mapDispatch = dispatch => {
     loadDay(id) {
       dispatch(fetchDay(id))
       dispatch(fetchGroupInt(id))
+      dispatch(fetchGroup(id))
     }
   }
 }

@@ -325,7 +325,8 @@ a {
 }
 
 header {
-  background: #F4F4F4;;
+  background-color: #00303f;
+  margin-bottom: 25px;
 }
 
 header::after {
@@ -358,7 +359,7 @@ nav li {
 
 nav a {
   font-family: 'Raleway', sans-serif;
-  color: #00303F;
+  color: #F4F4F4;
   text-decoration: none;
   font-size: 14px;
 }

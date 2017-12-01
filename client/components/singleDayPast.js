@@ -17,7 +17,7 @@ export function SingleDayPast(props) {
                         return (
                             <div id="event-group-card" key={activity.id}>
                                 <img id="event-group-img" src="/edit3.jpg" />
-                                <div id="event-group-content">
+                                <div id="event-group-content" style={{ overflowY: "scroll" }}>
                                     <div><p><b>{activity.name}</b></p></div>
                                     <Divider />
                                     <div><p>{activity.description}</p></div>
