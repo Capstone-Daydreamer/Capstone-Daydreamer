@@ -9,12 +9,29 @@ import {
  * COMPONENT
  */
 export class UserInterestCard extends React.Component {
-  render(){
+  constructor(props) {
+    super(props)
+    this.state = {
+      btnClass: 'interest-card'
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(color) {
+    if (color === 'green') {
+      this.setState({ btnClass: 'interest-card-like' })
+    } else {
+      this.setState({ btnClass: 'interest-card-dislike' })
+    }
+  }
+
+  render() {
+
     const { user, userSubCategories, subCategory } = this.props
     const userLikes = userSubCategories.like && userSubCategories.like.map((like) => {
       return like.subCategoryId
     })
     const userDislikes = userSubCategories.dislike && userSubCategories.dislike.map((dislike) => {
+      
       return dislike.subCategoryId
     })
     const userInterest = (subCat) => {
@@ -26,14 +43,24 @@ export class UserInterestCard extends React.Component {
       return 'black'
     }
     return (
-      <Card color={userInterest(subCategory)} >
-      <Card.Content>
-        <Card.Header>{subCategory.name}</Card.Header>
-        <Button positive compact value="like" onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)} >
-          <Icon name="thumbs up" />
-        </Button>
-        <Button negative compact value="dislike" onClick={(evt) => this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)} ><Icon name="thumbs down" /></Button>
-      </Card.Content>
+      <Card className={this.state.btnClass} >
+        <Card.Content>
+          <Card.Header className="interest-card-text">{subCategory.name}</Card.Header>
+          <Button
+            className="interest-card-button" positive compact value="like" onClick={(evt) => {
+              this.handleClick('green')
+              this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)
+            }} >
+            <Icon color="green" name="thumbs up" />
+          </Button>
+          <Button
+            className="interest-card-button" negative compact value="dislike" onClick={(evt) => {
+              this.handleClick('red')
+              this.props.handleIntUpdate(evt, subCategory, userInterest(subCategory), user)
+            }} >
+            <Icon color="red" name="thumbs down" />
+          </Button>
+        </Card.Content>
       </Card>
     )
   }

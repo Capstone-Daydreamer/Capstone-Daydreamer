@@ -24,7 +24,7 @@ export class UserSettings extends Component {
         return (
             <Grid centered columns={1} padded>
                 <Grid.Row>
-                <div id="groups-header"><h1>Account Settings</h1>
+                <div id="groups-header">
                 <p>Profile tweaks go here.</p>
             </div>
               </Grid.Row>

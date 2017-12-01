@@ -11,7 +11,7 @@ export class Events extends Component {
         const activities = this.props.activities
         return (
             <div>
-            <div id="groups-header"><h1>Past Events</h1>
+            <div id="groups-header">
             <p>Looking for where you've been and what you've done? Look no further.</p>
             </div>
             <div id="card-group">
