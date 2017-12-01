@@ -15,7 +15,6 @@ import {
  */
 const Main = (props) => {
   const { children, handleClick, isLoggedIn } = props
-
   return (
     <div id="site">
       <header>
@@ -31,14 +30,16 @@ const Main = (props) => {
                       <li><a href="/user-groups">Groups |</a></li>
                       <li><a href="/events">Events |</a></li>
                       <li><a href="/profile">Profile |</a></li>
+                      {
+                         props.match.url !== '/' ? <li><a href="/login">Login |</a></li> : <li />
+                      }
+                      {
+                         props.match.url !== '/' ? <li><a href="/signup">Sign Up |</a></li> : <li />
+                      }
                       <a href="/#" onClick={handleClick}>Logout |</a>
                     </li>
                   </span>
-                  : <span>
-                    {/* The navbar will show these links before you log in */}
-                    <li><a href="/login">Login |</a></li>
-                    <li><a href="/signup">Sign Up |</a></li>
-                  </span>
+                  : <span />
               }
             </ul>
           </nav>

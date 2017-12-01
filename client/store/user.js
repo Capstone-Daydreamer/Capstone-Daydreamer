@@ -35,7 +35,7 @@ export const auth = (email, password, method, name) =>
     axios.post(`/auth/${method}`, { email, password, name })
       .then(res => {
         dispatch(getUser(res.data))
-        history.push('/home')
+        history.push('/user-groups')
       })
       .catch(error =>
         dispatch(getUser({ error })))
@@ -60,8 +60,8 @@ export const fb = (email, name, fbId) => dispatch => {
 }
 
 
-export const postNewGroup = (name, leader, users) => dispatch => {
-  axios.post('api/groups/', { name, leader: leader.id })
+export const postNewGroup = (name, leader, users, description) => dispatch => {
+  axios.post('api/groups/', { name, leader: leader.id, description })
     .then(res => res.data)
     .then(group => {
       let userArr = users.map(user => {

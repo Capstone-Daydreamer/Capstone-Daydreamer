@@ -5,7 +5,7 @@ import SingleGroupCard from './single-group-member-card';
 import GroupDay from './user-days-card';
 import Chat from './chatbox';
 import {
-  Container, Segment, Grid, Card, Button
+  Container, Card, Divider, Icon
 } from 'semantic-ui-react';
 import { fetchGroup } from '../store'
 import { Link, withRouter } from 'react-router-dom'
@@ -47,9 +47,15 @@ export class SingleGroup extends React.Component {
 
         <div id="groups-header group-header-grid">
           <h1>{groups.name}</h1>
-          <p>We are the coolest!!</p>
-          {/* <p>{this.state.item}</p> */}
-          <Link to={`/newDay/${groups.id}`}><Button primary>NEW DAY!</Button></Link>
+          <p>{groups.description}</p>
+          <a href={`/newDay/${groups.id}`}>
+          <div id="day-group-card" >
+          <img id="day-group-img" src="/edit5.jpg" />
+          <div id="day-group-content">
+              <h3>Add a new day</h3>
+            </div>
+          </div>
+          </a>
         </div>
         <div />
         <Chat className="chat-grid" />

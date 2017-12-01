@@ -17,9 +17,9 @@ export const UserGroupsCard = (props) => {
     <a href={`/user-groups/${group.id}`}><div id="group-card">
       <img id="group-img" src="/edit1.gif" />
       <div id="group-content">
-      <div><p><b><Icon name="user" />{group.name}</b></p></div>
+      <div><p><b><Icon name="users" />{group.name}</b></p></div>
       <Divider />
-      <div><p>Discription or something filler-y goes here</p></div>
+      <div><p>{group.description}</p></div>
         {numDays}
       </div>
       </div>
