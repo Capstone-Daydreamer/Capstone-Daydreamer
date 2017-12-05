@@ -7,7 +7,7 @@ export function SingleDayPast(props) {
     return (
         <div>
             <div id="row">
-                <div id="groups-header"><h1>Past Events</h1>
+                <div id="groups-header">
                     <p>Here's what you did for {days.name}</p>
                 </div>
             </div>
@@ -16,8 +16,8 @@ export function SingleDayPast(props) {
                     days.activities && days.activities.map((activity) => {
                         return (
                             <div id="event-group-card" key={activity.id}>
-                                <img id="event-group-img" src="/edit3.jpg" />
-                                <div id="event-group-content">
+                                <img id="event-group-img" src={`/edit${activity.id}.jpeg`} />
+                                <div id="event-group-content" style={{ overflowY: "scroll" }}>
                                     <div><p><b>{activity.name}</b></p></div>
                                     <Divider />
                                     <div><p>{activity.description}</p></div>

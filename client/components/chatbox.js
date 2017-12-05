@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchDay, fetchGroupInt } from '../store'
 import * as firebase from 'firebase';
@@ -18,12 +17,10 @@ export class Chat extends React.Component {
     this.loadMessages();
   }
 
-  loadMessages = event => {
-    const { group } = this.props;
+  loadMessages = () => {
     const rootRef = firebase.database().ref().child('messages');
     const groupMessageRef = rootRef.child(1);
     groupMessageRef.limitToLast(6).on('child_added', data => {
-      console.log('Added', data.val());
       let val = data.val();
       let newMessages = this.state.messages
       if (newMessages.length > 6) newMessages = newMessages.shift()
@@ -31,19 +28,17 @@ export class Chat extends React.Component {
         messages: [...newMessages, val]
       })
     });
-    groupMessageRef.limitToLast(10).on('child_changed', data => {
+    groupMessageRef.limitToLast(6).on('child_changed', data => {
       let val = data.val();
-      let newMessages = this.state.messages
-      if (newMessages.length > 6) newMessages = newMessages.shift()
-      this.setState({
-        messages: [...newMessages, val]
-      })
+      this.setState = {
+        messages: [ ...this.state.messages, { key: data.key, name: val.name, text: val.text}]
+      }
     });
   }
 
   messageSubmit = event => {
     event.preventDefault();
-    const { user, group } = this.props;
+    const { user  } = this.props;
     const rootRef = firebase.database().ref().child('messages');
     const groupMessageRef = rootRef.child(1);
 
@@ -57,7 +52,6 @@ export class Chat extends React.Component {
   }
 
   render() {
-    console.log("MESSAGES", this.state.messages)
     let keyInt = 0;
     return (
       <div id="messages-card-container" >
@@ -68,11 +62,11 @@ export class Chat extends React.Component {
               {this.state.messages.map(message => {
                 return (
                   <div className="message-container" key={keyInt++}>
-                  <div className='spacing'>
-                    <div className='pic'></div>
+                  <div className="spacing">
+                    <div className="pic" />
                   </div>
-                  <p className='message'>{message.text}</p>
-                  <h1 className='name'>{message.name}</h1>
+                  <p className="message">{message.text}</p>
+                  <h1 className="name">{message.name}</h1>
                   </div>
                 )
               })}

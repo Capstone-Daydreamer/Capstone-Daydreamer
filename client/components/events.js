@@ -11,7 +11,7 @@ export class Events extends Component {
         const activities = this.props.activities
         return (
             <div>
-            <div id="groups-header"><h1>Past Events</h1>
+            <div id="groups-header">
             <p>Looking for where you've been and what you've done? Look no further.</p>
             </div>
             <div id="card-group">
@@ -19,7 +19,7 @@ export class Events extends Component {
                    activities && activities.map((activity) => {
                        return (
                         <div id="event-group-card" key={activity.id}>
-                        <img id="event-group-img" src="/edit2.jpg" />
+                        <img id="event-group-img" src={`/edit${activity.id}.jpeg`} />
                         <div id="event-group-content">
                           <div><p><b>{activity.name}</b></p></div>
                           <Divider />

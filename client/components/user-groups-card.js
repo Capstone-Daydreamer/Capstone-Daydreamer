@@ -15,11 +15,11 @@ export const UserGroupsCard = (props) => {
   const numDays = num === 1 ? num + ' Day Spent Together!' : num + ' Days Spent Together!'
   return (
     <a href={`/user-groups/${group.id}`}><div id="group-card">
-      <img id="group-img" src="/edit1.gif" />
+      <img id="group-img" src={`/edit${group.id}.jpeg`} />
       <div id="group-content">
-      <div><p><b><Icon name="user" />{group.name}</b></p></div>
+      <div><p><b><Icon name="users" />{group.name}</b></p></div>
       <Divider />
-      <div><p>Discription or something filler-y goes here</p></div>
+      <div><p>{group.description}</p></div>
         {numDays}
       </div>
       </div>

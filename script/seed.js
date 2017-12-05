@@ -52,12 +52,12 @@ const activitySubcat = [
 ]
 
 const groups = [
-  { name: 'Besties Forverrr', leader: 4 }, //1
-  { name: 'The Dudes', leader: 9 }, //2
-  { name: 'Athletes', leader: 2 }, //3
-  { name: 'Legend Family', leader: 10 }, //4
-  { name: 'Monthly GNO!!', leader: 6 }, //5
-  { name: 'College Buddies', leader: 13 }, //6
+  { name: 'Besties Forverrr', leader: 4, description: 'We love cats!' }, //1
+  { name: 'The Dudes', leader: 9, description: 'Very manly dudes' }, //2
+  { name: 'Athletes', leader: 2, description: 'We play sports and hang out' }, //3
+  { name: 'Legend Family', leader: 10, description: 'Greatest fam alive!' }, //4
+  { name: 'Monthly GNO!!', leader: 6, description: 'Here to have a good' }, //5
+  { name: 'College Buddies', leader: 13, description: 'Lets relive our glory days' }, //6
 ]
 
 const userGroup = [

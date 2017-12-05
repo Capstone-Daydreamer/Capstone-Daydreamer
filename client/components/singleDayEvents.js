@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Grid, Card, Item, Divider } from 'semantic-ui-react'
-import SingleDayYelpCard from './singleDayYelpEvent-card' //may not need
-import SingleDayEventfulCard from './singleDayEventfulEvent-card' //may not need
-import { removeInterest, addInterest, destroyInterest, yelpSearch, eventfulPost } from '../store'
+import { yelpSearch, eventfulPost } from '../store'
 import SingleDayPick from './singleDayPick'
 import SingleDayPast from './singleDayPast'
 import SingleDayConfirmed from './singleDayConfirmed'
@@ -18,7 +15,7 @@ export class SingleDayEvents extends Component {
     }
 
     render() {
-        const { days } = this.props
+        const { days, recommendations } = this.props
         const event = new Date(days.date)
         const stateOfDay = () => {
             const sec = days.createdAt && event.getTime() - Date.now()
@@ -38,7 +35,10 @@ export class SingleDayEvents extends Component {
             } else if ( !stateOfDay() && days.activities.length > 0){
                 return <SingleDayConfirmed days={days} />
             } else {
-                return <RecommendedEvents />
+                if (Object.keys(recommendations).length){
+                    return <RecommendedEvents recommendations={recommendations} />
+                }
+                return <div> </div>
             }
         }
 
@@ -53,6 +53,7 @@ export class SingleDayEvents extends Component {
 const mapState = (state) => {
     return {
         days: state.days,
+        recommendations: state.recommendations
     }
 }
 

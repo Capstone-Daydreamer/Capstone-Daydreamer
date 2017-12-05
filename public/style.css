@@ -1,11 +1,12 @@
 html, body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-family: 'Roboto', 'Roboto Condensed', sans-serif;
 }
 
 body {
 	margin: 0;
 	/* font-family: 'Lato', sans-serif; */
-	font-weight: 300;
+  font-weight: 300;
+  background-color: #F4F4F4;
 }
 a {
   color: inherit; /* blue colors for links too */
@@ -29,6 +30,12 @@ a {
   flex-basis: 100%;
   max-width: 100%;
   justify-content: center;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
 }
 
 #groups-header p{
@@ -87,6 +94,43 @@ a {
   max-width: 100%;
   max-height: 100vh;
   overflow: hidden;
+}
+
+#reco-card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+#reco-card{
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  border-style:solid;
+  border-color: #c0c0c0;
+  border-width:1px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 330px;
+  height: 360px;
+  transition: all ease-in-out 250ms;
+}
+
+#reco-card:hover{
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#reco-img {
+  max-height: 50%;
+  object-fit: none;
+}
+
+#reco-content {
+  padding: 20px;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 #card-group {
@@ -182,8 +226,8 @@ a {
   border-radius: 5px;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   flex-basis: 80%;
-  width: 600px;
-  height: 350px;
+  width: 350px;
+  height: 250px;
   transition: all ease-in-out 250ms;
 }
 
@@ -201,6 +245,7 @@ a {
   align-content: center;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 #user-card-group {
@@ -280,7 +325,8 @@ a {
 }
 
 header {
-  background: white;
+  background-color: #00303f;
+  margin-bottom: 25px;
 }
 
 header::after {
@@ -307,26 +353,26 @@ nav ul {
 nav li {
   display: inline-block;
   margin-left: 40px;
-  padding-top: 23px;
+  padding-top: 10px;
   position: relative;
 }
 
 nav a {
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: #F4F4F4;
   text-decoration: none;
   font-size: 14px;
 }
 
 nav a:hover {
-  color: #55d6aa;
+  color: #DCAE1D;
 }
 
 nav a::before {
   content: '';
   display: block;
   height: 5px;
-  background-color: #55d6aa;
+  background-color: #DCAE1D;
 
   position: absolute;
   top: 0;
@@ -341,7 +387,8 @@ nav a:hover::before {
 
 #footer {
   display: flex;
-  background-color: #edeae5;
+  background-color: #00303F;
+  color: #F4F4F4;
   justify-content: space-evenly;
   font-family: 'Raleway', sans-serif;
 }
@@ -357,7 +404,22 @@ nav a:hover::before {
   background-image: url(./hero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed !important;
+}
+
+
+/* Landing Page */
+.landing-head {
+  font-family: 'Alegreya', serif !important;
+  font-weight: 700 !important;
+  line-height: 46px !important;
+  font-size: 46px !important;
+  margin: 0 0 43px 0 !important;
+}
+
+.landing-wrapper {
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
 }
 
 /* Single Group CSS */
@@ -570,4 +632,40 @@ main, #messages-card {
 .mdl-button .material-icons {
   top: -1px;
   margin-right: 5px;
+}
+
+.react-rotating-text-cursor {
+  animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
+}
+ 
+@keyframes blinking-cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.interest-card {
+  background-color: white !important
+}
+
+.interest-card-like {
+  background-color: #469539 !important
+}
+
+.interest-card-dislike {
+  background-color: #b03221 !important
+}
+
+/* .interest-card-text { 
+  color: white !important
+}  */
+
+.interest-card-button {
+  background-color: black !important
 }

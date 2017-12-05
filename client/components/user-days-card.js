@@ -15,7 +15,8 @@ export class UserDaysCard extends Component {
     return (
         <a href={`/user-groups/${group.id}/${day.id}`}>
         <div id="day-group-card" key={day.id}>
-        <img id="day-group-img" src="/edit5.jpg" />
+        <img id="day-group-img" src={`/edit${day.id}.jpeg`} />
+        {/* <img id="day-group-img" src={`/${ 1 + (day.id % 8)}.jpeg`} style={{ height: 'auto', width: '100%', backgroundSize: 'contain'}} /> */}
         <div id="day-group-content">
         <div><p><b>{day.name}</b></p></div>
         <div><p><b>

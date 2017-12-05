@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter} from 'react-router-dom'
 import { logout } from '../store'
 import { Footer } from './'
 import {
-  Container, Menu
 } from 'semantic-ui-react'
 /**
  * COMPONENT
@@ -15,30 +14,31 @@ import {
  */
 const Main = (props) => {
   const { children, handleClick, isLoggedIn } = props
-
   return (
     <div id="site">
       <header>
         <div className="container">
           <nav>
             <ul>
-              <li><a href="/">Daydreamer |</a></li>
               {
                 isLoggedIn
                   ? <span>
                     {/* The navbar will show these links after you log in */}
-                    <li>
+                    <ul>
+                    <li><a href="/">Daydreamer |</a></li>
                       <li><a href="/user-groups">Groups |</a></li>
                       <li><a href="/events">Events |</a></li>
                       <li><a href="/profile">Profile |</a></li>
+                      {
+                         props.match.url !== '/' ? <li><a href="/login">Login |</a></li> : <li />
+                      }
+                      {
+                         props.match.url !== '/' ? <li><a href="/signup">Sign Up |</a></li> : <li />
+                      }
                       <a href="/#" onClick={handleClick}>Logout |</a>
-                    </li>
+                    </ul>
                   </span>
-                  : <span>
-                    {/* The navbar will show these links before you log in */}
-                    <li><a href="/login">Login |</a></li>
-                    <li><a href="/signup">Sign Up |</a></li>
-                  </span>
+                  : <span />
               }
             </ul>
           </nav>

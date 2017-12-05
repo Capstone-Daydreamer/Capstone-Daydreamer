@@ -15,7 +15,7 @@ export const UserGroups = (props) => {
   return (
     <Grid centered columns={1} padded>
     <div id="row">
-      <div id="groups-header"><h1>Current Groups</h1>
+      <div id="groups-header">
         <p>Your awesome groups are here. Feel free to create new groups!</p>
       </div>
     </div>
@@ -23,11 +23,11 @@ export const UserGroups = (props) => {
       <div id="card-group">
         <a href="/new-group">
         <div id="group-card">
-          <img id="group-img" src="/edit1.gif" />
+          <img id="group-img" src={`/edit10.jpeg`} />
           <div id="group-content">
-            <div><p><b><Icon name="user" />Add new group</b></p></div>
+            <div><p><b><Icon name="users" />Add a new group</b></p></div>
             <Divider />
-            <div><p>Discription or something filler-y goes here</p></div> 
+            <div><p>Describe your great groups!</p></div> 
           </div>
         </div>
         </a>

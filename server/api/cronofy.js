@@ -50,25 +50,31 @@ router.get('/accountinfo/:userId', (req, res, next) => {
     }).catch(next)
 })
 
-// router.get('/availability/', (req, res, next) => {
-
-//     var options = {
-//       tzid: 'Etc/UTC',
-//     };
-
-//     cronofyClient.accountInformation(options)
-//       .then(function (response) {
-//         var account = response.account;
-//         res.json(account);
-//       }).catch(next)
-//   })
-
 // Route to GET availability accross a single group
 router.get('/availability/:groupId', async (req, res, next) => {
   const group = await Group.findById(req.params.groupId, { include: [User] });
   const users = group.users;
   // const currentDay = req.body
-
+  res.json({
+    "available_periods": [
+      {
+        "start": "2017-12-02T09:00:00Z",
+        "end": "2017-12-02T11:00:00Z",
+        "participants": [
+          { "sub": "acc_567236000909002" },
+          { "sub": "acc_678347111010113" }
+        ]
+      },
+      {
+        "start": "2017-12-03T11:00:00Z",
+        "end": "2017-12-03T17:00:00Z",
+        "participants": [
+          { "sub": "acc_567236000909002" },
+          { "sub": "acc_678347111010113" }
+        ]
+      },
+    ]
+  })
   // Create options to be sent into the API
   var options = {
     participants: [
@@ -106,25 +112,5 @@ router.get('/availability/:groupId', async (req, res, next) => {
       var available_periods = response.available_periods;
       // res.json(available_periods)
       // Dummy JSON data for testing reasons
-      res.json({
-        "available_periods": [
-          {
-            "start": "2017-11-26T09:00:00Z",
-            "end": "2017-11-26T11:00:00Z",
-            "participants": [
-              { "sub": "acc_567236000909002" },
-              { "sub": "acc_678347111010113" }
-            ]
-          },
-          {
-            "start": "2017-11-27T11:00:00Z",
-            "end": "2017-11-27T17:00:00Z",
-            "participants": [
-              { "sub": "acc_567236000909002" },
-              { "sub": "acc_678347111010113" }
-            ]
-          },
-        ]
-      })
     }).catch(next)
 })

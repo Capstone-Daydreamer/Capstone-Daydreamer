@@ -53,6 +53,14 @@ export class NewGroup extends Component {
                     </Form.Field>
                 </Grid.Row>
                 <Grid.Row>
+                <Form.Field>
+                    <label>Add a short group description!</label>
+                    <input 
+                        name="description" 
+                        placeholder='Group description' />
+                </Form.Field>
+            </Grid.Row>
+                <Grid.Row>
                 <Header as='h3' textAlign='center'>Select some cool group members and click <Button 
                         type='submit' color='teal'>Submit!</Button></Header>
                 </Grid.Row>
@@ -78,7 +86,7 @@ export class NewGroup extends Component {
                         users !== undefined && users.map((user) => {
                             return (
                                 <div id="user-group-card" key={user.id}>
-                                <img id="user-group-img" src="./edit4.jpg" />
+                                <img id="user-group-img" src={`./edit${user.id}.jpeg`} />
                                 <div id="user-group-content">
                                 <span><Checkbox
                                     name="user" 
@@ -86,7 +94,6 @@ export class NewGroup extends Component {
                                     checked={value.indexOf(user.id) !== -1} 
                                     onChange={this.handleChange} /></span>
                                   <div><p><b>{user.name}</b></p></div>
-                                  <Divider />
                                   <div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</p></div> 
                                 </div>
                               </div>
@@ -116,7 +123,7 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         handleSubmit(event, user, value) {
             event.preventDefault()
-            dispatch(postNewGroup(event.target.name.value, user, value));
+            dispatch(postNewGroup(event.target.name.value, user, value, event.target.description.value));
             //must dispatch to cronofy
             const email = user.email
             emailjs.send('gmail', 'new_group_confirmation', {
