@@ -20,7 +20,6 @@ export class Chat extends React.Component {
   loadMessages = () => {
     const rootRef = firebase.database().ref().child('messages');
     const groupMessageRef = rootRef.child(this.props.groupId);
-    console.log(groupMessageRef)
     groupMessageRef.limitToLast(6).on('child_added', data => {
       let val = data.val();
       let newMessages = this.state.messages
