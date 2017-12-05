@@ -86,7 +86,7 @@ export class NewGroup extends Component {
                         users !== undefined && users.map((user) => {
                             return (
                                 <div id="user-group-card" key={user.id}>
-                                <img id="user-group-img" src="./edit4.jpg" />
+                                <img id="user-group-img" src={`./edit${user.id}.jpeg`} />
                                 <div id="user-group-content">
                                 <span><Checkbox
                                     name="user" 
@@ -94,7 +94,6 @@ export class NewGroup extends Component {
                                     checked={value.indexOf(user.id) !== -1} 
                                     onChange={this.handleChange} /></span>
                                   <div><p><b>{user.name}</b></p></div>
-                                  <Divider />
                                   <div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun</p></div> 
                                 </div>
                               </div>

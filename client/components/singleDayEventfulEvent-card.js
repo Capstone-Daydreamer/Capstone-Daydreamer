@@ -39,7 +39,7 @@ export class SingleDayEventfulCard extends React.Component {
                         this.handleClick(currentRec)
                         this.props.selectedEvent(currentRec, id)
                       }}>
-                      <img id="reco-img" src="/edit5.jpg" />
+                      <img id="reco-img" src={`/edit${currentRec.title.length % 9}.jpeg`} />
                       <div id="reco-content">
                         <div><p><b>{currentRec.title}</b></p></div>
                         <Divider />
