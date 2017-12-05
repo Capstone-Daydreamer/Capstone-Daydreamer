@@ -490,7 +490,7 @@ main, #messages-card {
 #messages {
   overflow-y: auto;
   margin-bottom: 10px;
-  height: calc(100% - 80px);
+  height: 400px;
 }
 #message-filler {
   flex-grow: 1;
