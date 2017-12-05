@@ -19,6 +19,9 @@ Use `npm run start-dev` to run locally in development environment
 To deploy use command 
 `npm run deploy`
 
+### Version
+1.0.0
+
 ### Built With
 * React-Redux - Manage front end state
 * Node.js 
