@@ -7,8 +7,8 @@ import * as firebase from 'firebase';
  * COMPONENT
  */
 export class Chat extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       messages: []
     }
@@ -19,7 +19,7 @@ export class Chat extends React.Component {
 
   loadMessages = () => {
     const rootRef = firebase.database().ref().child('messages');
-    const groupMessageRef = rootRef.child(1);
+    const groupMessageRef = rootRef.child(this.props.groupId);
     groupMessageRef.limitToLast(6).on('child_added', data => {
       let val = data.val();
       let newMessages = this.state.messages

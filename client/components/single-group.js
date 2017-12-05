@@ -23,7 +23,7 @@ export class SingleGroup extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id
+    const id = this.props.match.params.id;
     this.props.loadGroup(id)
     const rootRef = firebase.database().ref().child('test');
     const itemRef = rootRef.child('item');
@@ -37,6 +37,7 @@ export class SingleGroup extends React.Component {
   render() {
     const { groups } = this.props
     if (!groups) return (<div />)
+    const id = this.props.match.params.id;
     const users = groups.users
     const days = groups.days
     return (
@@ -53,14 +54,14 @@ export class SingleGroup extends React.Component {
                 </div>
               </div>
             </a>
-            {days && days.map(day => <GroupDay key={day.id} day={day} group={groups}/>)}
+            {days && days.map(day => <GroupDay key={day.id} day={day} group={groups} />)}
           </Card.Group>
         </div>
 
         <div className="users-grid w3-third w3-light-grey" style={{padding: '0px 15px'}}>
           <singleDay />
           {users ? users.map(user => <SingleGroupCard key={user.id} group={groups} user={user} leader={groups.leader} />) : <div />}
-          <Chat className="chat-grid" />
+          <Chat className="chat-grid" groupId={id} />
         </div>
       </Container>
     )
