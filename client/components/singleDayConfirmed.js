@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Divider } from 'semantic-ui-react'
 
@@ -17,7 +17,7 @@ export function SingleDayConfirmed(props) {
                         return (
                             <div id="event-group-card" key={activity.id}>
                                 <img id="event-group-img" src="/edit3.jpg" />
-                                <div id="event-group-content" style={{ overflowY: "scroll" }}>
+                                <div id="event-group-content" style={{ overflowY: 'scroll' }}>
                                     <div><p><b>{activity.name}</b></p></div>
                                     <Divider />
                                     <div><p>{activity.description}</p></div>
