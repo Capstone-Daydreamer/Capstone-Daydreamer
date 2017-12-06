@@ -11,12 +11,11 @@ import {
  */
 export const SingleGroupCard = (props) => {
   const { user } = props
-  const { group } = props
-  const leader = props.userId !== props.leader
+  // const leader = props.userId !== props.leader
   return (
     <div>
       <Item.Content >
-        <Item.Header as='a'>{user.name}</Item.Header>
+        <Item.Header as="a">{user.name}</Item.Header>
         <Item.Meta>User Info</Item.Meta>
       </Item.Content>
       <Divider fitted />

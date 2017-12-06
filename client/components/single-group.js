@@ -58,7 +58,7 @@ export class SingleGroup extends React.Component {
           </Card.Group>
         </div>
 
-        <div className="users-grid w3-third w3-light-grey" style={{padding: '0px 15px'}}>
+        <div className="users-grid w3-third w3-light-grey" style={{ padding: '0px 15px' }}>
           <singleDay />
           {users ? users.map(user => <SingleGroupCard key={user.id} group={groups} user={user} leader={groups.leader} />) : <div />}
           <Chat className="chat-grid" groupId={id} />
