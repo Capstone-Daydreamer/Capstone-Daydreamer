@@ -5,14 +5,12 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_GROUP = 'GET_GROUP'
-const NEW_GROUP = 'NEW_GROUP'
 const UPDATE_GROUP = 'UPDATE_GROUP'
 
 /**
  * ACTION CREATORS
  */
 const getGroup = group => ({ type: GET_GROUP, group })
-const newGroup = group => ({type: NEW_GROUP, group})
 const updateGroup = group => ({type: UPDATE_GROUP, group})
 
 /**
