@@ -68,7 +68,7 @@ export class SingleDayEventfulCard extends React.Component {
           <div>
             <div id="reco-card"
             key={rec.id}>
-            <img id="reco-img" src={`/edit${currentRec.title.length % 9}.jpeg`} />
+            <img id="reco-img" src={`/edit${rec.title.length % 9}.jpeg`} />            
             <div id="reco-content">
               <div><p><b>{rec.title}</b></p></div>
               <Divider />
