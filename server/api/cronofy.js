@@ -58,16 +58,16 @@ router.get('/availability/:groupId', async (req, res, next) => {
   res.json({
     "available_periods": [
       {
-        "start": "2017-12-02T09:00:00Z",
-        "end": "2017-12-02T11:00:00Z",
+        "start": "2017-12-15T09:00:00Z",
+        "end": "2017-12-15T11:00:00Z",
         "participants": [
           { "sub": "acc_567236000909002" },
           { "sub": "acc_678347111010113" }
         ]
       },
       {
-        "start": "2017-12-03T11:00:00Z",
-        "end": "2017-12-03T17:00:00Z",
+        "start": "2017-12-16T11:00:00Z",
+        "end": "2017-12-16T17:00:00Z",
         "participants": [
           { "sub": "acc_567236000909002" },
           { "sub": "acc_678347111010113" }

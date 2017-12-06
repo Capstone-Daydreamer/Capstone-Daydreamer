@@ -40,7 +40,7 @@ export class SingleDayEventfulCard extends React.Component {
                         this.handleClick(currentRec)
                         this.props.selectedEvent(currentRec, id)
                       }}>
-                      <img id="reco-img" src="/edit5.jpg" />
+                      <img id="reco-img" src={`/edit${currentRec.title.length % 9}.jpeg`} />
                       <div id="reco-content">
                         <div><p><b>{currentRec.title}</b></p></div>
                         <Divider />
@@ -67,17 +67,17 @@ export class SingleDayEventfulCard extends React.Component {
             <Divider />
           </div> :
           <div>
-            <div
+            <div 
               id="reco-card"
-              key={rec.id}>
-              <img id="reco-img" src="/edit5.jpg" />
-              <div id="reco-content">
-                <div><p><b>{rec.title}</b></p></div>
-                <Divider />
-                <div><p>{rec.start_time}</p></div>
-                <div><p>{rec.venue_address + ', ' + rec.city_name}</p></div>
-                <div><p>{rec.venue_name}</p></div>
-              </div>
+                key={rec.id}>
+                <img id="reco-img" src={`/edit${rec.title.length % 9}.jpeg`} />            
+                <div id="reco-content">
+                  <div><p><b>{rec.title}</b></p></div>
+                  <Divider />
+                  <div><p>{rec.start_time}</p></div>
+                  <div><p>{rec.venue_address + ', ' + rec.city_name}</p></div>
+                  <div><p>{rec.venue_name}</p></div>
+            </div>
             </div>
           </div>}
       </div>

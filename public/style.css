@@ -207,6 +207,8 @@ a {
   align-content: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: auto;
 }
 
 #day-card-group {
@@ -246,6 +248,8 @@ a {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  width: 100%;
+  height: auto;
 }
 
 #user-card-group {

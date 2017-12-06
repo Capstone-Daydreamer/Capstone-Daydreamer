@@ -47,7 +47,7 @@ export class RecommendedEvents extends Component {
                 <div id="row">
                     <div id="reco-card-group">
                         {
-                            eventfulrecommend.length > 0 && eventfulrecommend.map(rec => rec.search.events.event && <SingleDayEventfulCard key={rec.search.events.event.id || rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id} />)
+                            eventfulrecommend.length > 0 && eventfulrecommend.map(rec => Object.keys(rec).length > 0 && rec.search.events.event && <SingleDayEventfulCard key={rec.search.events.event.id || rec.search.events.event[0].id} eventfulrec={rec.search.events.event} daysId={days.id} />)
                         }
                     </div>
                 </div>
