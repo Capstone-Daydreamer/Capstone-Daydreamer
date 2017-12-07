@@ -28,7 +28,7 @@ To deploy use command
 * Express.js
 * Sequelize - Database
 * Firebase - for chat cabability
-* Cronify - calendar syncing
+* Cronofy - calendar syncing
 * Enzyme - front end testing
 
 
