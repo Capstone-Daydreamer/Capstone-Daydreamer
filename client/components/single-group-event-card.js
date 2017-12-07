@@ -12,11 +12,11 @@ import {
  //in progress
 export const SingleEventCard = (props) => {
   const {user} = props
-  const leader = props.userId !== props.leader 
+  const leader = props.userId !== props.leader
   return (
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='https://fillmurray.com/100/100' />
+        <Image floated="right" size="mini" src="https://fillmurray.com/100/100" />
         <Card.Header>
           {user.name}
       </Card.Header>
@@ -28,9 +28,9 @@ export const SingleEventCard = (props) => {
                     </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <div className='ui two buttons'>
-          <Button basic color='green'>Send Message</Button>
-          <Button disabled={leader} basic color='red'>Remove from Group</Button>
+        <div className="ui two buttons">
+          <Button basic color="green">Send Message</Button>
+          <Button disabled={leader} basic color="red">Remove from Group</Button>
         </div>
       </Card.Content>
     </Card>

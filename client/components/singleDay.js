@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import SingleDaySchedule from './singleDaySchedule'
 import SingleDayEvents from './singleDayEvents'
 import { fetchDay, fetchGroupInt, fetchGroup } from '../store'
-import { Grid, Loader, Container } from 'semantic-ui-react'
+import { Loader, Container } from 'semantic-ui-react'
 import Chat from './chatbox'
 import SingleGroupCard from './single-group-member-card';
 
